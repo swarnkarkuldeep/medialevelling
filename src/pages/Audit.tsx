@@ -260,9 +260,6 @@ const Audit = () => {
               />
             </div>
             <div className="relative z-10 flex flex-col items-center justify-center h-full text-center w-full">
-              <Badge className="mb-6 bg-[#18181b] text-white px-4 py-2 rounded-full">
-                100% Free • No Strings Attached
-              </Badge>
               <h1
                 className="text-4xl md:text-6xl font-extrabold mb-8 leading-tight"
                 style={{
