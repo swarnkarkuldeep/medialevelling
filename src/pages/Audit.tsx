@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import { useInView } from 'framer-motion';
 import { useInViewAnimation } from '@/hooks/use-in-view-animation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -7,6 +8,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Checkbox } from '@/components/ui/checkbox';
+import { Badge } from '@/components/ui/badge';
 import { 
   Search, 
   TrendingUp, 
@@ -19,78 +21,41 @@ import {
   BarChart3,
   Zap,
   Eye,
-  MessageSquare
+  MessageSquare,
+  Award,
+  Clock,
+  Shield,
+  Users,
+  Star,
+  Play,
+  ChevronDown,
+  ChevronUp,
+  Lightbulb,
+  Rocket,
+  Activity,
+  TrendingDown,
+  AlertTriangle,
+  ThumbsUp
 } from 'lucide-react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import BackToTop from '@/components/BackToTop';
 import { useNavigate } from 'react-router-dom';
 
-const auditServices = [
-  {
-    icon: Search,
-    title: 'SEO Audit',
-    description: 'Comprehensive analysis of your website\'s search engine optimization',
-    features: [
-      'Technical SEO analysis',
-      'Keyword research',
-      'On-page optimization review',
-      'Competitor analysis',
-      'Performance recommendations'
-    ]
-  },
-  {
-    icon: Target,
-    title: 'Meta Ads Audit',
-    description: 'Review of your Facebook and Instagram advertising campaigns',
-    features: [
-      'Campaign structure analysis',
-      'Audience targeting review',
-      'Ad creative assessment',
-      'Performance optimization',
-      'Budget allocation review'
-    ]
-  },
-  {
-    icon: TrendingUp,
-    title: 'Google Ads Audit',
-    description: 'Analysis of your search and display advertising performance',
-    features: [
-      'Account structure review',
-      'Keyword performance analysis',
-      'Quality score optimization',
-      'Bidding strategy review',
-      'ROI improvement suggestions'
-    ]
-  },
-  {
-    icon: Video,
-    title: 'Content Strategy Audit',
-    description: 'Evaluation of your content marketing and social media presence',
-    features: [
-      'Content performance analysis',
-      'Social media strategy review',
-      'Brand voice assessment',
-      'Engagement optimization',
-      'Content calendar planning'
-    ]
-  },
-  {
-    icon: Globe,
-    title: 'Website Audit',
-    description: 'Comprehensive review of your website\'s performance and user experience',
-    features: [
-      'User experience analysis',
-      'Conversion optimization review',
-      'Technical performance audit',
-      'Mobile responsiveness check',
-      'Security and speed analysis'
-    ]
-  }
-];
-
 const Audit = () => {
-  const { ref, className } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
+  const heroRef = useRef(null);
+  const isInViewHero = useInView(heroRef, { once: true, amount: 0.3 });
+  const { ref: formRef, className: formClassName } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
+  const { ref: whyAuditRef, className: whyAuditClassName } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
+  const { ref: widgetRef, className: widgetClassName } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
+  const { ref: competitorRef, className: competitorClassName } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
+  const { ref: pathRef, className: pathClassName } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
+  const { ref: methodologyRef, className: methodologyClassName } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
+  const { ref: resultsRef, className: resultsClassName } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
+  const { ref: testimonialsRef, className: testimonialsClassName } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
+  const { ref: faqRef, className: faqClassName } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
+  const { ref: finalCtaRef, className: finalCtaClassName } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
+  
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
@@ -103,6 +68,10 @@ const Audit = () => {
     description: '',
     services: [] as string[]
   });
+
+  const [auditScore, setAuditScore] = useState(0);
+  const [showScore, setShowScore] = useState(false);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const handleInputChange = (field: string, value: string | string[]) => {
     setFormData(prev => ({
@@ -122,9 +91,122 @@ const Audit = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
     navigate('/contact');
   };
+
+  const generateAuditScore = () => {
+    const score = Math.floor(Math.random() * 40) + 35; // Random score between 35-75
+    setAuditScore(score);
+    setShowScore(true);
+  };
+
+  const whyAuditReasons = [
+    {
+      icon: Eye,
+      title: 'Uncover Hidden Issues',
+      description: 'Discover what\'s holding your digital marketing back and identify missed opportunities for growth.'
+    },
+    {
+      icon: TrendingUp,
+      title: 'Maximize ROI',
+      description: 'Get actionable insights to improve your marketing spend efficiency and drive better results.'
+    },
+    {
+      icon: Target,
+      title: 'Strategic Direction',
+      description: 'Receive a clear roadmap with prioritized recommendations for immediate and long-term success.'
+    },
+    {
+      icon: Zap,
+      title: 'Quick Wins',
+      description: 'Identify low-hanging fruit that can deliver immediate improvements to your marketing performance.'
+    }
+  ];
+
+  const competitorMetrics = [
+    { metric: 'Organic Traffic', you: 45, competitor: 78, industry: 65 },
+    { metric: 'Conversion Rate', you: 2.1, competitor: 3.8, industry: 2.9 },
+    { metric: 'Page Speed', you: 3.2, competitor: 1.8, industry: 2.5 },
+    { metric: 'Social Engagement', you: 1.2, competitor: 4.5, industry: 2.8 }
+  ];
+
+  const pathSteps = [
+    {
+      icon: Search,
+      title: 'Deep Analysis',
+      description: 'We analyze every aspect of your digital presence - from technical SEO to conversion funnels.'
+    },
+    {
+      icon: BarChart3,
+      title: 'Data-Driven Insights',
+      description: 'Our team identifies gaps, opportunities, and provides benchmarking against your competitors.'
+    },
+    {
+      icon: Rocket,
+      title: 'Strategic Roadmap',
+      description: 'You receive a prioritized action plan with clear steps to achieve your marketing goals.'
+    }
+  ];
+
+  const methodologySteps = [
+    'Technical Website Audit',
+    'SEO Performance Analysis',
+    'Paid Advertising Review',
+    'Content Strategy Assessment',
+    'Competitor Benchmarking',
+    'Conversion Optimization Review'
+  ];
+
+  const resultStats = [
+    { number: '87%', label: 'Average Traffic Increase', icon: TrendingUp },
+    { number: '156%', label: 'ROI Improvement', icon: Target },
+    { number: '48hrs', label: 'Audit Delivery Time', icon: Clock },
+    { number: '500+', label: 'Successful Audits', icon: Award }
+  ];
+
+  const testimonials = [
+    {
+      quote: "The audit revealed issues we never knew existed. Within 3 months, our organic traffic doubled!",
+      author: "Sarah Chen",
+      company: "TechStart Inc.",
+      rating: 5
+    },
+    {
+      quote: "Incredibly detailed analysis. The recommendations were spot-on and easy to implement.",
+      author: "Michael Rodriguez",
+      company: "GrowthCo",
+      rating: 5
+    },
+    {
+      quote: "Best investment we made. The audit saved us thousands in wasted ad spend.",
+      author: "Emily Johnson",
+      company: "RetailPlus",
+      rating: 5
+    }
+  ];
+
+  const faqs = [
+    {
+      question: "How long does the audit take?",
+      answer: "We deliver comprehensive audits within 48 hours. Our team works efficiently to provide you with actionable insights quickly."
+    },
+    {
+      question: "What's included in the free audit?",
+      answer: "Our free audit includes technical SEO analysis, performance review, competitor benchmarking, and a prioritized action plan with quick wins."
+    },
+    {
+      question: "Do I need to provide access to my accounts?",
+      answer: "For the most accurate analysis, we may need read-only access to your Google Analytics, Search Console, and advertising accounts. All access is secure and temporary."
+    },
+    {
+      question: "What happens after I receive the audit?",
+      answer: "You'll get a detailed report with actionable recommendations. We also offer a free consultation call to discuss the findings and next steps."
+    },
+    {
+      question: "Is this really free?",
+      answer: "Yes, absolutely! We provide genuine value upfront. There's no obligation to work with us, though many clients choose to after seeing the quality of our analysis."
+    }
+  ];
 
   return (
     <>
@@ -132,153 +214,162 @@ const Audit = () => {
         <Navigation />
       </header>
       <main className="min-h-screen bg-white">
-        <div className="container mx-auto px-4 pt-40 md:pt-48">
-          <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-5xl font-normal text-gray-900 mb-6">
-              Free Digital Marketing Audit
-            </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Get a comprehensive analysis of your digital marketing performance and discover opportunities for growth
-            </p>
-          </div>
-        </div>
-        
-        {/* Hero Section */}
-        <section className="py-16 px-4 md:px-8">
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-5xl font-bold mb-8" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400 }}>
-                Unlock Your Business<br />Growth Potential
-              </h2>
-              <p className="text-lg md:text-xl text-[#23263a] max-w-3xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 400 }}>
-                Our expert team will analyze your digital marketing efforts and provide actionable insights to improve your online presence, increase traffic, and boost conversions.
+        {/* Hero Section with CTA */}
+        <section 
+          ref={heroRef}
+          className="w-full flex items-center justify-center min-h-[80vh] py-8 px-4 md:px-8 mt-24 md:mt-32 overflow-hidden"
+          style={{
+            opacity: isInViewHero ? 1 : 0,
+            transform: isInViewHero ? 'translateY(0)' : 'translateY(20px)',
+            transition: 'opacity 0.8s ease-out, transform 0.8s ease-out'
+          }}
+        >
+          <div
+            className="relative w-full max-w-7xl mx-auto rounded-[48px] md:rounded-[48px] bg-white flex flex-col items-center justify-center px-6 md:px-16 py-16 md:py-24 overflow-hidden"
+            style={{
+              minHeight: 520,
+              background: `
+                radial-gradient(ellipse at 10% 20%, #e0f7fa 0%, transparent 50%),
+                radial-gradient(ellipse at 90% 80%, #f3e8ff 0%, transparent 55%),
+                radial-gradient(ellipse at 30% 70%, #d1f5e0 0%, transparent 65%),
+                radial-gradient(ellipse at 70% 40%, #ffe4fa 0%, transparent 60%),
+                linear-gradient(135deg, #f7fafc 0%, #f8fafc 100%)
+              `,
+              transform: isInViewHero ? 'scale(1)' : 'scale(0.98)',
+              opacity: isInViewHero ? 1 : 0,
+              transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s',
+            }}
+          >
+            <div className="absolute inset-0 rounded-[48px] z-0 overflow-hidden pointer-events-none">
+              <div
+                className="animate-gradient-move"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  background: `
+                    radial-gradient(ellipse at 15% 25%, #e0f7fa 0%, transparent 55%),
+                    radial-gradient(ellipse at 85% 75%, #f3e8ff 0%, transparent 50%),
+                    radial-gradient(ellipse at 25% 65%, #d1f5e0 0%, transparent 60%),
+                    radial-gradient(ellipse at 75% 35%, #ffe4fa 0%, transparent 65%)
+                  `,
+                  opacity: 0.7,
+                  position: 'absolute',
+                  inset: 0,
+                  backgroundSize: '200% 200%',
+                }}
+              />
+            </div>
+            <div className="relative z-10 flex flex-col items-center justify-center h-full text-center w-full">
+              <Badge className="mb-6 bg-[#18181b] text-white px-4 py-2 rounded-full">
+                100% Free • No Strings Attached
+              </Badge>
+              <h1
+                className="text-4xl md:text-6xl font-extrabold mb-8 leading-tight"
+                style={{
+                  fontFamily: 'Montserrat, sans-serif',
+                  color: '#18181b',
+                  letterSpacing: '-0.03em',
+                  fontWeight: 400,
+                  transform: isInViewHero ? 'translateY(0)' : 'translateY(20px)',
+                  opacity: isInViewHero ? 1 : 0,
+                  transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s'
+                }}
+              >
+                Get Your Free Digital<br />Marketing Audit
+              </h1>
+              <p
+                className="text-xl md:text-2xl font-normal mb-12 max-w-3xl mx-auto leading-relaxed"
+                style={{
+                  fontFamily: 'Montserrat, sans-serif',
+                  color: '#23272f',
+                  transform: isInViewHero ? 'translateY(0)' : 'translateY(20px)',
+                  opacity: isInViewHero ? 1 : 0,
+                  transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s'
+                }}
+              >
+                Discover what's holding your business back and get a clear roadmap to digital marketing success. Delivered in 48 hours.
               </p>
+              <div 
+                className="flex flex-col md:flex-row gap-4 justify-center"
+                style={{
+                  transform: isInViewHero ? 'translateY(0)' : 'translateY(20px)',
+                  opacity: isInViewHero ? 1 : 0,
+                  transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s'
+                }}
+              >
+                <Button
+                  size="lg"
+                  className="bg-[#18181b] hover:bg-[#23272f] text-white px-10 py-4 rounded-xl font-semibold text-lg transform transition-all duration-300 hover:scale-105"
+                  onClick={() => document.getElementById('audit-form')?.scrollIntoView({ behavior: 'smooth' })}
+                  style={{ 
+                    fontFamily: 'Montserrat, sans-serif'
+                  }}
+                >
+                  Get My Free Audit
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-[#18181b] text-[#18181b] hover:bg-[#f3f4f6] px-10 py-4 rounded-xl font-semibold text-lg transform transition-all duration-300 hover:scale-105"
+                  onClick={() => document.getElementById('video-section')?.scrollIntoView({ behavior: 'smooth' })}
+                  style={{ 
+                    fontFamily: 'Montserrat, sans-serif', 
+                    borderColor: '#18181b'
+                  }}
+                >
+                  <Play className="mr-2 h-5 w-5" />
+                  Watch Video
+                </Button>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* What We Audit */}
-        <section ref={ref} className={`py-16 px-4 md:px-8 ${className}`}>
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400 }}>
-                What We Audit
+        {/* Video Section (VSL) */}
+        <section id="video-section" className="py-24 px-4 md:px-8 bg-white">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-normal mb-6" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400 }}>
+                See How We Transform Businesses
               </h2>
-              <p className="text-lg text-[#23263a] max-w-2xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 400 }}>
-                Comprehensive analysis across all digital marketing channels
+              <p className="text-lg text-[#23272f] max-w-2xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                Watch this 3-minute video to understand our audit process and see real results from businesses like yours.
               </p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {auditServices.map((service, idx) => {
-                const IconComponent = service.icon;
-                return (
-                  <Card
-                    key={service.title}
-                    className="group cursor-pointer transition-all duration-500 hover:shadow-2xl hover:scale-105 border-0 overflow-hidden animate-fade-in-up"
-                    style={{ animationDelay: `${idx * 200}ms` }}
-                  >
-                    <CardHeader className="pb-4">
-                      <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-4 bg-gradient-to-br from-blue-500 to-purple-600">
-                        <IconComponent className="w-8 h-8 text-white" />
-                      </div>
-                      <CardTitle className="text-xl font-bold" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
-                        {service.title}
-                      </CardTitle>
-                      <CardDescription className="text-base text-[#23263a] mt-2" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 400 }}>
-                        {service.description}
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent className="pt-0">
-                      <div className="space-y-3">
-                        {service.features.map((feature, featureIdx) => (
-                          <div key={featureIdx} className="flex items-center gap-3">
-                            <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
-                            <span className="text-sm text-[#23263a]" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 400 }}>
-                              {feature}
-                            </span>
-                          </div>
-                        ))}
-                      </div>
-                    </CardContent>
-                  </Card>
-                );
-              })}
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-gray-100 aspect-video max-w-4xl mx-auto">
+              <iframe
+                className="w-full h-full"
+                src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                title="Digital Marketing Audit Process"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
             </div>
           </div>
         </section>
 
-        {/* Benefits Section */}
-        <section className="py-24 px-4 md:px-8 bg-gradient-to-br from-gray-50 to-white">
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold mb-8" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400 }}>
-                Why Get a Free Audit?
-              </h2>
-              <p className="text-lg md:text-xl text-[#23263a] max-w-3xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 400 }}>
-                Discover hidden opportunities and optimize your digital marketing strategy
-              </p>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="text-center p-8 rounded-2xl bg-white shadow-lg hover:shadow-xl transition-all duration-300">
-                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center mx-auto mb-6">
-                  <Eye className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="text-xl font-bold mb-4" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
-                  Identify Opportunities
-                </h3>
-                <p className="text-[#23263a]" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 400 }}>
-                  Uncover hidden potential in your current digital marketing efforts and find new growth opportunities.
-                </p>
-              </div>
-              
-              <div className="text-center p-8 rounded-2xl bg-white shadow-lg hover:shadow-xl transition-all duration-300">
-                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-green-500 to-blue-600 flex items-center justify-center mx-auto mb-6">
-                  <BarChart3 className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="text-xl font-bold mb-4" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
-                  Data-Driven Insights
-                </h3>
-                <p className="text-[#23263a]" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 400 }}>
-                  Get actionable recommendations based on real data and industry best practices.
-                </p>
-              </div>
-              
-              <div className="text-center p-8 rounded-2xl bg-white shadow-lg hover:shadow-xl transition-all duration-300">
-                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center mx-auto mb-6">
-                  <Zap className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="text-xl font-bold mb-4" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
-                  Quick Implementation
-                </h3>
-                <p className="text-[#23263a]" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 400 }}>
-                  Receive prioritized recommendations that you can implement immediately for fast results.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Audit Form */}
-        <section className="py-24 px-4 md:px-8">
+        {/* Form Section (Above the fold) */}
+        <section id="audit-form" ref={formRef} className={`py-24 px-4 md:px-8 bg-gradient-to-br from-gray-50/50 to-white ${formClassName}`}>
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400 }}>
-                Request Your Free Audit
+              <h2 className="text-3xl md:text-4xl font-normal mb-6" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400 }}>
+                Get Your Free Audit Report
               </h2>
-              <p className="text-lg text-[#23263a] max-w-2xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 400 }}>
-                Fill out the form below and we'll provide you with a comprehensive digital marketing audit within 48 hours.
+              <p className="text-lg text-[#23272f] max-w-2xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                Fill out this quick form and we'll deliver a comprehensive audit of your digital marketing within 48 hours.
               </p>
             </div>
             
             <Card className="shadow-2xl border-0 overflow-hidden">
               <CardHeader className="bg-gradient-to-br from-gray-50 to-white pb-8">
-                <CardTitle className="text-2xl font-bold text-center" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
-                  Digital Marketing Audit Request
+                <CardTitle className="text-2xl font-normal text-center" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400 }}>
+                  Free Digital Marketing Audit
                 </CardTitle>
-                <CardDescription className="text-center text-[#23263a]" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 400 }}>
-                  Tell us about your business and we'll create a custom audit plan
+                <CardDescription className="text-center text-[#23272f]" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                  No cost, no commitment - just valuable insights for your business
                 </CardDescription>
               </CardHeader>
               <CardContent className="p-8">
@@ -328,108 +419,511 @@ const Audit = () => {
                     </div>
                     <div>
                       <Label htmlFor="website" className="text-sm font-semibold" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
-                        Website URL
+                        Website URL *
                       </Label>
                       <Input
                         id="website"
                         value={formData.website}
                         onChange={(e) => handleInputChange('website', e.target.value)}
+                        required
                         className="mt-2"
                         style={{ fontFamily: 'Montserrat, sans-serif' }}
                       />
                     </div>
                   </div>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <Label htmlFor="service" className="text-sm font-semibold" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
-                        Primary Service Interest
-                      </Label>
-                      <Select value={formData.service} onValueChange={(value) => handleInputChange('service', value)}>
-                        <SelectTrigger className="mt-2">
-                          <SelectValue placeholder="Select a service" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="seo">SEO</SelectItem>
-                          <SelectItem value="meta-ads">Meta Ads</SelectItem>
-                          <SelectItem value="google-ads">Google Ads</SelectItem>
-                          <SelectItem value="content">Content Strategy</SelectItem>
-                          <SelectItem value="website">Website</SelectItem>
-                          <SelectItem value="comprehensive">Comprehensive Audit</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    <div>
-                      <Label htmlFor="budget" className="text-sm font-semibold" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
-                        Monthly Marketing Budget
-                      </Label>
-                      <Select value={formData.budget} onValueChange={(value) => handleInputChange('budget', value)}>
-                        <SelectTrigger className="mt-2">
-                          <SelectValue placeholder="Select budget range" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="under-1k">Under $1,000</SelectItem>
-                          <SelectItem value="1k-5k">$1,000 - $5,000</SelectItem>
-                          <SelectItem value="5k-10k">$5,000 - $10,000</SelectItem>
-                          <SelectItem value="10k-25k">$10,000 - $25,000</SelectItem>
-                          <SelectItem value="25k-plus">$25,000+</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                  </div>
-                  
                   <div>
                     <Label htmlFor="description" className="text-sm font-semibold" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
-                      Tell us about your business and goals
+                      What are your main marketing challenges?
                     </Label>
                     <Textarea
                       id="description"
                       value={formData.description}
                       onChange={(e) => handleInputChange('description', e.target.value)}
-                      placeholder="Describe your business, current challenges, and what you hope to achieve..."
+                      placeholder="Tell us about your current marketing efforts and what you'd like to improve..."
                       className="mt-2 min-h-[120px]"
                       style={{ fontFamily: 'Montserrat, sans-serif' }}
                     />
-                  </div>
-                  
-                  <div>
-                    <Label className="text-sm font-semibold mb-4 block" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
-                      Which areas would you like us to audit? (Select all that apply)
-                    </Label>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      {auditServices.map((service) => (
-                        <div key={service.title} className="flex items-center space-x-3">
-                          <Checkbox
-                            id={service.title}
-                            checked={formData.services.includes(service.title)}
-                            onCheckedChange={() => handleServiceToggle(service.title)}
-                          />
-                          <Label
-                            htmlFor={service.title}
-                            className="text-sm cursor-pointer"
-                            style={{ fontFamily: 'Montserrat, sans-serif', color: '#23263a', fontWeight: 400 }}
-                          >
-                            {service.title}
-                          </Label>
-                        </div>
-                      ))}
-                    </div>
                   </div>
                   
                   <div className="text-center pt-6">
                     <Button
                       type="submit"
                       size="lg"
-                      className="bg-[#18181b] hover:bg-[#23272f] text-white px-8 py-3 rounded-lg font-semibold text-lg"
+                      className="bg-[#18181b] hover:bg-[#23272f] text-white px-12 py-4 rounded-xl font-semibold text-lg transform transition-all duration-300 hover:scale-105"
                       style={{ fontFamily: 'Montserrat, sans-serif' }}
                     >
-                      Request Free Audit
-                      <ArrowRight className="w-4 h-4 ml-2" />
+                      Get My Free Audit Report
+                      <ArrowRight className="w-5 h-5 ml-2" />
                     </Button>
+                    <p className="text-sm text-gray-500 mt-4" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                      Delivered within 48 hours • No spam, ever
+                    </p>
                   </div>
                 </form>
               </CardContent>
             </Card>
+          </div>
+        </section>
+
+        {/* Why Go For Audit Section */}
+        <section ref={whyAuditRef} className={`py-24 px-4 md:px-8 bg-white ${whyAuditClassName}`}>
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-5xl font-normal mb-8" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400, letterSpacing: '-0.03em' }}>
+                Why Every Business Needs<br />a Digital Marketing Audit
+              </h2>
+              <p className="text-lg md:text-xl text-[#23272f] max-w-3xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                Most businesses are leaving money on the table without even knowing it. Our audit reveals exactly where and how to fix it.
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-2 gap-8">
+              {whyAuditReasons.map((reason, idx) => (
+                <Card
+                  key={idx}
+                  className="border-0 shadow-none bg-white transition-all duration-500 hover:scale-[1.02] h-full"
+                  style={{
+                    animationDelay: `${idx * 150}ms`
+                  }}
+                >
+                  <CardContent className="p-8">
+                    <div className="flex items-start gap-6">
+                      <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-gradient-to-br from-blue-50 to-purple-50 flex items-center justify-center">
+                        <reason.icon className="w-8 h-8 text-gray-700" />
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-semibold mb-3" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
+                          {reason.title}
+                        </h3>
+                        <p className="text-[#23272f] leading-relaxed" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                          {reason.description}
+                        </p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Interactive Audit Score Widget */}
+        <section ref={widgetRef} className={`py-24 px-4 md:px-8 bg-gradient-to-br from-gray-50/50 to-white ${widgetClassName}`}>
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-normal mb-6" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400 }}>
+                What's Your Current Marketing Score?
+              </h2>
+              <p className="text-lg text-[#23272f] max-w-2xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                Get an instant preview of how your digital marketing might be performing. Click below for a sample score.
+              </p>
+            </div>
+            
+            <Card className="shadow-xl border-0 overflow-hidden bg-white">
+              <CardContent className="p-12 text-center">
+                {!showScore ? (
+                  <div>
+                    <div className="w-32 h-32 mx-auto mb-8 rounded-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+                      <BarChart3 className="w-16 h-16 text-gray-600" />
+                    </div>
+                    <h3 className="text-2xl font-semibold mb-4" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
+                      Discover Your Marketing Performance
+                    </h3>
+                    <p className="text-[#23272f] mb-8" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                      Click the button below to see a sample audit score and understand what we analyze.
+                    </p>
+                    <Button
+                      onClick={generateAuditScore}
+                      size="lg"
+                      className="bg-[#18181b] hover:bg-[#23272f] text-white px-8 py-3 rounded-lg font-semibold"
+                      style={{ fontFamily: 'Montserrat, sans-serif' }}
+                    >
+                      Generate Sample Score
+                    </Button>
+                  </div>
+                ) : (
+                  <div>
+                    <div className="relative w-32 h-32 mx-auto mb-8">
+                      <div className="w-32 h-32 rounded-full bg-gradient-to-br from-orange-100 to-red-100 flex items-center justify-center">
+                        <div className="text-center">
+                          <div className="text-3xl font-bold text-[#18181b]" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                            {auditScore}
+                          </div>
+                          <div className="text-sm text-gray-600">/ 100</div>
+                        </div>
+                      </div>
+                      {auditScore < 60 && (
+                        <AlertTriangle className="absolute -top-2 -right-2 w-8 h-8 text-orange-500" />
+                      )}
+                    </div>
+                    <h3 className="text-2xl font-semibold mb-4" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
+                      Sample Marketing Score: {auditScore < 60 ? 'Needs Improvement' : auditScore < 80 ? 'Good' : 'Excellent'}
+                    </h3>
+                    <p className="text-[#23272f] mb-6" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                      {auditScore < 60 
+                        ? 'There are significant opportunities to improve your digital marketing performance.'
+                        : auditScore < 80 
+                        ? 'Your marketing is performing well, but there\'s room for optimization.'
+                        : 'Your digital marketing is performing excellently!'
+                      }
+                    </p>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                      <div className="text-center p-4 bg-gray-50 rounded-lg">
+                        <div className="text-lg font-semibold text-[#18181b]">SEO</div>
+                        <div className="text-sm text-gray-600">{Math.floor(Math.random() * 30) + 40}/100</div>
+                      </div>
+                      <div className="text-center p-4 bg-gray-50 rounded-lg">
+                        <div className="text-lg font-semibold text-[#18181b]">Ads</div>
+                        <div className="text-sm text-gray-600">{Math.floor(Math.random() * 30) + 45}/100</div>
+                      </div>
+                      <div className="text-center p-4 bg-gray-50 rounded-lg">
+                        <div className="text-lg font-semibold text-[#18181b]">Content</div>
+                        <div className="text-sm text-gray-600">{Math.floor(Math.random() * 30) + 35}/100</div>
+                      </div>
+                      <div className="text-center p-4 bg-gray-50 rounded-lg">
+                        <div className="text-lg font-semibold text-[#18181b]">Technical</div>
+                        <div className="text-sm text-gray-600">{Math.floor(Math.random() * 30) + 50}/100</div>
+                      </div>
+                    </div>
+                    <Button
+                      onClick={() => document.getElementById('audit-form')?.scrollIntoView({ behavior: 'smooth' })}
+                      size="lg"
+                      className="bg-[#18181b] hover:bg-[#23272f] text-white px-8 py-3 rounded-lg font-semibold"
+                      style={{ fontFamily: 'Montserrat, sans-serif' }}
+                    >
+                      Get My Real Audit Score
+                    </Button>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
+        {/* Competitor Benchmark Section */}
+        <section ref={competitorRef} className={`py-24 px-4 md:px-8 bg-white ${competitorClassName}`}>
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-5xl font-normal mb-8" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400, letterSpacing: '-0.03em' }}>
+                How Do You Stack Up<br />Against Competitors?
+              </h2>
+              <p className="text-lg md:text-xl text-[#23272f] max-w-3xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                Our audit includes comprehensive competitor analysis to show you exactly where you stand and what opportunities you're missing.
+              </p>
+            </div>
+            
+            <div className="bg-white rounded-2xl shadow-xl p-8 overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b border-gray-200">
+                    <th className="text-left py-4 px-4 font-semibold" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
+                      Metric
+                    </th>
+                    <th className="text-center py-4 px-4 font-semibold text-blue-600" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                      You
+                    </th>
+                    <th className="text-center py-4 px-4 font-semibold text-red-600" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                      Top Competitor
+                    </th>
+                    <th className="text-center py-4 px-4 font-semibold text-gray-600" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                      Industry Average
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {competitorMetrics.map((metric, idx) => (
+                    <tr key={idx} className="border-b border-gray-100">
+                      <td className="py-4 px-4 font-medium" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
+                        {metric.metric}
+                      </td>
+                      <td className="text-center py-4 px-4">
+                        <div className="flex items-center justify-center gap-2">
+                          <span className="font-semibold text-blue-600">{metric.you}</span>
+                          {metric.you < metric.competitor && <TrendingDown className="w-4 h-4 text-red-500" />}
+                          {metric.you > metric.competitor && <TrendingUp className="w-4 h-4 text-green-500" />}
+                        </div>
+                      </td>
+                      <td className="text-center py-4 px-4 font-semibold text-red-600">
+                        {metric.competitor}
+                      </td>
+                      <td className="text-center py-4 px-4 font-semibold text-gray-600">
+                        {metric.industry}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            
+            <div className="text-center mt-12">
+              <p className="text-lg text-[#23272f] mb-6" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                Don't let competitors outperform you. Get detailed insights into their strategies.
+              </p>
+              <Button
+                onClick={() => document.getElementById('audit-form')?.scrollIntoView({ behavior: 'smooth' })}
+                size="lg"
+                className="bg-[#18181b] hover:bg-[#23272f] text-white px-8 py-3 rounded-lg font-semibold"
+                style={{ fontFamily: 'Montserrat, sans-serif' }}
+              >
+                Analyze My Competition
+              </Button>
+            </div>
+          </div>
+        </section>
+
+        {/* Our Proven Path to Agency Success */}
+        <section ref={pathRef} className={`py-24 px-4 md:px-8 bg-gradient-to-br from-gray-50/50 to-white ${pathClassName}`}>
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-5xl font-normal mb-8" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400, letterSpacing: '-0.03em' }}>
+                Our Proven Path to<br />Marketing Success
+              </h2>
+              <p className="text-lg md:text-xl text-[#23272f] max-w-3xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                We've helped hundreds of businesses transform their digital marketing. Here's our proven 3-step process.
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-3 gap-8">
+              {pathSteps.map((step, idx) => (
+                <div
+                  key={idx}
+                  className="text-center p-8 rounded-2xl bg-white shadow-lg hover:shadow-xl transition-all duration-300"
+                  style={{ animationDelay: `${idx * 150}ms` }}
+                >
+                  <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-[#18181b] flex items-center justify-center">
+                    <step.icon className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-4" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
+                    {step.title}
+                  </h3>
+                  <p className="text-[#23272f]" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                    {step.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Our Methodology */}
+        <section ref={methodologyRef} className={`py-24 px-4 md:px-8 bg-white ${methodologyClassName}`}>
+          <div className="max-w-7xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-16 items-center">
+              <div>
+                <h2 className="text-3xl md:text-5xl font-normal mb-8" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400, letterSpacing: '-0.03em' }}>
+                  Our Comprehensive<br />Audit Methodology
+                </h2>
+                <p className="text-lg md:text-xl text-[#23272f] mb-8" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                  We leave no stone unturned. Our audit covers every aspect of your digital marketing to ensure you get the complete picture.
+                </p>
+                <div className="space-y-4">
+                  {methodologySteps.map((step, idx) => (
+                    <div key={idx} className="flex items-center gap-4">
+                      <CheckCircle className="w-6 h-6 text-green-500 flex-shrink-0" />
+                      <span className="text-[#23272f] font-medium" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                        {step}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              
+              <div className="relative">
+                <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-8 shadow-lg">
+                  <div className="text-center">
+                    <Activity className="w-16 h-16 mx-auto mb-6 text-gray-700" />
+                    <h3 className="text-2xl font-semibold mb-4" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
+                      360° Analysis
+                    </h3>
+                    <p className="text-[#23272f]" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                      We analyze every touchpoint of your digital presence to identify opportunities and gaps that others miss.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* We Get Results Fast */}
+        <section ref={resultsRef} className={`py-24 px-4 md:px-8 bg-gradient-to-br from-gray-50/50 to-white ${resultsClassName}`}>
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-5xl font-normal mb-8" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400, letterSpacing: '-0.03em' }}>
+                We Get Results Fast
+              </h2>
+              <p className="text-lg md:text-xl text-[#23272f] max-w-3xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                Our audits don't just identify problems - they provide actionable solutions that deliver quick wins and long-term growth.
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+              {resultStats.map((stat, idx) => (
+                <div
+                  key={idx}
+                  className="text-center group"
+                  style={{ animationDelay: `${idx * 100}ms` }}
+                >
+                  <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <stat.icon className="w-8 h-8 text-gray-700" />
+                  </div>
+                  <h3 className="text-3xl md:text-4xl font-bold text-[#18181b] mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                    {stat.number}
+                  </h3>
+                  <p className="text-sm md:text-base text-[#23272f]" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                    {stat.label}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Testimonials / Clients */}
+        <section ref={testimonialsRef} className={`py-24 px-4 md:px-8 bg-white ${testimonialsClassName}`}>
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-5xl font-normal mb-8" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400, letterSpacing: '-0.03em' }}>
+                What Our Clients Say
+              </h2>
+              <p className="text-lg md:text-xl text-[#23272f] max-w-3xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                Real results from real businesses. Here's what happens when you get a professional audit.
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-3 gap-8">
+              {testimonials.map((testimonial, idx) => (
+                <Card
+                  key={idx}
+                  className="border-0 shadow-lg bg-white transition-all duration-500 hover:scale-[1.02] h-full"
+                  style={{ animationDelay: `${idx * 150}ms` }}
+                >
+                  <CardContent className="p-8">
+                    <div className="flex items-center justify-center gap-2 mb-4">
+                      {[...Array(testimonial.rating)].map((_, i) => (
+                        <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                      ))}
+                    </div>
+                    <blockquote className="text-base text-[#23272f] leading-relaxed mb-6" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                      "{testimonial.quote}"
+                    </blockquote>
+                    <div className="text-center">
+                      <p className="font-semibold text-[#18181b]" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                        {testimonial.author}
+                      </p>
+                      <p className="text-[#23272f] text-sm" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                        {testimonial.company}
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section ref={faqRef} className={`py-24 px-4 md:px-8 bg-gradient-to-br from-gray-50/50 to-white ${faqClassName}`}>
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-5xl font-normal mb-8" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400, letterSpacing: '-0.03em' }}>
+                Frequently Asked Questions
+              </h2>
+              <p className="text-lg md:text-xl text-[#23272f] max-w-3xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                Got questions about our free audit? We've got answers.
+              </p>
+            </div>
+            
+            <div className="space-y-4">
+              {faqs.map((faq, idx) => (
+                <Card key={idx} className="border border-gray-200 shadow-sm">
+                  <CardContent className="p-0">
+                    <button
+                      className="w-full py-6 px-6 text-left flex items-center justify-between hover:bg-gray-50/50 transition-colors duration-200"
+                      onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
+                    >
+                      <h3 className="text-lg font-semibold pr-8" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
+                        {faq.question}
+                      </h3>
+                      {openFaq === idx ? (
+                        <ChevronUp className="w-5 h-5 text-[#18181b] flex-shrink-0" />
+                      ) : (
+                        <ChevronDown className="w-5 h-5 text-[#18181b] flex-shrink-0" />
+                      )}
+                    </button>
+                    {openFaq === idx && (
+                      <div className="pb-6 px-6">
+                        <p className="text-[#23272f] leading-relaxed" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                          {faq.answer}
+                        </p>
+                      </div>
+                    )}
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Final CTA (Repeating) */}
+        <section ref={finalCtaRef} className={`py-24 px-4 md:px-8 bg-white ${finalCtaClassName}`}>
+          <div className="max-w-7xl mx-auto">
+            <div className="relative rounded-[32px] overflow-hidden">
+              <div
+                className="absolute inset-0"
+                style={{
+                  background: `
+                    radial-gradient(ellipse at 10% 20%, #e0f7fa 0%, transparent 50%),
+                    radial-gradient(ellipse at 90% 80%, #f3e8ff 0%, transparent 55%),
+                    radial-gradient(ellipse at 30% 70%, #d1f5e0 0%, transparent 65%),
+                    radial-gradient(ellipse at 70% 40%, #ffe4fa 0%, transparent 60%),
+                    linear-gradient(135deg, #f7fafc 0%, #f8fafc 100%)
+                  `
+                }}
+              />
+              <div className="relative z-10 p-12 md:p-16">
+                <div className="max-w-4xl mx-auto text-center">
+                  <Badge className="mb-6 bg-[#18181b] text-white px-4 py-2 rounded-full">
+                    Limited Time • 100% Free
+                  </Badge>
+                  <h2 className="text-3xl md:text-5xl font-normal mb-8" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400, letterSpacing: '-0.03em' }}>
+                    Ready to Unlock Your<br />Marketing Potential?
+                  </h2>
+                  <p className="text-lg md:text-xl text-[#23272f] mb-12 max-w-2xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                    Join hundreds of businesses who've transformed their digital marketing with our comprehensive audit. Get yours free today.
+                  </p>
+                  <div className="flex flex-col md:flex-row gap-4 justify-center">
+                    <Button
+                      size="lg"
+                      className="bg-[#18181b] hover:bg-[#23272f] text-white px-12 py-4 rounded-xl font-semibold text-lg transform transition-all duration-300 hover:scale-105"
+                      onClick={() => document.getElementById('audit-form')?.scrollIntoView({ behavior: 'smooth' })}
+                      style={{ 
+                        fontFamily: 'Montserrat, sans-serif'
+                      }}
+                    >
+                      Get My Free Audit Now
+                      <ArrowRight className="ml-2 h-5 w-5" />
+                    </Button>
+                    <Button
+                      size="lg"
+                      variant="outline"
+                      className="border-[#18181b] text-[#18181b] hover:bg-[#f3f4f6] px-12 py-4 rounded-xl font-semibold text-lg transform transition-all duration-300 hover:scale-105"
+                      onClick={() => navigate('/contact')}
+                      style={{ 
+                        fontFamily: 'Montserrat, sans-serif', 
+                        borderColor: '#18181b'
+                      }}
+                    >
+                      Talk to an Expert
+                    </Button>
+                  </div>
+                  <p className="text-sm text-gray-600 mt-6" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                    No cost • No commitment • Delivered in 48 hours
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -440,4 +934,4 @@ const Audit = () => {
   );
 };
 
-export default Audit; 
+export default Audit;
