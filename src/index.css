@@ -105,6 +105,7 @@ All colors MUST be HSL.
 }
 
 html {
+  font-size: 90%;
   scrollbar-width: none;
   -ms-overflow-style: none;
   scroll-behavior: smooth;
