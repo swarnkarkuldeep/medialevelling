@@ -1,11 +1,13 @@
 import { useState, useRef } from 'react';
 import { useInView } from 'framer-motion';
-import { useInViewAnimation } from '@/hooks/use-in-view-animation';
+// Assuming useInViewAnimation applies a simple fade-in-up,
+// we'll focus on direct framer-motion approach for more control.
+// import { useInViewAnimation } from '@/hooks/use-in-view-animation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { 
-  ChevronDown, 
+import {
+  ChevronDown,
   ChevronUp,
   ArrowRight,
   MessageSquare,
@@ -168,9 +170,20 @@ const faqCategories = [
 
 const FAQItem = ({ question, answer }: { question: string; answer: string }) => {
   const [isOpen, setIsOpen] = useState(false);
+  // Add ref for individual FAQ item animation
+  const itemRef = useRef(null);
+  const isInView = useInView(itemRef, { once: true, amount: 0.2 });
 
   return (
-    <div className="border-b border-gray-100 last:border-b-0">
+    <div
+      ref={itemRef}
+      className="border-b border-gray-100 last:border-b-0"
+      style={{
+        opacity: isInView ? 1 : 0,
+        transform: isInView ? 'translateY(0)' : 'translateY(20px)',
+        transition: 'opacity 0.6s ease-out, transform 0.6s ease-out'
+      }}
+    >
       <button
         className="w-full py-6 text-left flex items-center justify-between hover:bg-gray-50/50 transition-colors duration-200 rounded-lg px-4"
         onClick={() => setIsOpen(!isOpen)}
@@ -198,7 +211,19 @@ const FAQItem = ({ question, answer }: { question: string; answer: string }) => 
 const FAQs = () => {
   const heroRef = useRef(null);
   const isInViewHero = useInView(heroRef, { once: true, amount: 0.3 });
-  const { ref, className } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
+  // Ref for the category section
+  const categoryRef = useRef(null);
+  const isInViewCategory = useInView(categoryRef, { once: true, amount: 0.2 });
+  // Ref for the FAQ content section (Card)
+  const faqContentRef = useRef(null);
+  const isInViewFaqContent = useInView(faqContentRef, { once: true, amount: 0.2 });
+  // Ref for the Contact CTA section
+  const contactCTARef = useRef(null);
+  const isInViewContactCTA = useInView(contactCTARef, { once: true, amount: 0.2 });
+  // Ref for the Contact Info section
+  const contactInfoRef = useRef(null);
+  const isInViewContactInfo = useInView(contactInfoRef, { once: true, amount: 0.2 });
+
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState('general');
 
@@ -209,7 +234,7 @@ const FAQs = () => {
       </header>
       <main className="min-h-screen bg-white">
         {/* Hero Section */}
-        <section 
+        <section
           ref={heroRef}
           className="w-full flex items-center justify-center min-h-[80vh] py-8 px-4 md:px-8 mt-24 md:mt-32 overflow-hidden"
           style={{
@@ -285,7 +310,15 @@ const FAQs = () => {
         </section>
 
         {/* Category Navigation */}
-        <section className="py-16 px-4 md:px-8 bg-white">
+        <section
+          ref={categoryRef}
+          className="py-16 px-4 md:px-8 bg-white"
+          style={{
+            opacity: isInViewCategory ? 1 : 0,
+            transform: isInViewCategory ? 'translateY(0)' : 'translateY(20px)',
+            transition: 'opacity 0.8s ease-out, transform 0.8s ease-out'
+          }}
+        >
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-2xl md:text-3xl font-normal mb-4" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400 }}>
@@ -319,7 +352,15 @@ const FAQs = () => {
         </section>
 
         {/* FAQ Content */}
-        <section ref={ref} className={`pt-8 pb-16 px-4 md:px-8 bg-gradient-to-br from-gray-50/50 to-white ${className}`}>
+        <section
+          ref={faqContentRef}
+          className={`pt-8 pb-16 px-4 md:px-8 bg-gradient-to-br from-gray-50/50 to-white`}
+          style={{
+            opacity: isInViewFaqContent ? 1 : 0,
+            transform: isInViewFaqContent ? 'translateY(0)' : 'translateY(20px)',
+            transition: 'opacity 0.8s ease-out, transform 0.8s ease-out'
+          }}
+        >
           <div className="max-w-4xl mx-auto">
             {faqCategories
               .filter(category => category.id === selectedCategory)
@@ -336,7 +377,7 @@ const FAQs = () => {
                       Get answers to common questions about {category.title.toLowerCase()}
                     </p>
                   </div>
-                  
+
                   <Card className="border-0 shadow-none bg-white">
                     <CardContent className="p-0">
                       <div className="divide-y divide-gray-100">
@@ -352,7 +393,15 @@ const FAQs = () => {
         </section>
 
         {/* Contact CTA Section */}
-        <section className="py-24 px-4 md:px-8 bg-white">
+        <section
+          ref={contactCTARef}
+          className="py-24 px-4 md:px-8 bg-white"
+          style={{
+            opacity: isInViewContactCTA ? 1 : 0,
+            transform: isInViewContactCTA ? 'translateY(0)' : 'translateY(20px)',
+            transition: 'opacity 0.8s ease-out, transform 0.8s ease-out'
+          }}
+        >
           <div className="max-w-7xl mx-auto">
             <div className="relative rounded-[32px] overflow-hidden">
               <div
@@ -379,7 +428,7 @@ const FAQs = () => {
                       size="lg"
                       className="bg-[#18181b] hover:bg-[#23272f] text-white px-10 py-4 rounded-xl font-semibold text-lg transform transition-all duration-300 hover:scale-105"
                       onClick={() => navigate('/contact')}
-                      style={{ 
+                      style={{
                         fontFamily: 'Montserrat, sans-serif'
                       }}
                     >
@@ -391,8 +440,8 @@ const FAQs = () => {
                       variant="outline"
                       className="border-[#18181b] text-[#18181b] hover:bg-[#f3f4f6] px-10 py-4 rounded-xl font-semibold text-lg transform transition-all duration-300 hover:scale-105"
                       onClick={() => navigate('/audit')}
-                      style={{ 
-                        fontFamily: 'Montserrat, sans-serif', 
+                      style={{
+                        fontFamily: 'Montserrat, sans-serif',
                         borderColor: '#18181b'
                       }}
                     >
@@ -406,7 +455,15 @@ const FAQs = () => {
         </section>
 
         {/* Contact Info Section */}
-        <section className="py-16 px-4 md:px-8 bg-white">
+        <section
+          ref={contactInfoRef}
+          className="py-16 px-4 md:px-8 bg-white"
+          style={{
+            opacity: isInViewContactInfo ? 1 : 0,
+            transform: isInViewContactInfo ? 'translateY(0)' : 'translateY(20px)',
+            transition: 'opacity 0.8s ease-out, transform 0.8s ease-out'
+          }}
+        >
           <div className="max-w-7xl mx-auto">
             <div className="grid md:grid-cols-3 gap-8">
               <div className="text-center group">
@@ -423,13 +480,13 @@ const FAQs = () => {
                   hello@medialevelling.com
                 </p>
               </div>
-              
+
               <div className="text-center group">
                 <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                   <Clock className="w-8 h-8 text-gray-700" />
                 </div>
                 <h3 className="text-xl font-semibold mb-3" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
-                  Response Time
+                  Response Time 
                 </h3>
                 <p className="text-[#23272f] mb-4" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
                   We typically respond within
@@ -438,7 +495,7 @@ const FAQs = () => {
                   24 hours
                 </p>
               </div>
-              
+
               <div className="text-center group">
                 <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                   <Target className="w-8 h-8 text-gray-700" />
@@ -469,4 +526,4 @@ const FAQs = () => {
   );
 };
 
-export default FAQs; 
+export default FAQs;

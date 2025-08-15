@@ -67,7 +67,8 @@ const Contact = () => {
         
         {/* Contact Form Section */}
         <section id="contact" className="py-0 px-4 pb-24 bg-white">
-          <div ref={ref} className={`max-w-6xl mx-auto flex flex-col md:flex-row gap-12 items-stretch ${className}`}>
+          {/* CHANGED: Widened the max-width for the entire contact section container */}
+          <div ref={ref} className={`max-w-7xl mx-auto flex flex-col md:flex-row gap-12 items-stretch ${className}`}>
             {/* Left: Heading and contact info */}
             <div 
               className="flex-1 flex flex-col justify-between rounded-3xl p-10 md:p-16 min-h-[520px] animate-fade-in-up relative overflow-hidden" 
@@ -83,11 +84,11 @@ const Contact = () => {
               }}
             >
               <div>
-                <h2 className="text-4xl md:text-5xl font-bold mb-8 text-white md:text-black" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 400}}>
+                <h2 className="text-4xl md:text-5xl font-bold mb-8 text-black" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 400}}>
                   Have a digital marketing project?<br />We would love to help your business grow.
                 </h2>
               </div>
-              <div className="mt-auto text-base md:text-lg text-white md:text-black opacity-80" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 400 }}>
+              <div className="mt-auto text-base md:text-lg text-black opacity-80" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 400 }}>
                 <a
                   href="mailto:business@medialevelling.com"
                   className="flex items-center gap-2 mt-0 text-[#000] hover:text-[#6366f1] transition-colors group bg-transparent border-none p-0 shadow-none hover:bg-transparent hover:shadow-none hover:border-none"
@@ -123,7 +124,7 @@ const Contact = () => {
                   </div>
                 </div>
               )}
-              <form onSubmit={handleSubmit} className="space-y-8 relative z-10">
+              <form onSubmit={handleSubmit} className="space-y-8 relative z-0">
                 <div className="space-y-6">
                   <Input
                     id="name"

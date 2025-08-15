@@ -26,6 +26,8 @@ import {
   Clock,
   Shield
 } from 'lucide-react';
+import { caseStudiesData } from '@/components/CaseStudy';
+
 
 const Index = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -50,6 +52,7 @@ const Index = () => {
   const { ref: benefitsRef, className: benefitsClassName } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
   const { ref: auditRef, className: auditClassName } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
   const { ref: testimonialsRef, className: testimonialsClassName } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
+  const { ref: caseStudiesRef, className: caseStudiesClassName } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
   const { ref: ctaRef, className: ctaClassName } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
 
   const services = [
@@ -138,7 +141,7 @@ const Index = () => {
         {/* Enhanced Hero Section */}
         <section 
           aria-label="Hero section" 
-          className="w-full flex items-center justify-center min-h-[80vh] py-6 px-4 md:px-8 mt-24 md:mt-32 overflow-hidden"
+          className="w-full flex items-center justify-center min-h-[80vh] py-6 px-2 md:px-4 mt-24 md:mt-32 overflow-hidden"
           style={{
             opacity: isInView ? 1 : 0,
             transform: isInView ? 'translateY(0)' : 'translateY(20px)',
@@ -147,7 +150,7 @@ const Index = () => {
         >
           <div
             ref={ref}
-            className="relative w-full max-w-7xl mx-auto rounded-[48px] md:rounded-[48px] bg-white flex flex-col items-center justify-center px-6 md:px-16 py-12 md:py-20 overflow-hidden"
+            className="relative w-full max-w-[90rem] mx-auto rounded-[48px] md:rounded-[48px] bg-white flex flex-col items-center justify-center px-6 md:px-16 py-16 md:py-24 overflow-hidden"
             style={{
               minHeight: 520,
               background: `
@@ -246,8 +249,8 @@ const Index = () => {
         </section>
 
         {/* Services Overview Section */}
-        <section ref={servicesRef} className={`py-24 px-4 md:px-8 bg-white ${servicesClassName}`}>
-          <div className="max-w-7xl mx-auto">
+        <section ref={servicesRef} className={`py-24 px-2 md:px-4 bg-white w-full ${servicesClassName}`}>
+          <div className="max-w-[90rem] mx-auto">
             <div className="text-center mb-20">
               <h2 className="text-3xl md:text-5xl font-normal mb-8" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400, letterSpacing: '-0.03em' }}>
                 Comprehensive Digital<br />Marketing Solutions
@@ -333,8 +336,8 @@ const Index = () => {
         </section>
 
         {/* Why Choose Us Section */}
-        <section ref={benefitsRef} className={`py-24 px-4 md:px-8 bg-gradient-to-br from-gray-50/50 to-white ${benefitsClassName}`}>
-          <div className="max-w-7xl mx-auto">
+        <section ref={benefitsRef} className={`py-24 px-2 md:px-4 bg-gray-50 w-full ${benefitsClassName}`}>
+          <div className="max-w-[90rem] mx-auto">
             <div className="text-center mb-20">
               <h2 className="text-3xl md:text-5xl font-normal mb-8" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400, letterSpacing: '-0.03em' }}>
                 Why Choose Us
@@ -378,76 +381,23 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Audit Promo Section */}
-        <section ref={auditRef} className={`py-24 px-4 md:px-8 bg-white ${auditClassName}`}>
-          <div className="max-w-7xl mx-auto">
-            <div className="relative rounded-[32px] overflow-hidden">
-              <div
-                className="absolute inset-0"
-                style={{
-                  background: `
-                    radial-gradient(ellipse at 20% 30%, #e0f7fa 0%, transparent 60%),
-                    radial-gradient(ellipse at 80% 70%, #f3e8ff 0%, transparent 55%),
-                    radial-gradient(ellipse at 40% 60%, #d1f5e0 0%, transparent 65%),
-                    linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%)
-                  `
-                }}
-              />
-              <div className="relative z-10 p-12 md:p-16">
-                <div className="max-w-4xl mx-auto text-center">
-                  <h2 className="text-3xl md:text-5xl font-normal mb-8" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400, letterSpacing: '-0.03em' }}>
-                    Discover Your Growth<br />Opportunities
-                  </h2>
-                  <p className="text-lg md:text-xl text-[#23272f] mb-12 max-w-2xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
-                    Get a comprehensive analysis of your current digital marketing performance and receive actionable recommendations to accelerate your business growth.
-                  </p>
-                  <div className="flex flex-col md:flex-row gap-4 justify-center">
-                    <Button
-                      size="lg"
-                      className="bg-[#18181b] hover:bg-[#23272f] text-white px-10 py-4 rounded-xl font-semibold text-lg transform transition-all duration-300 hover:scale-105"
-                      onClick={() => navigate('/audit')}
-                      style={{ 
-                        fontFamily: 'Montserrat, sans-serif'
-                      }}
-                    >
-                      Get Free Audit
-                      <ArrowRight className="ml-2 h-5 w-5" />
-                    </Button>
-                    <Button
-                      size="lg"
-                      variant="outline"
-                      className="border-[#18181b] text-[#18181b] hover:bg-[#f3f4f6] px-10 py-4 rounded-xl font-semibold text-lg transform transition-all duration-300 hover:scale-105"
-                      onClick={() => navigate('/contact')}
-                      style={{ 
-                        fontFamily: 'Montserrat, sans-serif', 
-                        borderColor: '#18181b'
-                      }}
-                    >
-                      Book Consultation
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Testimonials Section */}
-        <section ref={testimonialsRef} className={`py-24 px-4 md:px-8 bg-gradient-to-br from-white to-gray-50/50 ${testimonialsClassName}`}>
-          <div className="max-w-7xl mx-auto">
+        
+        {/* Featured Case Studies Section */}
+        <section ref={caseStudiesRef} className={`py-24 px-2 md:px-4 bg-white w-full ${caseStudiesClassName}`}>
+          <div className="max-w-[90rem] mx-auto">
             <div className="text-center mb-20">
               <h2 className="text-3xl md:text-5xl font-normal mb-8" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400, letterSpacing: '-0.03em' }}>
-                What Our Clients Say
-          </h2>
+                Featured Case Studies
+              </h2>
               <p className="text-lg md:text-xl text-[#23272f] max-w-3xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
-                Real results from real businesses. Here's what our clients have achieved with our digital marketing strategies.
+                See how we've helped businesses like yours achieve remarkable results through strategic digital marketing.
               </p>
             </div>
             
-                        <div className="grid md:grid-cols-3 gap-8">
-              {testimonials.map((testimonial, index) => (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {caseStudiesData.slice(0, 3).map((caseStudy, index) => (
                 <div
-                  key={testimonial.name}
+                  key={caseStudy.id}
                   className="group"
                   style={{
                     transform: isInView ? 'translateY(0)' : 'translateY(20px)',
@@ -455,44 +405,70 @@ const Index = () => {
                     transition: `all 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${0.1 + index * 0.1}s`
                   }}
                 >
-                  <Card className="border-0 shadow-none bg-white transition-all duration-500 group-hover:scale-[1.01] h-full">
-                    <CardContent className="p-8">
-                      <div className="flex flex-col items-center text-center gap-6">
-                        <div className="flex-shrink-0">
-                          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-50 to-purple-50 flex items-center justify-center">
-                            <Users className="w-8 h-8 text-gray-700" />
+                  <Card className="border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden h-full flex flex-col">
+                    <div className="aspect-video w-full bg-gray-100 relative overflow-hidden">
+                      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-purple-50/50" />
+                      <div className="absolute top-4 left-4">
+                        <Badge variant="secondary" className="bg-white/90 text-gray-800">
+                          {caseStudy.industry}
+                        </Badge>
+                      </div>
+                    </div>
+                    <CardHeader>
+                      <CardTitle className="text-xl" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
+                        {caseStudy.client}
+                      </CardTitle>
+                      <CardDescription style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                        {caseStudy.challenge}
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent className="flex-grow">
+                      <p className="text-[#23272f] mb-6" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                        {caseStudy.solution}
+                      </p>
+                      <div className="space-y-2">
+                        {caseStudy.results.map((result, idx) => (
+                          <div key={idx} className="flex items-center gap-2">
+                            <CheckCircle className="h-4 w-4 text-green-500" />
+                            <span className="text-sm font-medium" style={{ fontFamily: 'Montserrat, sans-serif' }}>{result}</span>
                           </div>
-                        </div>
-                        <div className="flex-1">
-                          <div className="flex items-center justify-center gap-2 mb-4">
-                            {[...Array(testimonial.rating)].map((_, i) => (
-                              <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                            ))}
-                          </div>
-                          <blockquote className="text-base text-[#23272f] leading-relaxed mb-6" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
-                            "{testimonial.content}"
-                          </blockquote>
-                          <div>
-                            <p className="font-semibold text-[#18181b]" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-                              {testimonial.name}
-                            </p>
-                            <p className="text-[#23272f] text-sm" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
-                              {testimonial.role}
-                            </p>
-                          </div>
-                        </div>
+                        ))}
                       </div>
                     </CardContent>
+                    <div className="p-6 pt-0 mt-auto">
+                      <Button
+                        variant="ghost"
+                        className="text-[#18181b] hover:text-[#23272f] group-hover:translate-x-1 transition-all duration-300 w-full justify-start p-0"
+                        onClick={() => navigate(caseStudy.link)}
+                      >
+                        View Case Study
+                        <ArrowRight className="w-4 h-4 ml-1" />
+                      </Button>
+                    </div>
                   </Card>
                 </div>
               ))}
+            </div>
+            
+            <div className="mt-16 text-center">
+              <Button
+                size="lg"
+                className="bg-[#18181b] hover:bg-[#23272f] text-white px-10 py-4 rounded-xl font-semibold text-lg transform transition-all duration-300 hover:scale-105"
+                onClick={() => navigate('/case-studies')}
+                style={{ 
+                  fontFamily: 'Montserrat, sans-serif'
+                }}
+              >
+                View All Case Studies
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
             </div>
           </div>
         </section>
 
         {/* CTA Banner Section */}
-        <section ref={ctaRef} className={`pt-12 pb-24 px-4 md:px-8 bg-white ${ctaClassName}`}>
-          <div className="max-w-7xl mx-auto">
+        <section ref={auditRef} className={`py-24 px-2 md:px-4 bg-white w-full ${auditClassName}`}>
+          <div className="max-w-[90rem] mx-auto">
             <div className="relative rounded-[32px] overflow-hidden">
               <div
                 className="absolute inset-0"
@@ -506,7 +482,7 @@ const Index = () => {
                 }}
               />
               <div className="relative z-10 p-12 md:p-16">
-                <div className="max-w-4xl mx-auto text-center">
+                <div className="max-w-5xl mx-auto text-center">
                   <h2 className="text-3xl md:text-5xl font-normal mb-8" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400, letterSpacing: '-0.03em' }}>
                     Ready to Level Up<br />Your Business?
                   </h2>

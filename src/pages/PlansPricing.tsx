@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Check, X, Star, ArrowRight } from 'lucide-react';
 import { useInViewAnimation } from '@/hooks/use-in-view-animation';
 import { Button } from '@/components/ui/button';
@@ -8,7 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import BackToTop from '@/components/BackToTop';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const servicePlans = {
   'media-levelling-package': {
@@ -40,7 +40,6 @@ const servicePlans = {
         price: 54999,
         description: 'Great for businesses looking to boost their social media presence with consistent content',
         features: [
-          '16 videos/month (15-60 seconds each)',
           'Advanced editing with effects, captions, and music sync',
           'Optimized for Instagram, YouTube Shorts, and Facebook',
           'Bi-weekly performance feedback and support',
@@ -336,9 +335,27 @@ const servicePlans = {
 };
 
 const PlansPricing = () => {
-  const { ref, className } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
   const navigate = useNavigate();
+  const location = useLocation();
+  const { ref, className } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
   const [selectedService, setSelectedService] = useState('media-levelling-package');
+
+  useEffect(() => {
+    // Get the service parameter from the URL
+    const params = new URLSearchParams(location.search);
+    const serviceParam = params.get('service');
+    
+    // If a valid service ID is provided in the URL, select it
+    if (serviceParam && Object.keys(servicePlans).includes(serviceParam)) {
+      setSelectedService(serviceParam);
+      
+      // Scroll to the pricing section
+      const pricingSection = document.getElementById('pricing-section');
+      if (pricingSection) {
+        pricingSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, [location]);
 
   return (
     <>
@@ -347,8 +364,8 @@ const PlansPricing = () => {
       </header>
       <main className="min-h-screen bg-white">
         {/* Hero Section */}
-        <section className="w-full flex items-center justify-center min-h-[60vh] py-8 px-4 md:px-8 mt-24 md:mt-32 overflow-hidden">
-          <div className="relative w-full max-w-7xl mx-auto rounded-[48px] md:rounded-[48px] bg-white flex flex-col items-center justify-center px-6 md:px-16 py-16 md:py-24 overflow-hidden"
+        <section className="w-full flex items-center justify-center min-h-[60vh] py-12 px-4 md:px-8 mt-28 md:mt-40 overflow-hidden">
+          <div className="relative w-full max-w-[90rem] mx-auto rounded-[48px] md:rounded-[48px] bg-white flex flex-col items-center justify-center px-8 md:px-20 py-20 md:py-28 overflow-hidden"
             style={{
               minHeight: 400,
               background: `
@@ -424,9 +441,9 @@ const PlansPricing = () => {
         </section>
         
         {/* Service Selection & Pricing */}
-        <section ref={ref} className={`py-16 px-4 md:px-8 bg-white ${className}`}>
+        <section id="pricing-section" ref={ref} className={`py-20 px-6 md:px-12 bg-white ${className}`}>
           <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-12">
+            <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400 }}>
                 Select Your Service
               </h2>
@@ -523,9 +540,9 @@ const PlansPricing = () => {
         </section>
 
         {/* FAQ Section */}
-        <section className="py-24 px-4 md:px-8 bg-white">
-          <div className="max-w-3xl mx-auto">
-            <div className="text-center mb-16">
+        <section className="py-16 px-4 md:px-8 w-full">
+          <div className="w-full max-w-7xl mx-auto rounded-3xl bg-white px-6 md:px-12 py-16 overflow-hidden">
+            <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400 }}>
                 Frequently Asked Questions
               </h2>
@@ -581,27 +598,27 @@ const PlansPricing = () => {
         </section>
 
         {/* CTA Section */}
-        <section className="pt-12 pb-24 px-4 md:px-8 bg-white">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400 }}>
+        <section className="py-16 px-4 md:px-8 w-full">
+          <div className="w-full max-w-7xl mx-auto rounded-3xl bg-white px-6 md:px-12 py-16 overflow-hidden text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400 }}>
               Ready to Get Started?
             </h2>
-            <p className="text-lg text-[#23263a] mb-8 max-w-2xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
-              Contact us today to discuss your needs and find the perfect plan for your business growth.
+            <p className="text-lg text-[#23263a] max-w-2xl mx-auto mb-8" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+              Still have questions? We're here to help!
             </p>
-            <div className="flex flex-col md:flex-row gap-4 justify-center">
+            <div className="flex flex-wrap justify-center gap-4">
               <Button
                 size="lg"
-                className="bg-[#18181b] hover:bg-[#23272f] text-white px-8 py-3 rounded-lg font-semibold text-lg"
+                className="bg-[#18181b] hover:bg-[#23272f] text-white px-8 py-5 rounded-xl font-semibold text-base transform transition-all duration-300 hover:scale-105"
                 onClick={() => navigate('/contact')}
-                style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 400 }}
+                style={{ fontFamily: 'Montserrat, sans-serif' }}
               >
                 Contact Us
               </Button>
               <Button
                 size="lg"
                 variant="outline"
-                className="border-[#18181b] text-[#18181b] hover:bg-[#f3f4f6] px-8 py-3 rounded-lg font-semibold text-lg"
+                className="border-[#18181b] text-[#18181b] hover:bg-[#f3f4f6] px-8 py-5 rounded-xl font-semibold text-base"
                 onClick={() => navigate('/audit')}
                 style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 400 }}
               >
@@ -618,4 +635,4 @@ const PlansPricing = () => {
   );
 };
 
-export default PlansPricing; 
+export default PlansPricing;

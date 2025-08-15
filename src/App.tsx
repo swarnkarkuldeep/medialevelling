@@ -8,11 +8,12 @@ import Services from "./pages/Services";
 import PlansPricing from "./pages/PlansPricing";
 import Audit from "./pages/Audit";
 import CaseStudies from "./pages/CaseStudies";
-import FAQs from "./pages/FAQs";
+import CaseStudy from "./components/CaseStudy"; // Import the new component
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
+import FAQs from "./pages/FAQs";
 import NotFound from "./pages/NotFound";
 import PageTransition from "./components/PageTransition";
 import ScrollToTop from "./components/ScrollToTop";
@@ -49,11 +50,13 @@ const App = () => (
             <Route path="/pricing" element={<PageTransition><PlansPricing /></PageTransition>} />
             <Route path="/audit" element={<PageTransition><Audit /></PageTransition>} />
             <Route path="/case-studies" element={<PageTransition><CaseStudies /></PageTransition>} />
-            <Route path="/faqs" element={<PageTransition><FAQs /></PageTransition>} />
+            {/* Add route for individual case studies */}
+            <Route path="/case-studies/:id" element={<PageTransition><CaseStudy /></PageTransition>} />
             <Route path="/about" element={<PageTransition><About /></PageTransition>} />
             <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
             <Route path="/privacy-policy" element={<PageTransition><PrivacyPolicy /></PageTransition>} />
             <Route path="/terms-of-service" element={<PageTransition><TermsOfService /></PageTransition>} />
+            <Route path="/faqs" element={<PageTransition><FAQs /></PageTransition>} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
           </Routes>

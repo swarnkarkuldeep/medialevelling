@@ -88,7 +88,7 @@ const About = () => {
       </header>
       <main className="min-h-screen bg-white">
                  {/* Hero Section */}
-         <section className="w-full flex items-center justify-center min-h-[80vh] py-8 px-4 md:px-8 mt-24 md:mt-32 overflow-hidden">
+         <section className="w-full flex items-center justify-center min-h-[80vh] py-8 px-2 md:px-4 mt-24 md:mt-32 overflow-hidden">
            <div className="relative w-full max-w-7xl mx-auto rounded-[48px] md:rounded-[48px] bg-white flex flex-col items-center justify-center px-6 md:px-16 py-12 md:py-20 overflow-hidden"
              style={{
                minHeight: 520,

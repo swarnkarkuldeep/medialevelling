@@ -1,200 +1,190 @@
-import { useState } from 'react';
-import { useInViewAnimation } from '@/hooks/use-in-view-animation';
+import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { 
-  TrendingUp, 
-  Target, 
-  Search, 
-  Video, 
-  Globe, 
-  ArrowRight,
-  Eye,
-  Users,
-  DollarSign,
-  Calendar,
-  CheckCircle,
-  Star
-} from 'lucide-react';
+import { useInView } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import BackToTop from '@/components/BackToTop';
-import { useNavigate } from 'react-router-dom';
-
-const caseStudies = [
-  {
-    id: 1,
-    client: 'EcoTech Solutions',
-    industry: 'Technology',
-    services: ['SEO', 'Google Ads', 'Website Creation'],
-    duration: '6 months',
-    results: {
-      traffic: '+245%',
-      conversions: '+180%',
-      revenue: '+320%',
-      keywords: '+156'
-    },
-    description: 'A comprehensive digital transformation for a sustainable technology company, focusing on organic growth and targeted advertising.',
-    challenges: [
-      'Low organic visibility',
-      'Poor conversion rates',
-      'Outdated website design'
-    ],
-    solutions: [
-      'Technical SEO optimization',
-      'Google Ads campaign management',
-      'Modern website redesign'
-    ],
-    image: '/placeholder.svg',
-    featured: true
-  },
-  {
-    id: 2,
-    client: 'FreshBite Restaurant',
-    industry: 'Food & Beverage',
-    services: ['Meta Ads', 'Short-form Content'],
-    duration: '4 months',
-    results: {
-      traffic: '+189%',
-      conversions: '+142%',
-      revenue: '+267%',
-      engagement: '+98%'
-    },
-    description: 'Social media marketing campaign that increased brand awareness and drove foot traffic to multiple restaurant locations.',
-    challenges: [
-      'Low social media engagement',
-      'Limited brand awareness',
-      'Seasonal business fluctuations'
-    ],
-    solutions: [
-      'Targeted Meta Ads campaigns',
-      'Engaging short-form content',
-      'Local audience targeting'
-    ],
-    image: '/placeholder.svg',
-    featured: true
-  },
-  {
-    id: 3,
-    client: 'FitLife Gym',
-    industry: 'Health & Fitness',
-    services: ['SEO', 'Meta Ads', 'Content Strategy'],
-    duration: '8 months',
-    results: {
-      traffic: '+312%',
-      conversions: '+198%',
-      revenue: '+445%',
-      memberships: '+89'
-    },
-    description: 'Multi-channel digital marketing strategy that transformed a local gym into a regional fitness destination.',
-    challenges: [
-      'Competitive local market',
-      'Low online presence',
-      'Seasonal membership drops'
-    ],
-    solutions: [
-      'Local SEO optimization',
-      'Targeted social media ads',
-      'Content marketing strategy'
-    ],
-    image: '/placeholder.svg',
-    featured: false
-  },
-  {
-    id: 4,
-    client: 'StyleCraft Boutique',
-    industry: 'Fashion & Retail',
-    services: ['Google Ads', 'Website Creation'],
-    duration: '5 months',
-    results: {
-      traffic: '+167%',
-      conversions: '+134%',
-      revenue: '+289%',
-      orders: '+76%'
-    },
-    description: 'E-commerce optimization and paid advertising campaign that significantly increased online sales and customer acquisition.',
-    challenges: [
-      'Poor website performance',
-      'Low conversion rates',
-      'High advertising costs'
-    ],
-    solutions: [
-      'Website redesign and optimization',
-      'Google Shopping campaigns',
-      'Conversion rate optimization'
-    ],
-    image: '/placeholder.svg',
-    featured: false
-  },
-  {
-    id: 5,
-    client: 'TechStart Consulting',
-    industry: 'Professional Services',
-    services: ['SEO', 'Content Strategy'],
-    duration: '7 months',
-    results: {
-      traffic: '+278%',
-      conversions: '+156%',
-      revenue: '+234%',
-      leads: '+89'
-    },
-    description: 'Content-driven SEO strategy that established thought leadership and generated high-quality leads for a consulting firm.',
-    challenges: [
-      'Low search visibility',
-      'Limited content marketing',
-      'Competitive B2B market'
-    ],
-    solutions: [
-      'Comprehensive SEO strategy',
-      'Content marketing development',
-      'Thought leadership positioning'
-    ],
-    image: '/placeholder.svg',
-    featured: false
-  },
-  {
-    id: 6,
-    client: 'GreenThumb Landscaping',
-    industry: 'Home Services',
-    services: ['Google Ads', 'Local SEO'],
-    duration: '3 months',
-    results: {
-      traffic: '+198%',
-      conversions: '+167%',
-      revenue: '+312%',
-      calls: '+145'
-    },
-    description: 'Local SEO and Google Ads campaign that dominated the local market and generated consistent leads.',
-    challenges: [
-      'Limited local visibility',
-      'Seasonal business',
-      'High competition'
-    ],
-    solutions: [
-      'Local SEO optimization',
-      'Google Ads management',
-      'Review management'
-    ],
-    image: '/placeholder.svg',
-    featured: false
-  }
-];
+import { useInViewAnimation } from '@/hooks/use-in-view-animation';
+import {
+  Target,
+  Search,
+  Video,
+  Globe,
+  Users,
+  CheckCircle,
+  ArrowRight,
+  Star,
+  BarChart3,
+  Zap,
+  Eye,
+  MessageSquare,
+  Award,
+  Clock,
+  Shield,
+  Briefcase,
+  Lightbulb,
+  Rocket,
+  LineChart,
+  DollarSign,
+  UserCheck,
+  Filter,
+  Layers,
+  Settings,
+  LightbulbOff, // Using this for a simple 'Strategy' icon placeholder
+  ShoppingCart,
+  Cloud,
+  MapPin,
+  Heart,
+  HeartPulse,
+  Home,
+  BookOpen
+} from 'lucide-react';
 
 const CaseStudies = () => {
-  const { ref, className } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
+  const ref = useRef<HTMLDivElement>(null);
+  const [parallax, setParallax] = useState(0);
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
   const navigate = useNavigate();
-  const [selectedIndustry, setSelectedIndustry] = useState('all');
-  const [selectedService, setSelectedService] = useState('all');
 
-  const industries = ['all', 'Technology', 'Food & Beverage', 'Health & Fitness', 'Fashion & Retail', 'Professional Services', 'Home Services'];
-  const services = ['all', 'SEO', 'Google Ads', 'Meta Ads', 'Short-form Content', 'Website Creation', 'Content Strategy'];
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!ref.current) return;
+      const rect = ref.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      const offset = Math.max(0, Math.min(1, 1 - rect.top / windowHeight));
+      setParallax(offset);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-  const filteredCaseStudies = caseStudies.filter(study => {
-    const industryMatch = selectedIndustry === 'all' || study.industry === selectedIndustry;
-    const serviceMatch = selectedService === 'all' || study.services.includes(selectedService);
-    return industryMatch && serviceMatch;
-  });
+  // Re-using the animation hook
+  const { ref: featuredRef, className: featuredClassName } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
+  const { ref: categoriesRef, className: categoriesClassName } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
+  const { ref: processRef, className: processClassName } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
+  const { ref: resultsRef, className: resultsClassName } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
+  const { ref: ctaRef, className: ctaClassName } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
+
+  // Case studies data
+  const caseStudies = [
+    {
+      id: 'beauty-skincare',
+      image: '/images/beauty-skincare.jpg',
+      client: 'D2C Beauty Brand',
+      industry: 'Beauty & Skincare',
+      challenge: 'Still building brand awareness, CTR at 0.58% at start, limited retargeting, basic CRM in place.',
+      solution: 'Ongoing creative refreshes, enhanced CRM workflows, modest increase in retargeting spend.',
+      results: [
+        'ROAS +38% (1.12× → 1.55×)',
+        'CPA -24% (₹410 → ₹312)',
+        'CTR +49% (0.58% → 0.86%)',
+        '25% of purchases from retargeting',
+        'Revenue: ₹5.3L → ₹8.1L/month'
+      ],
+      link: '/case-studies/beauty-skincare',
+    },
+    {
+      id: 'home-decor',
+      image: '/images/home-decor.jpg',
+      client: 'Home Décor Brand',
+      industry: 'E-commerce Furniture',
+      challenge: 'CPC higher than desired (₹48), Quality Score 4.5/10; ongoing ad relevance improvements.',
+      solution: 'Expanded landing pages, added more negatives, improved ad text variation.',
+      results: [
+        'CPC -22% (₹48 → ₹37.5)',
+        'Quality Score 4.5 → 6.5/10',
+        'Leads +58%',
+        'Ad CTR +32%',
+        'Monthly Leads: 125 → 202'
+      ],
+      link: '/case-studies/home-decor',
+    },
+    {
+      id: 'pet-nutrition',
+      image: '/images/pet-nutrition.jpg',
+      client: 'Vegan Pet Food Startup',
+      industry: 'Pet Nutrition',
+      challenge: 'New site, slow conversions at 0.9%, bounce high, content hub early in development.',
+      solution: 'More SEO articles (now 8), continued CRO, further site speed improvements.',
+      results: [
+        'Conversion Rate +13% (0.9% → 1.02%)',
+        'Bounce Rate -21%',
+        'Organic Sessions +21%',
+        'ROAS 1.06× → 1.25×',
+        'Blog Rankings: 0 → 4 page-1 keywords'
+      ],
+      link: '/case-studies/pet-nutrition',
+    },
+    {
+      id: 'apparel',
+      image: '/images/apparel.jpg',
+      client: 'Gen-Z Fashion Label',
+      industry: 'Apparel',
+      challenge: 'Still modest organic reach, limited audience list.',
+      solution: '2x content frequency on Instagram, first collab with a micro-influencer, more remarketing.',
+      results: [
+        'Organic Sessions +28%',
+        'ROAS 1.22×',
+        '150 emails captured',
+        'Keyword Count: 3 → 18',
+        'Email CTR: 3.4%'
+      ],
+      link: '/case-studies/apparel',
+    },
+    {
+      id: 'furniture',
+      image: '/images/furniture.jpg',
+      client: 'Furniture Brand',
+      industry: 'E-commerce Furniture',
+      challenge: 'CAC stubborn, attribution now standardized.',
+      solution: 'More CRO experiments, attribution reviews each month.',
+      results: [
+        'Blended CAC -16%',
+        'Funnel CVR +13%',
+        'Revenue +15% MoM',
+        'Avg Session Duration +22s',
+        'New Customers: 260 → 310/month'
+      ],
+      link: '/case-studies/furniture',
+    },
+    {
+      id: 'health-wellness',
+      image: '/images/health-wellness.jpg',
+      client: 'Moringa Supplements Brand',
+      industry: 'Health & Wellness',
+      challenge: 'Still gaining ground in competitive niche, bounce gradually declining.',
+      solution: '2 more blogs (6 total), held first webinar, further on-page SEO.',
+      results: [
+        'Organic Traffic +29%',
+        '5 new page-1 keywords',
+        'Lead Form CVR +13%',
+        'Sales +12%',
+        'Bounce Rate: 60% → 51%'
+      ],
+      link: '/case-studies/health-wellness',
+    },
+  ];
+
+  const categories = [
+    { name: 'E-commerce', icon: ShoppingCart, description: 'Driving sales and customer growth for online stores.' },
+    { name: 'SaaS', icon: Cloud, description: 'Generating qualified leads and increasing user acquisition.' },
+    { name: 'Local Business', icon: MapPin, description: 'Boosting foot traffic and local online visibility.' },
+    { name: 'Healthcare', icon: HeartPulse, description: 'Connecting healthcare providers with patients online.' },
+    { name: 'Real Estate', icon: Home, description: 'Showcasing properties and attracting potential buyers.' },
+    { name: 'Education', icon: BookOpen, description: 'Reaching students and promoting educational programs.' },
+  ];
+
+  const processSteps = [
+    { icon: LightbulbOff, title: 'Discovery & Strategy', description: 'Deep dive into your business, goals, and target audience to craft a tailored strategy.' },
+    { icon: Settings, title: 'Execution & Optimization', description: 'Implementing campaigns with continuous monitoring and optimization for peak performance.' },
+    { icon: BarChart3, title: 'Reporting & Analysis', description: 'Transparent reporting with actionable insights and regular performance reviews.' },
+    { icon: Rocket, title: 'Continuous Growth', description: 'Evolving strategies based on market trends and performance data for sustained success.' },
+  ];
+
 
   return (
     <>
@@ -202,270 +192,512 @@ const CaseStudies = () => {
         <Navigation />
       </header>
       <main className="min-h-screen bg-white">
-        <div className="container mx-auto px-4 pt-40 md:pt-48">
-          <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-5xl font-normal text-gray-900 mb-6">
-              Case Studies & Portfolio
-            </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Real results from real clients. Discover how we've helped businesses grow through strategic digital marketing.
-            </p>
+        {/* Hero Section - Replicated from Index Page */}
+        <section
+          aria-label="Hero section"
+          className="w-full flex items-center justify-center min-h-[80vh] py-6 px-4 md:px-8 mt-24 md:mt-32 overflow-hidden"
+          style={{
+            opacity: isInView ? 1 : 0,
+            transform: isInView ? 'translateY(0)' : 'translateY(20px)',
+            transition: 'opacity 0.8s ease-out, transform 0.8s ease-out'
+          }}
+        >
+          <div
+            ref={ref}
+            className="relative w-full max-w-7xl mx-auto rounded-[48px] md:rounded-[48px] bg-white flex flex-col items-center justify-center px-6 md:px-16 py-12 md:py-20 overflow-hidden"
+            style={{
+              minHeight: 520,
+              background: `
+                radial-gradient(ellipse at 10% 20%, #e0f7fa 0%, transparent 50%),
+                radial-gradient(ellipse at 90% 80%, #f3e8ff 0%, transparent 55%),
+                radial-gradient(ellipse at 30% 70%, #d1f5e0 0%, transparent 65%),
+                radial-gradient(ellipse at 70% 40%, #ffe4fa 0%, transparent 60%),
+                linear-gradient(135deg, #f7fafc 0%, #f8fafc 100%)
+              `,
+              backgroundPosition: `center ${parallax * 40}px`,
+              transform: isInView ? 'scale(1)' : 'scale(0.98)',
+              opacity: isInView ? 1 : 0,
+              transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s',
+            }}
+          >
+            <div className="absolute inset-0 rounded-[48px] z-0 overflow-hidden pointer-events-none">
+              <div
+                className="animate-gradient-move"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  background: `
+                    radial-gradient(ellipse at 15% 25%, #e0f7fa 0%, transparent 55%),
+                    radial-gradient(ellipse at 85% 75%, #f3e8ff 0%, transparent 50%),
+                    radial-gradient(ellipse at 25% 65%, #d1f5e0 0%, transparent 60%),
+                    radial-gradient(ellipse at 75% 35%, #ffe4fa 0%, transparent 65%)
+                  `,
+                  opacity: 0.7,
+                  position: 'absolute',
+                  inset: 0,
+                  backgroundSize: '200% 200%',
+                }}
+              />
+            </div>
+            <div className="relative z-10 flex flex-col items-center justify-center h-full text-center w-full">
+              <h1
+                className="text-4xl md:text-6xl font-extrabold mb-8 leading-tight"
+                style={{
+                  fontFamily: 'Montserrat, sans-serif',
+                  color: '#18181b',
+                  letterSpacing: '-0.03em',
+                  fontWeight: 400,
+                  transform: isInView ? 'translateY(0)' : 'translateY(20px)',
+                  opacity: isInView ? 1 : 0,
+                  transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s'
+                }}
+              >
+                Real Results, Real Growth<br />Your Success Stories Start Here
+              </h1>
+              <p
+                className="text-xl md:text-2xl font-normal mb-12 max-w-3xl mx-auto leading-relaxed"
+                style={{
+                  fontFamily: 'Montserrat, sans-serif',
+                  color: '#23272f',
+                  transform: isInView ? 'translateY(0)' : 'translateY(20px)',
+                  opacity: isInView ? 1 : 0,
+                  transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s'
+                }}
+              >
+                Explore how our tailored digital marketing strategies have empowered businesses like yours to achieve exceptional growth and dominate their markets.
+              </p>
+              <div
+                className="flex flex-col md:flex-row gap-4 justify-center"
+                style={{
+                  transform: isInView ? 'translateY(0)' : 'translateY(20px)',
+                  opacity: isInView ? 1 : 0,
+                  transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s'
+                }}
+              >
+                <Button
+                  size="lg"
+                  className="bg-[#18181b] hover:bg-[#23272f] text-white px-10 py-4 rounded-xl font-semibold text-lg transform transition-all duration-300 hover:scale-105"
+                  onClick={() => navigate('/audit')}
+                  style={{
+                    fontFamily: 'Montserrat, sans-serif'
+                  }}
+                >
+                  Get a Free Audit
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </div>
+            </div>
           </div>
-        </div>
-        
-        {/* Hero Section */}
-        <section className="py-16 px-4 md:px-8">
+        </section>
+
+        {/* Featured Case Studies Grid */}
+        <section ref={featuredRef} className={`py-24 px-4 md:px-8 bg-gradient-to-br from-white to-gray-50/50 ${featuredClassName}`}>
           <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-5xl font-bold mb-8" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400 }}>
-                Success Stories That<br />Drive Results
+            <div className="text-center mb-20">
+              <h2 className="text-3xl md:text-5xl font-normal mb-8" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400, letterSpacing: '-0.03em' }}>
+                Our Success Stories
               </h2>
-              <p className="text-lg md:text-xl text-[#23263a] max-w-3xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 400 }}>
-                Every case study represents a partnership built on trust, strategy, and measurable results. See how we've transformed businesses across industries.
+              <p className="text-lg md:text-xl text-[#23272f] max-w-3xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                Dive into detailed examples of how we've helped our clients overcome challenges and achieve significant results.
               </p>
             </div>
-          </div>
-        </section>
 
-        {/* Stats Section */}
-        <section className="py-16 px-4 md:px-8 bg-gradient-to-br from-gray-50 to-white">
-          <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-[#18181b] mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-                  500+
-                </div>
-                <div className="text-sm text-[#23263a]" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 400 }}>
-                  Projects Completed
-                </div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-[#18181b] mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-                  98%
-                </div>
-                <div className="text-sm text-[#23263a]" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 400 }}>
-                  Client Satisfaction
-                </div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-[#18181b] mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-                  $2.5M+
-                </div>
-                <div className="text-sm text-[#23263a]" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 400 }}>
-                  Revenue Generated
-                </div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-[#18181b] mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-                  50+
-                </div>
-                <div className="text-sm text-[#23263a]" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 400 }}>
-                  Industries Served
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Filters */}
-        <section className="py-8 px-4 md:px-8">
-          <div className="max-w-7xl mx-auto">
-            <div className="flex flex-col md:flex-row gap-4 mb-8">
-              <div className="flex-1">
-                <label className="text-sm font-semibold mb-2 block" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
-                  Filter by Industry
-                </label>
-                <select
-                  value={selectedIndustry}
-                  onChange={(e) => setSelectedIndustry(e.target.value)}
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#18181b] focus:border-transparent"
-                  style={{ fontFamily: 'Montserrat, sans-serif' }}
-                >
-                  {industries.map(industry => (
-                    <option key={industry} value={industry}>
-                      {industry === 'all' ? 'All Industries' : industry}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              <div className="flex-1">
-                <label className="text-sm font-semibold mb-2 block" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
-                  Filter by Service
-                </label>
-                <select
-                  value={selectedService}
-                  onChange={(e) => setSelectedService(e.target.value)}
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#18181b] focus:border-transparent"
-                  style={{ fontFamily: 'Montserrat, sans-serif' }}
-                >
-                  {services.map(service => (
-                    <option key={service} value={service}>
-                      {service === 'all' ? 'All Services' : service}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Case Studies Grid */}
-        <section ref={ref} className={`py-16 px-4 md:px-8 ${className}`}>
-          <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredCaseStudies.map((study, idx) => (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+              {caseStudies.map((study, index) => (
                 <Card
                   key={study.id}
-                  className={`group cursor-pointer transition-all duration-500 hover:shadow-2xl hover:scale-105 border-0 overflow-hidden animate-fade-in-up ${
-                    study.featured ? 'ring-2 ring-[#18181b] shadow-xl' : ''
-                  }`}
-                  style={{ 
-                    animationDelay: `${idx * 200}ms`,
-                    background: study.featured 
-                      ? 'linear-gradient(135deg, #f3e8ff 0%, #e0f7fa 100%)'
-                      : 'white'
+                  className="border-0 shadow-sm bg-white overflow-hidden transform transition-all duration-500 hover:scale-[1.02] hover:shadow-lg"
+                  style={{
+                    transform: isInView ? 'translateY(0)' : 'translateY(20px)',
+                    opacity: isInView ? 1 : 0,
+                    transition: `all 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${0.1 + index * 0.1}s`
                   }}
-                  onClick={() => navigate('/contact')}
                 >
-                  {study.featured && (
-                    <div className="absolute top-4 right-4">
-                      <Badge className="bg-[#18181b] text-white px-3 py-1 rounded-full text-xs font-semibold">
-                        <Star className="w-3 h-3 mr-1" />
-                        Featured
-                      </Badge>
-                    </div>
+                  {study.image && (
+                    <img src={study.image} alt={study.client} className="w-full h-48 object-cover object-center" />
                   )}
-                  
-                  <CardHeader className="pb-4">
-                    <div className="flex items-center justify-between mb-4">
-                      <div>
-                        <CardTitle className="text-xl font-bold" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
-                          {study.client}
-                        </CardTitle>
-                        <CardDescription className="text-sm text-[#23263a] mt-1" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 400 }}>
-                          {study.industry}
-                        </CardDescription>
-                      </div>
-                      <div className="text-right">
-                        <div className="text-sm text-[#23263a]" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 400 }}>
-                          Duration
-                        </div>
-                        <div className="text-sm font-semibold" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
-                          {study.duration}
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {study.services.map((service, serviceIdx) => (
-                        <Badge key={serviceIdx} variant="secondary" className="text-xs">
-                          {service}
-                        </Badge>
-                      ))}
-                    </div>
-                    
-                    <CardDescription className="text-sm text-[#23263a]" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 400 }}>
-                      {study.description}
+                  <CardContent className="p-6">
+                    <Badge variant="secondary" className="mb-3 text-sm py-1 px-3 rounded-full bg-gray-100 text-gray-700" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                      {study.industry}
+                    </Badge>
+                    <CardTitle className="text-2xl font-semibold mb-3" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
+                      {study.client}
+                    </CardTitle>
+                    <CardDescription className="text-[#23272f] leading-relaxed mb-4 space-y-2" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                      <p><span className="font-semibold">Challenge:</span> {study.challenge}</p>
+                      <p><span className="font-semibold">Solution:</span> {study.solution}</p>
                     </CardDescription>
-                  </CardHeader>
-                  
-                  <CardContent className="pt-0">
-                    <div className="grid grid-cols-2 gap-4 mb-6">
-                      {Object.entries(study.results).map(([key, value]) => (
-                        <div key={key} className="text-center p-3 bg-white rounded-lg">
-                          <div className="text-lg font-bold text-[#18181b]" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-                            {value}
-                          </div>
-                          <div className="text-xs text-[#23263a] capitalize" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 400 }}>
-                            {key.replace(/([A-Z])/g, ' $1').trim()}
-                          </div>
-                        </div>
-                      ))}
+                    <div className="mt-4">
+                      <h4 className="font-semibold text-lg mb-2" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>Key Results:</h4>
+                      <ul className="list-disc list-inside text-[#23272f] space-y-1" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                        {study.results.map((result, i) => (
+                          <li key={i} className="flex items-start">
+                            <CheckCircle className="w-4 h-4 text-green-500 mr-2 flex-shrink-0 mt-1" />
+                            <span>{result}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
-                    
-                    <div className="space-y-3 mb-6">
-                      <div>
-                        <h4 className="text-sm font-semibold mb-2" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
-                          Challenges:
-                        </h4>
-                        <ul className="space-y-1">
-                          {study.challenges.map((challenge, challengeIdx) => (
-                            <li key={challengeIdx} className="text-xs text-[#23263a] flex items-start gap-2" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 400 }}>
-                              <span className="text-red-500 mt-1">•</span>
-                              {challenge}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                      
-                      <div>
-                        <h4 className="text-sm font-semibold mb-2" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
-                          Solutions:
-                        </h4>
-                        <ul className="space-y-1">
-                          {study.solutions.map((solution, solutionIdx) => (
-                            <li key={solutionIdx} className="text-xs text-[#23263a] flex items-start gap-2" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 400 }}>
-                              <CheckCircle className="w-3 h-3 text-green-500 flex-shrink-0 mt-0.5" />
-                              {solution}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-                    
                     <Button
-                      className="w-full bg-[#18181b] hover:bg-[#23272f] text-white font-semibold transition-all duration-300"
-                      style={{ fontFamily: 'Montserrat, sans-serif' }}
+                      variant="ghost"
+                      size="sm"
+                      className="mt-6 text-[#18181b] hover:text-[#23272f] group-hover:translate-x-1 transition-all duration-300"
+                      onClick={() => navigate(study.link)}
                     >
-                      View Full Case Study
-                      <ArrowRight className="w-4 h-4 ml-2" />
+                      Read Full Case Study
+                      <ArrowRight className="w-4 h-4 ml-1" />
                     </Button>
                   </CardContent>
                 </Card>
               ))}
             </div>
-            
-            {filteredCaseStudies.length === 0 && (
-              <div className="text-center py-16">
-                <h3 className="text-xl font-semibold mb-4" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
-                  No case studies found
-                </h3>
-                <p className="text-[#23263a]" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 400 }}>
-                  Try adjusting your filters to see more results.
-                </p>
-              </div>
-            )}
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="py-24 px-4 md:px-8">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="bg-gradient-to-br from-gray-50 to-white rounded-3xl p-12 shadow-lg">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
-                Ready to Join Our Success Stories?
+        {/* Case Study Categories/Industries
+        <section ref={categoriesRef} className={`py-24 px-4 md:px-8 bg-white ${categoriesClassName}`}>
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-20">
+              <h2 className="text-3xl md:text-5xl font-normal mb-8" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400, letterSpacing: '-0.03em' }}>
+                Case Studies by Industry
               </h2>
-              <p className="text-lg text-[#23263a] mb-8 max-w-2xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 400 }}>
-                Let's discuss your business goals and create a custom digital marketing strategy that delivers real results.
+              <p className="text-lg md:text-xl text-[#23272f] max-w-3xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                Find case studies relevant to your sector and discover how our strategies apply to diverse business needs.
               </p>
-              <div className="flex flex-col md:flex-row gap-4 justify-center">
-                <Button
-                  size="lg"
-                  className="bg-[#18181b] hover:bg-[#23272f] text-white px-8 py-3 rounded-lg font-semibold text-lg"
-                  onClick={() => navigate('/contact')}
-                  style={{ fontFamily: 'Montserrat, sans-serif' }}
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {categories.map((category, index) => (
+                <div
+                  key={category.name}
+                  className="group flex items-start p-6 bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl shadow-sm transition-all duration-300 hover:shadow-md hover:scale-[1.01]"
+                  style={{
+                    transform: isInView ? 'translateY(0)' : 'translateY(20px)',
+                    opacity: isInView ? 1 : 0,
+                    transition: `all 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${0.1 + index * 0.08}s`
+                  }}
                 >
-                  Start Your Project
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-[#18181b] text-[#18181b] hover:bg-[#f3f4f6] px-8 py-3 rounded-lg font-semibold text-lg"
-                  onClick={() => navigate('/audit')}
-                  style={{ fontFamily: 'Montserrat, sans-serif' }}
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center mr-5 transition-transform duration-300 group-hover:scale-110">
+                    <category.icon className="w-6 h-6 text-gray-700" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold mb-2" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
+                      {category.name}
+                    </h3>
+                    <p className="text-[#23272f] leading-relaxed" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                      {category.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+        */}
+
+        {/* Our Process/Approach */}
+        <section ref={processRef} className={`py-24 px-4 md:px-8 bg-gradient-to-br from-gray-50/50 to-white ${processClassName}`}>
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-20">
+              <h2 className="text-3xl md:text-5xl font-normal mb-8" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400, letterSpacing: '-0.03em' }}>
+                Our Strategic Approach
+              </h2>
+              <p className="text-lg md:text-xl text-[#23272f] max-w-3xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                We follow a proven methodology to ensure every client's success, from initial strategy to continuous optimization.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {processSteps.map((step, index) => (
+                <Card
+                  key={step.title}
+                  className="border-0 shadow-sm bg-white h-full transition-all duration-300 hover:shadow-md hover:scale-[1.01]"
+                  style={{
+                    transform: isInView ? 'translateY(0)' : 'translateY(20px)',
+                    opacity: isInView ? 1 : 0,
+                    transition: `all 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${0.1 + index * 0.1}s`
+                  }}
                 >
-                  Get Free Audit
-                </Button>
+                  <CardContent className="p-6 text-center">
+                    <div className="w-14 h-14 mx-auto mb-5 rounded-xl bg-gradient-to-br from-blue-50 to-purple-50 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <step.icon className="w-7 h-7 text-gray-700" />
+                    </div>
+                    <CardTitle className="text-xl font-semibold mb-3" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
+                      {step.title}
+                    </CardTitle>
+                    <CardDescription className="text-[#23272f] leading-relaxed" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                      {step.description}
+                    </CardDescription>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Results Showcase Section */}
+        <section ref={resultsRef} className={`py-24 px-4 md:px-8 bg-white ${resultsClassName}`}>
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-20">
+              <h2 className="text-3xl md:text-5xl font-normal mb-8" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400, letterSpacing: '-0.03em' }}>
+                Impactful Metrics, Tangible Growth
+              </h2>
+              <p className="text-lg md:text-xl text-[#23272f] max-w-3xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                A snapshot of the impressive results we've achieved across various campaigns and industries.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-10">
+              <div
+                className="flex flex-col justify-center bg-gradient-to-br from-blue-50/50 to-purple-50/50 rounded-3xl p-8 shadow-sm transition-all duration-500 hover:shadow-lg hover:scale-[1.01]"
+                style={{
+                  transform: isInView ? 'translateY(0)' : 'translateY(20px)',
+                  opacity: isInView ? 1 : 0,
+                  transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s'
+                }}
+              >
+                <div className="flex items-center justify-center w-16 h-16 rounded-full bg-blue-100 mb-6 mx-auto">
+                  <LineChart className="w-8 h-8 text-blue-700" />
+                </div>
+                <h3 className="text-4xl md:text-5xl font-extrabold text-center mb-4 text-[#18181b]" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                  +150%
+                </h3>
+                <p className="text-xl text-[#23272f] text-center" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                  Average Revenue Growth for E-commerce Clients
+                </p>
+              </div>
+
+              <div
+                className="flex flex-col justify-center bg-gradient-to-br from-green-50/50 to-emerald-50/50 rounded-3xl p-8 shadow-sm transition-all duration-500 hover:shadow-lg hover:scale-[1.01]"
+                style={{
+                  transform: isInView ? 'translateY(0)' : 'translateY(20px)',
+                  opacity: isInView ? 1 : 0,
+                  transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s'
+                }}
+              >
+                <div className="flex items-center justify-center w-16 h-16 rounded-full bg-green-100 mb-6 mx-auto">
+                  <Users className="w-8 h-8 text-green-700" />
+                </div>
+                <h3 className="text-4xl md:text-5xl font-extrabold text-center mb-4 text-[#18181b]" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                  +300%
+                </h3>
+                <p className="text-xl text-[#23272f] text-center" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                  Increase in Qualified Leads for SaaS Businesses
+                </p>
+              </div>
+
+              <div
+                className="md:col-span-2 flex flex-col justify-center bg-gradient-to-br from-orange-50/50 to-red-50/50 rounded-3xl p-8 shadow-sm transition-all duration-500 hover:shadow-lg hover:scale-[1.01]"
+                style={{
+                  transform: isInView ? 'translateY(0)' : 'translateY(20px)',
+                  opacity: isInView ? 1 : 0,
+                  transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s'
+                }}
+              >
+                <div className="flex items-center justify-center w-16 h-16 rounded-full bg-orange-100 mb-6 mx-auto">
+                  <Eye className="w-8 h-8 text-orange-700" />
+                </div>
+                <h3 className="text-4xl md:text-5xl font-extrabold text-center mb-4 text-[#18181b]" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                  <span className="text-5xl md:text-6xl">2.5M+</span>
+                </h3>
+                <p className="text-xl text-[#23272f] text-center" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                  Total Impressions Generated Across All Campaigns
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Industry Impact Section */}
+        <section className="py-24 px-4 md:px-8 bg-gradient-to-br from-white to-gray-50/50">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-5xl font-normal mb-6" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400, letterSpacing: '-0.03em' }}>
+                Industry Impact
+              </h2>
+              <p className="text-lg md:text-xl text-[#23272f] max-w-3xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                Discover how we've transformed businesses across various sectors with our data-driven strategies.
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {[
+                {
+                  icon: <ShoppingCart className="w-8 h-8 text-blue-600" />,
+                  title: 'E-commerce Growth',
+                  stats: '150% avg. revenue increase',
+                  description: 'Scaled online stores with targeted campaigns and conversion optimization.'
+                },
+                {
+                  icon: <Cloud className="w-8 h-8 text-purple-600" />,
+                  title: 'SaaS Expansion',
+                  stats: '300% lead generation boost',
+                  description: 'Accelerated user acquisition and reduced customer acquisition costs.'
+                },
+                {
+                  icon: <MapPin className="w-8 h-8 text-green-600" />,
+                  title: 'Local Business',
+                  stats: '40% more foot traffic',
+                  description: 'Enhanced local visibility and customer engagement.'
+                },
+                {
+                  icon: <HeartPulse className="w-8 h-8 text-red-600" />,
+                  title: 'Healthcare',
+                  stats: '60% more appointments',
+                  description: 'Connected providers with patients through digital channels.'
+                },
+                {
+                  icon: <Home className="w-8 h-8 text-amber-600" />,
+                  title: 'Real Estate',
+                  stats: '3x more property views',
+                  description: 'Showcased properties with immersive digital experiences.'
+                },
+                {
+                  icon: <BookOpen className="w-8 h-8 text-indigo-600" />,
+                  title: 'Education',
+                  stats: '2.5x enrollment growth',
+                  description: 'Reached and engaged prospective students effectively.'
+                }
+              ].map((item, index) => (
+                <div 
+                  key={index}
+                  className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300"
+                  style={{
+                    transform: isInView ? 'translateY(0)' : 'translateY(20px)',
+                    opacity: isInView ? 1 : 0,
+                    transition: `all 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${0.1 + index * 0.1}s`
+                  }}
+                >
+                  <div className="w-14 h-14 rounded-xl bg-opacity-20 flex items-center justify-center mb-6" style={{ backgroundColor: 'rgba(99, 102, 241, 0.1)' }}>
+                    {item.icon}
+                  </div>
+                  <h3 className="text-xl font-semibold mb-2" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
+                    {item.title}
+                  </h3>
+                  <p className="text-2xl font-bold mb-3" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
+                    {item.stats}
+                  </p>
+                  <p className="text-[#23272f]" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                    {item.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Client Showcase Section */}
+        <section className="py-24 px-4 md:px-8 bg-white">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-5xl font-normal mb-6" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400, letterSpacing: '-0.03em' }}>
+                Trusted by Industry Leaders
+              </h2>
+              <p className="text-lg md:text-xl text-[#23272f] max-w-3xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                We've partnered with innovative companies to drive their digital transformation.
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center justify-items-center">
+              {[
+                { name: 'TechStart', logo: '/logos/techstart.svg' },
+                { name: 'CloudNine', logo: '/logos/cloudnine.svg' },
+                { name: 'UrbanBloom', logo: '/logos/urbanbloom.svg' },
+                { name: 'NovaHealth', logo: '/logos/novahealth.svg' },
+                { name: 'EstatePro', logo: '/logos/estatepro.svg' },
+                { name: 'EduStream', logo: '/logos/edustream.svg' }
+              ].map((client, index) => (
+                <div 
+                  key={index}
+                  className="w-full h-24 flex items-center justify-center p-4 grayscale hover:grayscale-0 transition-all duration-300"
+                  style={{
+                    transform: isInView ? 'scale(1)' : 'scale(0.95)',
+                    opacity: isInView ? 1 : 0,
+                    transition: `all 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${0.1 + index * 0.05}s`
+                  }}
+                >
+                  <img 
+                    src={client.logo} 
+                    alt={client.name} 
+                    className="max-h-12 max-w-full object-contain"
+                    onError={(e) => {
+                      // Fallback to client name if logo fails to load
+                      const target = e.target as HTMLImageElement;
+                      target.src = '';
+                      target.outerHTML = `
+                        <div class="w-full h-full flex items-center justify-center">
+                          <span class="text-lg font-medium text-gray-600">${client.name}</span>
+                        </div>
+                      `;
+                    }}
+                  />
+                </div>
+              ))}
+            </div>
+            
+            <div className="mt-16 text-center">
+              <Button
+                variant="outline"
+                className="border-[#18181b] text-[#18181b] hover:bg-[#f3f4f6] px-8 py-3 rounded-xl font-medium text-base transform transition-all duration-300 hover:scale-105"
+                onClick={() => navigate('/contact')}
+                style={{ fontFamily: 'Montserrat, sans-serif' }}
+              >
+                Become Our Next Success Story
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </div>
+          </div>
+        </section>
+
+        {/* Final CTA Section - Replicated from Index Page */}
+        <section ref={ctaRef} className={`pt-12 pb-24 px-4 md:px-8 bg-white ${ctaClassName}`}>
+          <div className="max-w-7xl mx-auto">
+            <div className="relative rounded-[32px] overflow-hidden">
+              <div
+                className="absolute inset-0"
+                style={{
+                  background: `
+                    radial-gradient(ellipse at 10% 20%, #e0f7fa 0%, transparent 50%),
+                    radial-gradient(ellipse at 90% 80%, #f3e8ff 0%, transparent 55%),
+                    radial-gradient(ellipse at 30% 70%, #d1f5e0 0%, transparent 65%),
+                    linear-gradient(135deg, #f7fafc 0%, #f8fafc 100%)
+                  `
+                }}
+              />
+              <div className="relative z-10 p-12 md:p-16">
+                <div className="max-w-4xl mx-auto text-center">
+                  <h2 className="text-3xl md:text-5xl font-normal mb-8" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400, letterSpacing: '-0.03em' }}>
+                    Ready to See Similar Results<br />for Your Business?
+                  </h2>
+                  <p className="text-lg md:text-xl text-[#23272f] mb-12 max-w-2xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                    Let's discuss how we can help you achieve your digital marketing goals and drive sustainable business growth.
+                  </p>
+                  <div className="flex flex-col md:flex-row gap-4 justify-center">
+                    <Button
+                      size="lg"
+                      className="bg-[#18181b] hover:bg-[#23272f] text-white px-10 py-4 rounded-xl font-semibold text-lg transform transition-all duration-300 hover:scale-105"
+                      onClick={() => navigate('/audit')}
+                      style={{
+                        fontFamily: 'Montserrat, sans-serif'
+                      }}
+                    >
+                      Get a Free Audit
+                      <ArrowRight className="ml-2 h-5 w-5" />
+                    </Button>
+                    <Button
+                      size="lg"
+                      variant="outline"
+                      className="border-[#18181b] text-[#18181b] hover:bg-[#f3f4f6] px-10 py-4 rounded-xl font-semibold text-lg transform transition-all duration-300 hover:scale-105"
+                      onClick={() => navigate('/contact')}
+                      style={{
+                        fontFamily: 'Montserrat, sans-serif',
+                        borderColor: '#18181b'
+                      }}
+                    >
+                      Book a Consultation
+                    </Button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -478,4 +710,4 @@ const CaseStudies = () => {
   );
 };
 
-export default CaseStudies; 
+export default CaseStudies;

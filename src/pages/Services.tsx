@@ -12,8 +12,8 @@ const useInViewAnimation = (animationClass) => {
 };
 
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge'; // Badge is imported but not used in the original snippet, keeping it for completeness.
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'; // Card components are imported but not directly used in the original snippet's structure, keeping for completeness.
+import { Badge } from '@/components/ui/badge';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import {
   BarChart3,
   Users,
@@ -213,22 +213,20 @@ const Services = () => {
           opacity: 0; /* Start hidden */
         }
 
-        /* Process section specific styling - Removed lines */
+        /* Process section specific styling */
         .process-step {
             position: relative;
-            /* Removed padding-bottom and ::after pseudo-element for vertical line */
         }
-        /* Removed @media query for horizontal lines */
         `}
       </style>
       <header>
         <Navigation />
       </header>
       <main className="min-h-screen bg-white">
-        {/* Hero Section */}
+        {/* Hero Section - Reduced top margin and vertical padding */}
         <section 
           ref={heroRef}
-          className="w-full flex items-center justify-center min-h-[80vh] py-8 px-4 md:px-8 mt-24 md:mt-32 overflow-hidden"
+          className="w-full flex items-center justify-center min-h-[80vh] py-16 px-2 md:px-4 mt-20 md:mt-24 overflow-hidden"
           style={{
             opacity: isInViewHero ? 1 : 0,
             transform: isInViewHero ? 'translateY(0)' : 'translateY(20px)',
@@ -236,7 +234,7 @@ const Services = () => {
           }}
         >
           <div
-            className="relative w-full max-w-7xl mx-auto rounded-[48px] md:rounded-[48px] bg-white flex flex-col items-center justify-center px-6 md:px-16 py-16 md:py-24 overflow-hidden"
+            className="relative w-full max-w-[90rem] mx-auto rounded-[48px] md:rounded-[48px] bg-white flex flex-col items-center justify-center px-6 md:px-16 py-16 md:py-24 overflow-hidden"
             style={{
               minHeight: 520,
               background: `
@@ -274,7 +272,7 @@ const Services = () => {
             {/* Centered content */}
             <div className="relative z-10 flex flex-col items-center justify-center h-full text-center w-full">
               <h1
-                className="text-3xl md:text-5xl font-normal mb-12"
+                className="text-4xl md:text-6xl font-extrabold mb-8 leading-tight"
                 style={{
                   fontFamily: 'Montserrat, sans-serif',
                   color: '#18181b',
@@ -304,10 +302,10 @@ const Services = () => {
           </div>
         </section>
 
-        {/* Services Section - Modified Layout */}
-        <section ref={servicesRef} className={`py-24 px-4 md:px-8 bg-white ${isInViewServices ? 'animate-fade-in-up' : 'opacity-0'}`}>
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-16">
+        {/* Services Section - Reduced vertical padding further */}
+        <section ref={servicesRef} className={`py-12 px-2 md:px-4 w-full ${isInViewServices ? 'animate-fade-in-up' : 'opacity-0'}`}>
+          <div className="w-full max-w-[90rem] mx-auto rounded-[48px] md:rounded-[48px] bg-white px-6 md:px-16 py-10 md:py-14 overflow-hidden">
+            <div className="text-center mb-12">
               <h2 className="text-3xl md:text-5xl font-normal mb-8" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400, letterSpacing: '-0.03em' }}>
                 Digital Marketing Services<br />That Drive Results
               </h2>
@@ -317,13 +315,13 @@ const Services = () => {
             </div>
 
             {/* Modified Services Layout: Flexbox for more fluid wrapping */}
-            <div className="flex flex-wrap justify-center gap-8 animate-staggered-fade-in-up">
+            <div className="flex flex-wrap justify-center gap-12 animate-staggered-fade-in-up">
               {services.map((service, idx) => {
                 const IconComponent = service.icon;
                 return (
                   <div
                     key={service.id}
-                    className="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.33%-1.33rem)] max-w-sm group cursor-pointer transition-all duration-500 hover:shadow-2xl hover:scale-105 rounded-3xl overflow-hidden relative
+                    className="w-full sm:w-[calc(50%-1.5rem)] lg:w-[calc(33.33%-2rem)] max-w-md group cursor-pointer transition-all duration-500 hover:shadow-2xl hover:scale-105 rounded-3xl overflow-hidden relative
                     bg-white border border-gray-100" // Changed background to white with border
                     style={{
                       animationDelay: `${idx * 150}ms`, // Staggered animation
@@ -351,13 +349,7 @@ const Services = () => {
                           </div>
                         ))}
                       </div>
-                      <Button
-                        className="w-full bg-[#18181b] hover:bg-[#23272f] text-white font-normal transition-all duration-300 transform hover:scale-[1.02] shadow-md"
-                        style={{ fontFamily: 'Montserrat', fontWeight: 400 }}
-                      >
-                        Learn More
-                        <ArrowRight className="w-4 h-4 ml-2" />
-                      </Button>
+
                     </div>
                   </div>
                 );
@@ -366,10 +358,10 @@ const Services = () => {
           </div>
         </section>
 
-        {/* How We Work / Our Process Section - New Layout (Step-by-step) */}
-        <section ref={processRef} className={`py-24 px-4 md:px-8 bg-white ${isInViewProcess ? 'animate-fade-in-up' : 'opacity-0'}`}>
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-16">
+        {/* How We Work / Our Process Section - Reduced vertical padding further */}
+        <section ref={processRef} className={`py-12 px-2 md:px-4 w-full ${isInViewProcess ? 'animate-fade-in-up' : 'opacity-0'}`}>
+          <div className="w-full max-w-[90rem] mx-auto rounded-[48px] md:rounded-[48px] bg-white px-6 md:px-16 py-10 md:py-14 overflow-hidden">
+            <div className="text-center mb-8">
               <h2 className="text-3xl md:text-5xl font-normal mb-8" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400, letterSpacing: '-0.03em' }}>
                 Our Simple Process
               </h2>
@@ -439,9 +431,9 @@ const Services = () => {
           </div>
         </section>
 
-        {/* Why Choose Us Section - New Layout (Two-column with vertical benefits) */}
-        <section className="py-24 px-4 md:px-8 bg-white">
-          <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+        {/* Why Choose Us Section - Reduced vertical padding further */}
+        <section className="py-12 px-2 md:px-4 w-full">
+          <div className="w-full max-w-[90rem] mx-auto rounded-[48px] md:rounded-[48px] bg-white px-6 md:px-16 py-10 md:py-14 overflow-hidden grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="text-center md:text-left animate-fade-in-up">
               <h2 className="text-3xl md:text-5xl font-normal mb-8" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400, letterSpacing: '-0.03em' }}>
                 Why Choose Media Levelling?
@@ -506,10 +498,10 @@ const Services = () => {
           </div>
         </section>
 
-        {/* Frequently Asked Questions Section - New Layout (Accordion-like) */}
-        <section ref={faqRef} className={`py-24 px-4 md:px-8 bg-white ${isInViewFaq ? 'animate-fade-in-up' : 'opacity-0'}`}>
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-16">
+        {/* Frequently Asked Questions Section - Reduced vertical padding further */}
+        <section ref={faqRef} className={`py-12 px-2 md:px-4 w-full ${isInViewFaq ? 'animate-fade-in-up' : 'opacity-0'}`}>
+          <div className="w-full max-w-[90rem] mx-auto rounded-[48px] md:rounded-[48px] bg-white px-6 md:px-16 py-10 md:py-14 overflow-hidden">
+            <div className="text-center mb-12">
               <h2 className="text-3xl md:text-5xl font-normal mb-8" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400, letterSpacing: '-0.03em' }}>
                 Frequently Asked Questions
               </h2>
@@ -542,11 +534,11 @@ const Services = () => {
           </div>
         </section>
 
-        {/* CTA Section - Enhanced Background */}
-        <section ref={ctaRef} className={`pb-24 px-4 md:px-8 ${isInViewCta ? 'animate-fade-in-up' : 'opacity-0'}`}>
-          <div className="max-w-7xl mx-auto">
+        {/* CTA Section - Reduced vertical padding further */}
+        <section ref={ctaRef} className={`py-12 px-2 md:px-4 w-full ${isInViewCta ? 'animate-fade-in-up' : 'opacity-0'}`}>
+          <div className="w-full max-w-[90rem] mx-auto">
             <div
-              className="relative w-full max-w-7xl mx-auto rounded-[32px] bg-white flex flex-col items-center justify-center px-4 md:px-16 pt-10 min-h-[420px] overflow-hidden"
+              className="relative w-full rounded-[32px] bg-white flex flex-col items-center justify-center px-4 md:px-16 py-10 min-h-[320px] overflow-hidden"
               style={{
                 borderRadius: '32px',
                 background: `

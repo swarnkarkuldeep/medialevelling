@@ -85,7 +85,6 @@ const Navigation = () => {
               <Link to="/pricing" className="block mb-4" onClick={() => setOpen(false)}>Pricing</Link>
               <Link to="/audit" className="block mb-4" onClick={() => setOpen(false)}>Audit</Link>
               <Link to="/case-studies" className="block mb-4" onClick={() => setOpen(false)}>Case Studies</Link>
-              <Link to="/faqs" className="block mb-4" onClick={() => setOpen(false)}>FAQs</Link>
               <Link to="/about" className="block mb-4" onClick={() => setOpen(false)}>About</Link>
               <Link to="/contact" className="block" onClick={() => setOpen(false)}>Contact</Link>
             </SheetContent>
@@ -127,13 +126,6 @@ const Navigation = () => {
                 style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 300 }}
               >
                 Case Studies
-              </Link>
-              <Link
-                to="/faqs"
-                className={`font-normal transition-transform duration-300 hover:scale-105 hover:shadow-md hover:bg-[#f3e8ff]/60 rounded-md px-2 ${isIsland ? 'text-sm' : 'text-base'}`}
-                style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 300 }}
-              >
-                FAQs
               </Link>
               <Link
                 to="/about"
