@@ -29,23 +29,44 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-
-    setIsSubmitting(false);
-    setIsSuccess(true);
     
-    toast({
-      title: "Message sent successfully!",
-      description: "We'll get back to you within 24 hours.",
-    });
+    try {
+      const response = await fetch('https://formspree.io/f/mnnzrzda', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
 
-    // Reset form after success animation
-    setTimeout(() => {
-      setFormData({ name: '', email: '', message: '' });
-      setIsSuccess(false);
-    }, 2000);
+      if (response.ok) {
+        setIsSuccess(true);
+        
+        toast({
+          title: "Message sent successfully!",
+          description: "We'll get back to you within 24 hours.",
+        });
+
+        // Reset form after success animation
+        setTimeout(() => {
+          setFormData({ name: '', email: '', message: '' });
+          setIsSuccess(false);
+        }, 2000);
+      } else {
+        const data = await response.json();
+        throw new Error(data.error || 'Failed to send message');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      toast({
+        title: "Error",
+        description: "There was an error sending your message. Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -124,7 +145,7 @@ const Contact = () => {
                   </div>
                 </div>
               )}
-              <form onSubmit={handleSubmit} className="space-y-8 relative z-0">
+              <form action="https://formspree.io/f/mnnzrzda" method="POST" onSubmit={handleSubmit} className="space-y-8 relative z-0">
                 <div className="space-y-6">
                   <Input
                     id="name"
