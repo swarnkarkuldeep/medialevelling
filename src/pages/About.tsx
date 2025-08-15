@@ -36,7 +36,7 @@ const CountUpNumber = ({ end, suffix, animate }: { end: number; suffix: string; 
   useEffect(() => {
     if (!animate) return;
 
-    const duration = 2000;
+    const duration = 500;
     const startTime = performance.now();
 
     const animateCount = (currentTime: number) => {
