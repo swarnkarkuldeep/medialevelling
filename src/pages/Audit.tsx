@@ -34,7 +34,48 @@ import {
 const Audit = () => {
   const navigate = useNavigate();
   const formRef = useRef<HTMLFormElement>(null);
-  const { toast } = useToast(); // Add this line to use the toast
+  const { toast } = useToast();
+  
+  // Form submission handler for Formspree
+  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    
+    if (!formRef.current) return;
+    
+    const formData = new FormData(formRef.current);
+    
+    try {
+      const response = await fetch('https://formspree.io/f/mwpqzqlj', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+      
+      if (response.ok) {
+        // Show success toast notification
+        toast({
+          title: "Audit Request Submitted",
+          description: "Thank you for your request. Our team will review your information and get back to you within 1-2 business days.",
+          variant: "default",
+        });
+        
+        // Reset form
+        formRef.current.reset();
+      } else {
+        const data = await response.json();
+        throw new Error(data.error || 'Failed to submit form');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      toast({
+        title: "Error",
+        description: "There was an error submitting your form. Please try again later.",
+        variant: "destructive",
+      });
+    }
+  };
 
   const { ref: headingRef, className: headingClassName } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
   const { ref: whyAuditRef, className: whyAuditClassName } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
@@ -272,22 +313,22 @@ const Audit = () => {
                     </p>
                   </CardHeader>
                   <CardContent>
-                    <form ref={formRef} className="space-y-6" onSubmit={handleFormSubmit}>
+                    <form ref={formRef} action="https://formspree.io/f/mwpqzqlj" method="POST" className="space-y-6" onSubmit={handleFormSubmit}>
                       <div>
                         <Label htmlFor="name" className="text-[#18181b] font-medium mb-2 block">Your Name</Label>
-                        <Input id="name" type="text" placeholder="John Doe" className="rounded-lg border-gray-300 focus:border-[#18181b] focus:ring-[#18181b] text-[#18181b]" required />
+                        <Input id="name" name="name" type="text" placeholder="John Doe" className="rounded-lg border-gray-300 focus:border-[#18181b] focus:ring-[#18181b] text-[#18181b]" required />
                       </div>
                       <div>
                         <Label htmlFor="email" className="text-[#18181b] font-medium mb-2 block">Business Email</Label>
-                        <Input id="email" type="email" placeholder="yourmail@email.com" className="rounded-lg border-gray-300 focus:border-[#18181b] focus:ring-[#18181b] text-[#18181b]" required />
+                        <Input id="email" name="email" type="email" placeholder="yourmail@email.com" className="rounded-lg border-gray-300 focus:border-[#18181b] focus:ring-[#18181b] text-[#18181b]" required />
                       </div>
                       <div>
                         <Label htmlFor="website" className="text-[#18181b] font-medium mb-2 block">Your Website URL (Optional)</Label>
-                        <Input id="website" type="url" placeholder="https://yourwebsite.com" className="rounded-lg border-gray-300 focus:border-[#18181b] focus:ring-[#18181b] text-[#18181b]" />
+                        <Input id="website" name="website" type="url" placeholder="https://yourwebsite.com" className="rounded-lg border-gray-300 focus:border-[#18181b] focus:ring-[#18181b] text-[#18181b]" />
                       </div>
                       <div>
                         <Label htmlFor="goals" className="text-[#18181b] font-medium mb-2 block">What are your main digital marketing goals?</Label>
-                        <Textarea id="goals" placeholder="e.g., Increase leads, boost sales, improve brand awareness" className="rounded-lg border-gray-300 focus:border-[#18181b] focus:ring-[#18181b] text-[#18181b]" rows={4} required />
+                        <Textarea id="goals" name="goals" placeholder="e.g., Increase leads, boost sales, improve brand awareness" className="rounded-lg border-gray-300 focus:border-[#18181b] focus:ring-[#18181b] text-[#18181b]" rows={4} required />
                       </div>
                       <Button type="submit" size="lg" className="w-full bg-[#18181b] hover:bg-[#23272f] text-white px-8 py-3 rounded-xl font-semibold text-lg transform transition-all duration-300 hover:scale-105" style={{ fontFamily: 'Montserrat, sans-serif' }}>
                         Get My Free Audit
@@ -834,23 +875,3 @@ const Audit = () => {
 };
 
 export default Audit;
-
-// Add form submission handler
-const handleFormSubmit = (e: React.FormEvent) => {
-  e.preventDefault();
-  
-  // Here you would typically add your form submission logic
-  // For example, sending the form data to your backend
-  
-  // Show success toast notification
-  toast({
-    title: "Audit Request Submitted",
-    description: "Thank you for your request. Our team will review your information and get back to you within 1-2 business days.",
-    variant: "default",
-  });
-  
-  // Optional: Reset form
-  if (formRef.current) {
-    formRef.current.reset();
-  }
-};
