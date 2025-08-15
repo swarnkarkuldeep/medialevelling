@@ -337,8 +337,13 @@ const servicePlans = {
 const PlansPricing = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { ref, className } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
   const [selectedService, setSelectedService] = useState('media-levelling-package');
+  
+  // Animation refs
+  const { ref: heroRef, className: heroClassName } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
+  const { ref: pricingRef, className: pricingClassName } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
+  const { ref: faqRef, className: faqClassName } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
+  const { ref: ctaRef, className: ctaClassName } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
 
   useEffect(() => {
     // Get the service parameter from the URL
@@ -364,7 +369,14 @@ const PlansPricing = () => {
       </header>
       <main className="min-h-screen bg-white">
         {/* Hero Section */}
-        <section className="w-full flex items-center justify-center min-h-[60vh] py-12 px-4 md:px-8 mt-28 md:mt-40 overflow-hidden">
+        <section 
+          ref={heroRef}
+          className="w-full flex items-center justify-center min-h-[60vh] py-12 px-4 md:px-8 mt-28 md:mt-40 overflow-hidden"
+          style={{
+            opacity: heroClassName.includes('animate-fade-in-up') ? 1 : 0,
+            transform: heroClassName.includes('animate-fade-in-up') ? 'translateY(0)' : 'translateY(10px)',
+            transition: 'opacity 0.4s ease-out, transform 0.4s ease-out'
+          }}>
           <div className="relative w-full max-w-[90rem] mx-auto rounded-[48px] md:rounded-[48px] bg-white flex flex-col items-center justify-center px-8 md:px-20 py-20 md:py-28 overflow-hidden"
             style={{
               minHeight: 400,
@@ -441,7 +453,16 @@ const PlansPricing = () => {
         </section>
         
         {/* Service Selection & Pricing */}
-        <section id="pricing-section" ref={ref} className={`py-20 px-6 md:px-12 bg-white ${className}`}>
+        <section 
+          id="pricing-section" 
+          ref={pricingRef}
+          className="py-20 px-6 md:px-12 bg-white"
+          style={{
+            opacity: pricingClassName.includes('animate-fade-in-up') ? 1 : 0,
+            transform: pricingClassName.includes('animate-fade-in-up') ? 'translateY(0)' : 'translateY(10px)',
+            transition: 'opacity 0.4s ease-out, transform 0.4s ease-out',
+            transitionDelay: '0.1s'
+          }}>
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400 }}>
@@ -482,14 +503,16 @@ const PlansPricing = () => {
               {servicePlans[selectedService as keyof typeof servicePlans].plans.map((plan, idx) => (
                 <div
                   key={plan.name}
-                  className={`rounded-2xl border border-gray-200 flex flex-col items-center px-4 py-8 ${
+                  className={`rounded-2xl border border-gray-200 flex flex-col items-center px-4 py-8 transition-all duration-300 ${
                     plan.name === 'Growth'
-                      ? 'bg-[#18181b] text-white scale-105 z-10'
-                      : 'bg-white text-[#18181b]'
-                  } animate-fade-in-up`}
+                      ? 'bg-[#18181b] text-white scale-105 z-10 hover:shadow-xl hover:scale-[1.03]'
+                      : 'bg-white text-[#18181b] hover:shadow-lg hover:scale-[1.02]'
+                  }`}
                   style={{ 
-                    minHeight: 440, 
-                    animationDelay: `${idx * 180 + 200}ms`,
+                    minHeight: 440,
+                    opacity: pricingClassName.includes('animate-fade-in-up') ? 1 : 0,
+                    transform: pricingClassName.includes('animate-fade-in-up') ? 'translateY(0)' : `translateY(${20 + (idx * 5)}px)`,
+                    transition: `opacity 0.4s ease-out ${0.2 + (idx * 0.1)}s, transform 0.4s ease-out ${0.2 + (idx * 0.1)}s, box-shadow 0.3s ease`,
                     fontFamily: 'Montserrat, sans-serif'
                   }}
                 >
@@ -540,7 +563,15 @@ const PlansPricing = () => {
         </section>
 
         {/* FAQ Section */}
-        <section className="py-16 px-4 md:px-8 w-full">
+        <section 
+          ref={faqRef}
+          className="py-16 px-4 md:px-8 w-full"
+          style={{
+            opacity: faqClassName.includes('animate-fade-in-up') ? 1 : 0,
+            transform: faqClassName.includes('animate-fade-in-up') ? 'translateY(0)' : 'translateY(10px)',
+            transition: 'opacity 0.4s ease-out, transform 0.4s ease-out',
+            transitionDelay: '0.2s'
+          }}>
           <div className="w-full max-w-7xl mx-auto rounded-3xl bg-white px-6 md:px-12 py-16 overflow-hidden">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400 }}>
@@ -549,56 +580,58 @@ const PlansPricing = () => {
             </div>
             
             <div className="space-y-8">
-              <div className="border-b border-gray-200 pb-8 animate-fade-in-up">
-                <h3 className="text-xl font-semibold mb-4" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400 }}>
-                  Can I switch between plans?
-                </h3>
-                <p className="text-[#23263a] leading-relaxed" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
-                  Yes, you can upgrade or downgrade your plan at any time. Changes will be reflected in your next billing cycle.
-                </p>
-              </div>
-              
-              <div className="border-b border-gray-200 pb-8 animate-fade-in-up">
-                <h3 className="text-xl font-semibold mb-4" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400 }}>
-                  Do you offer custom plans?
-                </h3>
-                <p className="text-[#23263a] leading-relaxed" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
-                  Yes, we offer custom plans for businesses with specific needs. Contact us to discuss your requirements.
-                </p>
-              </div>
-              
-              <div className="border-b border-gray-200 pb-8 animate-fade-in-up">
-                <h3 className="text-xl font-semibold mb-4" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400 }}>
-                  What's included in the support?
-                </h3>
-                <p className="text-[#23263a] leading-relaxed" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
-                  Support includes email communication, regular check-ins, and performance reviews. Premium plans include dedicated account management.
-                </p>
-              </div>
-              
-              <div className="border-b border-gray-200 pb-8 animate-fade-in-up">
-                <h3 className="text-xl font-semibold mb-4" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400 }}>
-                  How long does it take to see results?
-                </h3>
-                <p className="text-[#23263a] leading-relaxed" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
-                  Results vary by service and plan. SEO typically shows improvements in 3-6 months, while paid advertising can show immediate results. We provide regular reports to track progress.
-                </p>
-              </div>
-              
-              <div className="border-b border-gray-200 pb-8 animate-fade-in-up">
-                <h3 className="text-xl font-semibold mb-4" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400 }}>
-                  What makes the Media Levelling Package different?
-                </h3>
-                <p className="text-[#23263a] leading-relaxed" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
-                  Our Media Levelling Package combines multiple services (SEO, Meta ads, PPC, and short-form content) into one comprehensive solution. This integrated approach ensures all your digital marketing efforts work together for maximum impact.
-                </p>
-              </div>
+              {[
+                {
+                  question: 'Can I switch between plans?',
+                  answer: 'Yes, you can upgrade or downgrade your plan at any time. Changes will be reflected in your next billing cycle.'
+                },
+                {
+                  question: 'Do you offer custom plans?',
+                  answer: 'Yes, we offer custom plans for businesses with specific needs. Contact us to discuss your requirements.'
+                },
+                {
+                  question: 'What\'s included in the support?',
+                  answer: 'Support includes email communication, regular check-ins, and performance reviews. Premium plans include dedicated account management.'
+                },
+                {
+                  question: 'How long does it take to see results?',
+                  answer: 'Results vary by service and plan. SEO typically shows improvements in 3-6 months, while paid advertising can show immediate results. We provide regular reports to track progress.'
+                },
+                {
+                  question: 'What makes the Media Levelling Package different?',
+                  answer: 'Our Media Levelling Package combines multiple services (SEO, Meta ads, PPC, and short-form content) into one comprehensive solution. This integrated approach ensures all your digital marketing efforts work together for maximum impact.'
+                }
+              ].map((faq, i) => (
+                <div 
+                  key={i}
+                  className="border-b border-gray-200 pb-8"
+                  style={{
+                    opacity: faqClassName.includes('animate-fade-in-up') ? 1 : 0,
+                    transform: faqClassName.includes('animate-fade-in-up') ? 'translateY(0)' : 'translateY(10px)',
+                    transition: `opacity 0.4s ease-out ${0.1 * (i + 1)}s, transform 0.4s ease-out ${0.1 * (i + 1)}s`
+                  }}>
+                  <h3 className="text-xl font-semibold mb-4" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400 }}>
+                    {faq.question}
+                  </h3>
+                  <p className="text-[#23263a] leading-relaxed" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                    {faq.answer}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
         {/* CTA Section */}
-        <section className="py-16 px-4 md:px-8 w-full">
+        <section 
+          ref={ctaRef}
+          className="py-16 px-4 md:px-8 w-full"
+          style={{
+            opacity: ctaClassName.includes('animate-fade-in-up') ? 1 : 0,
+            transform: ctaClassName.includes('animate-fade-in-up') ? 'translateY(0)' : 'translateY(10px)',
+            transition: 'opacity 0.4s ease-out, transform 0.4s ease-out',
+            transitionDelay: '0.3s'
+          }}>
           <div className="w-full max-w-7xl mx-auto rounded-3xl bg-white px-6 md:px-12 py-16 overflow-hidden text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400 }}>
               Ready to Get Started?

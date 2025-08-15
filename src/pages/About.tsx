@@ -68,11 +68,16 @@ const About = () => {
   const statsRef = useRef<HTMLDivElement>(null);
   const isStatsInView = useInView(statsRef, { once: true, amount: 0.5 }); // Detect when stats section is in view
 
+  // Animation refs
+  const { ref: heroRef, className: heroClassName } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
+  const { ref: headingRef, className: headingClassName } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
+  const { ref: textRef, className: textClassName } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
+  const { ref: buttonRef, className: buttonClassName } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
   const mainAnim = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
-  const backgroundRef = useInViewAnimation<HTMLDivElement>('animate-fade-in-up', '0px 0px -10% 0px'); // Adjusted offset
-  const differenceRef = useInViewAnimation<HTMLDivElement>('animate-fade-in-up', '0px 0px -10% 0px'); // Adjusted offset
-  const approachRef = useInViewAnimation<HTMLDivElement>('animate-fade-in-up', '0px 0px -10% 0px'); // New animation ref
-  const servicesRef = useInViewAnimation<HTMLDivElement>('animate-fade-in-up', '0px 0px -10% 0px'); // Adjusted offset
+  const backgroundRef = useInViewAnimation<HTMLDivElement>('animate-fade-in-up', '0px 0px -10% 0px');
+  const differenceRef = useInViewAnimation<HTMLDivElement>('animate-fade-in-up', '0px 0px -10% 0px');
+  const approachRef = useInViewAnimation<HTMLDivElement>('animate-fade-in-up', '0px 0px -10% 0px');
+  const servicesRef = useInViewAnimation<HTMLDivElement>('animate-fade-in-up', '0px 0px -10% 0px');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -88,7 +93,14 @@ const About = () => {
       </header>
       <main className="min-h-screen bg-white">
                  {/* Hero Section */}
-         <section className="w-full flex items-center justify-center min-h-[80vh] py-8 px-2 md:px-4 mt-24 md:mt-32 overflow-hidden">
+         <section 
+           ref={heroRef}
+           className={`w-full flex items-center justify-center min-h-[80vh] py-8 px-2 md:px-4 mt-24 md:mt-32 overflow-hidden ${heroClassName}`}
+           style={{
+             opacity: heroClassName.includes('animate-fade-in-up') ? 1 : 0,
+             transform: heroClassName.includes('animate-fade-in-up') ? 'translateY(0)' : 'translateY(10px)',
+             transition: 'opacity 0.4s ease-out, transform 0.4s ease-out'
+           }}>
            <div className="relative w-full max-w-7xl mx-auto rounded-[48px] md:rounded-[48px] bg-white flex flex-col items-center justify-center px-6 md:px-16 py-12 md:py-20 overflow-hidden"
              style={{
                minHeight: 520,
@@ -120,7 +132,15 @@ const About = () => {
                  }}
                />
              </div>
-             <div className="relative z-10 flex flex-col items-center justify-center h-full text-center w-full">
+             <div 
+               ref={headingRef}
+               className="relative z-10 flex flex-col items-center justify-center h-full text-center w-full"
+               style={{
+                 opacity: headingClassName.includes('animate-fade-in-up') ? 1 : 0,
+                 transform: headingClassName.includes('animate-fade-in-up') ? 'translateY(0)' : 'translateY(10px)',
+                 transition: 'opacity 0.4s ease-out, transform 0.4s ease-out',
+                 transitionDelay: '0.05s'
+               }}>
                <h1
                  className="text-4xl md:text-6xl font-extrabold mb-8 leading-tight"
                  style={{
@@ -132,16 +152,30 @@ const About = () => {
                >
                  We Transform<br />Digital Marketing
                </h1>
-               <p
-                 className="text-xl md:text-2xl font-normal mb-12 max-w-3xl mx-auto leading-relaxed"
-                 style={{
-                   fontFamily: 'Montserrat, sans-serif',
-                   color: '#23272f'
-                 }}
-               >
+               <div ref={textRef}>
+                 <p
+                   className="text-xl md:text-2xl font-normal mb-12 max-w-3xl mx-auto leading-relaxed"
+                   style={{
+                     fontFamily: 'Montserrat, sans-serif',
+                     color: '#23272f',
+                     opacity: textClassName.includes('animate-fade-in-up') ? 1 : 0,
+                     transform: textClassName.includes('animate-fade-in-up') ? 'translateY(0)' : 'translateY(10px)',
+                     transition: 'opacity 0.4s ease-out, transform 0.4s ease-out',
+                     transitionDelay: '0.1s'
+                   }}
+                 >
                  At Media Levelling, we blend creative strategy with data-driven insights to elevate brands and drive remarkable business growth in the digital landscape.
                </p>
-               <div className="flex flex-col md:flex-row gap-4 justify-center">
+               </div> {/* Close textRef div */}
+               <div 
+                 ref={buttonRef}
+                 className="flex flex-col md:flex-row gap-4 justify-center"
+                 style={{
+                   opacity: buttonClassName.includes('animate-fade-in-up') ? 1 : 0,
+                   transform: buttonClassName.includes('animate-fade-in-up') ? 'translateY(0)' : 'translateY(10px)',
+                   transition: 'opacity 0.4s ease-out, transform 0.4s ease-out',
+                   transitionDelay: '0.15s'
+                 }}>
                  <Button
                    size="lg"
                    className="bg-[#18181b] hover:bg-[#23272f] text-white px-10 py-4 rounded-xl font-semibold text-lg transform transition-all duration-300 hover:scale-105"
