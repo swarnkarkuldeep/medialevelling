@@ -291,7 +291,7 @@ const CaseStudies = () => {
         </section>
 
         {/* Featured Case Studies Grid */}
-        <section ref={featuredRef} className={`py-24 px-4 md:px-8 bg-gradient-to-br from-white to-gray-50/50 ${featuredClassName}`}>
+        <section ref={featuredRef} className={`pb-16 px-4 md:px-8 bg-gradient-to-br from-white to-gray-50/50 ${featuredClassName}`}>
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-20">
               <h2 className="text-3xl md:text-5xl font-normal mb-8" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400, letterSpacing: '-0.03em' }}>
@@ -396,7 +396,7 @@ const CaseStudies = () => {
         */}
 
         {/* Our Process/Approach */}
-        <section ref={processRef} className={`py-24 px-4 md:px-8 bg-gradient-to-br from-gray-50/50 to-white ${processClassName}`}>
+        <section ref={processRef} className={`pt-8 pb-24 px-4 md:px-8 bg-gradient-to-br from-gray-50/50 to-white ${processClassName}`}>
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-20">
               <h2 className="text-3xl md:text-5xl font-normal mb-8" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400, letterSpacing: '-0.03em' }}>
@@ -436,7 +436,7 @@ const CaseStudies = () => {
         </section>
 
         {/* Results Showcase Section */}
-        <section ref={resultsRef} className={`py-24 px-4 md:px-8 bg-white ${resultsClassName}`}>
+        <section ref={resultsRef} className={`pt-12 pb-24 px-4 md:px-8 bg-white ${resultsClassName}`}>
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-20">
               <h2 className="text-3xl md:text-5xl font-normal mb-8" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400, letterSpacing: '-0.03em' }}>
@@ -509,7 +509,7 @@ const CaseStudies = () => {
         </section>
 
         {/* Industry Impact Section */}
-        <section className="py-24 px-4 md:px-8 bg-gradient-to-br from-white to-gray-50/50">
+        <section className="pt-12 px-4 md:px-8 bg-gradient-to-br from-white to-gray-50/50">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-5xl font-normal mb-6" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400, letterSpacing: '-0.03em' }}>

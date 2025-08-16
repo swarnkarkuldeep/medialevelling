@@ -48,103 +48,96 @@ const Navigation = () => {
       style={{ background: 'transparent' }}
     >
       <div
-        className={`flex items-center justify-between transition-all duration-500 ease-in-out backdrop-blur-lg bg-white/80
-          ${isIsland
-            ? 'max-w-6xl mt-4 rounded-xl shadow-2xl px-6 py-6 gap-6'
-            : 'max-w-7xl mt-0 rounded-2xl px-8 md:px-20 py-12 gap-8'}
-        `}
-        style={{
-          width: isIsland ? '95%' : '100%',
-          minWidth: 0,
-          overflow: 'hidden',
-          boxShadow: isIsland ? '0 8px 32px 0 rgba(31, 38, 135, 0.15)' : 'none',
-          transition: 'all 0.5s cubic-bezier(.4,0,.2,1)',
-        }}
-      >
-        {/* Logo */}
-        <div className="flex items-center min-w-[120px]">
-          <Link to="/">
-            <img 
-              src="/logo.png" 
-              alt="Logo" 
-              className={`${isIsland ? 'h-10 w-auto' : 'h-14 w-auto'}`}
-            />
+      className={`flex items-center backdrop-blur-lg bg-white/80
+        ${isIsland
+          ? 'justify-center max-w-6xl mt-4 rounded-xl px-6 py-6 gap-6'
+          : 'justify-between max-w-[90rem] mt-0 rounded-2xl px-8 md:px-20 py-12 gap-8'}
+      `}
+      style={{
+        width: isIsland ? '95%' : '100%',
+        minWidth: 0,
+        overflow: 'hidden',
+        boxShadow: isIsland
+          ? '0 8px 32px 0 rgba(31, 38, 135, 0.15)'
+          : '0 0 0 rgba(0,0,0,0)',
+        transition:
+          'max-width 0.7s cubic-bezier(0.4,0,0.2,1), padding 0.7s cubic-bezier(0.4,0,0.2,1), margin 0.7s cubic-bezier(0.4,0,0.2,1), gap 0.7s cubic-bezier(0.4,0,0.2,1), box-shadow 0.4s ease 0.1s, background-color 0.4s ease 0.1s',
+      }}
+    >
+      {/* Logo */}
+      <div className="flex items-center min-w-[120px]">
+        <Link to="/">
+          <img
+            src="/logo.png"
+            alt="Logo"
+            className="transition-[height] duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] w-auto"
+            style={{ height: isIsland ? '2.5rem' : '3.5rem' }}
+          />
+        </Link>
+      </div>
+
+      {/* Links / Mobile menu */}
+      {isMobile ? (
+        <Sheet open={open} onOpenChange={setOpen}>
+          <SheetTrigger asChild>
+            <button
+              aria-label="Open menu"
+              className="md:hidden block p-2"
+              onClick={() => setOpen(true)}
+            >
+              <Menu size={28} />
+            </button>
+          </SheetTrigger>
+          <SheetContent side="left" className="p-8">
+            <Link to="/" className="block mb-4" onClick={() => setOpen(false)}>Home</Link>
+            <Link to="/services" className="block mb-4" onClick={() => setOpen(false)}>Services</Link>
+            <Link to="/pricing" className="block mb-4" onClick={() => setOpen(false)}>Pricing</Link>
+            <Link to="/audit" className="block mb-4" onClick={() => setOpen(false)}>Audit</Link>
+            <Link to="/case-studies" className="block mb-4" onClick={() => setOpen(false)}>Case Studies</Link>
+            <Link to="/about" className="block mb-4" onClick={() => setOpen(false)}>About</Link>
+            <Link to="/contact" className="block" onClick={() => setOpen(false)}>Contact</Link>
+          </SheetContent>
+        </Sheet>
+      ) : (
+        <div
+          className={`flex ${isIsland ? 'gap-4' : 'gap-6'} min-w-0 flex-wrap ${
+            isIsland ? 'justify-center' : 'justify-end'
+          } flex-1 transition-[gap] duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]`}
+        >
+          <Link
+            to="/"
+            className="font-normal transition-[font-size] duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] hover:scale-105 hover:shadow-md hover:bg-[#f3e8ff]/60 rounded-md px-2"
+            style={{
+              fontFamily: 'Montserrat, sans-serif',
+              color: '#18181b',
+              fontWeight: 300,
+              fontSize: isIsland ? '0.875rem' : '1rem',
+            }}
+          >
+            Home
+          </Link>
+          <Link to="/services" className="font-normal transition-[font-size] duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] hover:scale-105 hover:shadow-md hover:bg-[#f3e8ff]/60 rounded-md px-2" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 300, fontSize: isIsland ? '0.875rem' : '1rem' }}>
+            Services
+          </Link>
+          <Link to="/pricing" className="font-normal transition-[font-size] duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] hover:scale-105 hover:shadow-md hover:bg-[#f3e8ff]/60 rounded-md px-2" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 300, fontSize: isIsland ? '0.875rem' : '1rem' }}>
+            Pricing
+          </Link>
+          <Link to="/audit" className="font-normal transition-[font-size] duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] hover:scale-105 hover:shadow-md hover:bg-[#f3e8ff]/60 rounded-md px-2" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 300, fontSize: isIsland ? '0.875rem' : '1rem' }}>
+            Audit
+          </Link>
+          <Link to="/case-studies" className="font-normal transition-[font-size] duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] hover:scale-105 hover:shadow-md hover:bg-[#f3e8ff]/60 rounded-md px-2" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 300, fontSize: isIsland ? '0.875rem' : '1rem' }}>
+            Case Studies
+          </Link>
+          <Link to="/about" className="font-normal transition-[font-size] duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] hover:scale-105 hover:shadow-md hover:bg-[#f3e8ff]/60 rounded-md px-2" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 300, fontSize: isIsland ? '0.875rem' : '1rem' }}>
+            About
+          </Link>
+          <Link to="/contact" className="font-normal transition-[font-size] duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] hover:scale-105 hover:shadow-md hover:bg-[#f3e8ff]/60 rounded-md px-2" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 300, fontSize: isIsland ? '0.875rem' : '1rem' }}>
+            Contact
           </Link>
         </div>
-        {/* Center: Nav Links or Hamburger */}
-        {isMobile ? (
-          <Sheet open={open} onOpenChange={setOpen}>
-            <SheetTrigger asChild>
-              <button aria-label="Open menu" className="md:hidden block p-2" onClick={() => setOpen(true)}>
-                <Menu size={28} />
-              </button>
-            </SheetTrigger>
-            <SheetContent side="left" className="p-8">
-              <Link to="/" className="block mb-4" onClick={() => setOpen(false)}>Home</Link>
-              <Link to="/services" className="block mb-4" onClick={() => setOpen(false)}>Services</Link>
-              <Link to="/pricing" className="block mb-4" onClick={() => setOpen(false)}>Pricing</Link>
-              <Link to="/audit" className="block mb-4" onClick={() => setOpen(false)}>Audit</Link>
-              <Link to="/case-studies" className="block mb-4" onClick={() => setOpen(false)}>Case Studies</Link>
-              <Link to="/about" className="block mb-4" onClick={() => setOpen(false)}>About</Link>
-              <Link to="/contact" className="block" onClick={() => setOpen(false)}>Contact</Link>
-            </SheetContent>
-          </Sheet>
-        ) : (
-          <div className="flex-1 flex justify-center min-w-0">
-            <div className={`flex ${isIsland ? 'gap-4' : 'gap-6'} min-w-0 flex-wrap justify-center`}>
-              <Link
-                to="/"
-                className={`font-normal transition-transform duration-300 hover:scale-105 hover:shadow-md hover:bg-[#f3e8ff]/60 rounded-md px-2 ${isIsland ? 'text-sm' : 'text-base'}`}
-                style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 300 }}
-              >
-                Home
-              </Link>
-              <Link
-                to="/services"
-                className={`font-normal transition-transform duration-300 hover:scale-105 hover:shadow-md hover:bg-[#f3e8ff]/60 rounded-md px-2 ${isIsland ? 'text-sm' : 'text-base'}`}
-                style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 300 }}
-              >
-                Services
-              </Link>
-              <Link
-                to="/pricing"
-                className={`font-normal transition-transform duration-300 hover:scale-105 hover:shadow-md hover:bg-[#f3e8ff]/60 rounded-md px-2 ${isIsland ? 'text-sm' : 'text-base'}`}
-                style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 300 }}
-              >
-                Pricing
-              </Link>
-              <Link
-                to="/audit"
-                className={`font-normal transition-transform duration-300 hover:scale-105 hover:shadow-md hover:bg-[#f3e8ff]/60 rounded-md px-2 ${isIsland ? 'text-sm' : 'text-base'}`}
-                style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 300 }}
-              >
-                Audit
-              </Link>
-              <Link
-                to="/case-studies"
-                className={`font-normal transition-transform duration-300 hover:scale-105 hover:shadow-md hover:bg-[#f3e8ff]/60 rounded-md px-2 ${isIsland ? 'text-sm' : 'text-base'}`}
-                style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 300 }}
-              >
-                Case Studies
-              </Link>
-              <Link
-                to="/about"
-                className={`font-normal transition-transform duration-300 hover:scale-105 hover:shadow-md hover:bg-[#f3e8ff]/60 rounded-md px-2 ${isIsland ? 'text-sm' : 'text-base'}`}
-                style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 300 }}
-              >
-                About
-              </Link>
-              <Link
-                to="/contact"
-                className={`font-normal transition-transform duration-300 hover:scale-105 hover:shadow-md hover:bg-[#f3e8ff]/60 rounded-md px-2 ${isIsland ? 'text-sm' : 'text-base'}`}
-                style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 300 }}
-              >
-                Contact
-              </Link>
-            </div>
-          </div>
-        )}
-      </div>
+      )}
+    </div>
+
     </nav>
   );
 };
