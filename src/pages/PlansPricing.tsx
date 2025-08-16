@@ -371,15 +371,15 @@ const PlansPricing = () => {
         {/* Hero Section */}
         <section 
           ref={heroRef}
-          className="w-full flex items-center justify-center min-h-[60vh] py-12 px-4 md:px-8 mt-28 md:mt-40 overflow-hidden"
+          className="w-full flex items-center justify-center min-h-[80vh] py-12 px-4 md:px-8 mt-20 md:mt-24 overflow-hidden"
           style={{
             opacity: heroClassName.includes('animate-fade-in-up') ? 1 : 0,
             transform: heroClassName.includes('animate-fade-in-up') ? 'translateY(0)' : 'translateY(10px)',
             transition: 'opacity 0.4s ease-out, transform 0.4s ease-out'
           }}>
-          <div className="relative w-full max-w-[90rem] mx-auto rounded-[48px] md:rounded-[48px] bg-white flex flex-col items-center justify-center px-8 md:px-20 py-20 md:py-28 overflow-hidden"
+          <div className="relative w-full max-w-[100rem] mx-auto rounded-[48px] md:rounded-[48px] bg-white flex flex-col items-center justify-center px-8 md:px-20 py-20 md:py-28 overflow-hidden"
             style={{
-              minHeight: 400,
+              minHeight: 520,
               background: `
                 radial-gradient(ellipse at 10% 20%, #e0f7fa 0%, transparent 50%),
                 radial-gradient(ellipse at 90% 80%, #f3e8ff 0%, transparent 55%),

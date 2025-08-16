@@ -204,7 +204,7 @@ const CaseStudies = () => {
         >
           <div
             ref={ref}
-            className="relative w-full max-w-7xl mx-auto rounded-[48px] md:rounded-[48px] bg-white flex flex-col items-center justify-center px-6 md:px-16 py-12 md:py-20 overflow-hidden"
+            className="relative w-full max-w-[100rem] mx-auto rounded-[48px] md:rounded-[48px] bg-white flex flex-col items-center justify-center px-6 md:px-16 py-12 md:py-20 overflow-hidden"
             style={{
               minHeight: 520,
               background: `

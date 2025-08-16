@@ -101,7 +101,7 @@ const About = () => {
              transform: heroClassName.includes('animate-fade-in-up') ? 'translateY(0)' : 'translateY(10px)',
              transition: 'opacity 0.4s ease-out, transform 0.4s ease-out'
            }}>
-           <div className="relative w-full max-w-7xl mx-auto rounded-[48px] md:rounded-[48px] bg-white flex flex-col items-center justify-center px-6 md:px-16 py-12 md:py-20 overflow-hidden"
+           <div className="relative w-full max-w-[100rem] mx-auto rounded-[48px] md:rounded-[48px] bg-white flex flex-col items-center justify-center px-6 md:px-16 py-12 md:py-20 overflow-hidden"
              style={{
                minHeight: 520,
                background: `

@@ -197,21 +197,21 @@ const Audit = () => {
 
   const testimonials = [
     {
-      name: 'David Lee',
-      role: 'Marketing Manager, Global Innovations',
-      content: 'The audit provided invaluable insights. We immediately saw areas for improvement and implemented changes that boosted our online visibility significantly.',
+      name: 'Ashish',
+      role: 'HagridPet Food',
+      content: 'MediaLeveling boosted our reach, improved engagement, and helped us connect with more pet owners.',
       rating: 5
     },
     {
-      name: 'Sophia Miller',
-      role: 'E-commerce Founder, Artisan Crafts',
-      content: 'I thought my marketing was fine, but the audit revealed critical gaps. Their clear roadmap helped me fix them, and now my sales are booming!',
+      name: 'Rajesh',
+      role: 'Moriga Superfood',
+      content: 'Their creative strategy built trust, positioned us as a lifestyle brand, and supported steady sales growth.',
       rating: 5
     },
     {
-      name: 'Omar Khan',
-      role: 'CTO, FutureTech Solutions',
-      content: 'Professional, thorough, and incredibly insightful. The audit report was easy to understand and gave us a clear path forward. Highly recommend.',
+      name: 'Meenakshi',
+      role: 'Tithi Clothing',
+      content: 'MediaLeveling increased our visibility, grew our followers, and strengthened our overall brand presence.',
       rating: 5
     }
   ];
@@ -256,7 +256,7 @@ const Audit = () => {
             transition: 'opacity 0.8s ease-out, transform 0.8s ease-out'
           }}
         >
-          <div className="relative w-full max-w-[90rem] mx-auto rounded-[48px] md:rounded-[48px] bg-white flex flex-col items-center justify-center px-8 md:px-20 py-12 md:py-16 overflow-hidden"
+          <div className="relative w-full max-w-[100rem] mx-auto rounded-[48px] md:rounded-[48px] bg-white flex flex-col items-center justify-center px-8 md:px-20 py-12 md:py-16 overflow-hidden"
             style={{
               minHeight: 380,
               background: `

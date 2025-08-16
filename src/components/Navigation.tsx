@@ -48,13 +48,13 @@ const Navigation = () => {
       style={{ background: 'transparent' }}
     >
       <div
-      className={`flex items-center backdrop-blur-lg bg-white/80
+      className={`flex items-center transition-[max-width,margin,padding,gap] duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] backdrop-blur-lg bg-white/80
         ${isIsland
-          ? 'justify-center max-w-6xl mt-4 rounded-xl px-6 py-6 gap-6'
-          : 'justify-between max-w-[90rem] mt-0 rounded-2xl px-8 md:px-20 py-12 gap-8'}
+          ? 'justify-center max-w-7xl mt-4 rounded-xl px-8 py-6 gap-8 shadow-2xl'   // wider island
+          : 'justify-between max-w-[110rem] mt-0 rounded-2xl px-12 md:px-24 py-12 gap-10'}  // wider default
       `}
       style={{
-        width: isIsland ? '95%' : '100%',
+        width: isIsland ? '98%' : '100%',   // make island width more spread
         minWidth: 0,
         overflow: 'hidden',
         boxShadow: isIsland
@@ -70,8 +70,8 @@ const Navigation = () => {
           <img
             src="/logo.png"
             alt="Logo"
-            className="transition-[height] duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] w-auto"
-            style={{ height: isIsland ? '2.5rem' : '3.5rem' }}
+            className="transition-[height] duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]"
+            style={{ height: isIsland ? '2.5rem' : '3.5rem', width: 'auto' }}
           />
         </Link>
       </div>
@@ -106,7 +106,9 @@ const Navigation = () => {
         >
           <Link
             to="/"
-            className="font-normal transition-[font-size] duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] hover:scale-105 hover:shadow-md hover:bg-[#f3e8ff]/60 rounded-md px-2"
+            className={`font-normal transition-[font-size] duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] hover:scale-105 hover:shadow-md hover:bg-[#f3e8ff]/60 rounded-md px-2 ${
+              location.pathname === '/' ? 'font-medium' : ''
+            }`}
             style={{
               fontFamily: 'Montserrat, sans-serif',
               color: '#18181b',
@@ -116,10 +118,14 @@ const Navigation = () => {
           >
             Home
           </Link>
-          <Link to="/services" className="font-normal transition-[font-size] duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] hover:scale-105 hover:shadow-md hover:bg-[#f3e8ff]/60 rounded-md px-2" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 300, fontSize: isIsland ? '0.875rem' : '1rem' }}>
+          <Link to="/services" className={`font-normal transition-[font-size] duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] hover:scale-105 hover:shadow-md hover:bg-[#f3e8ff]/60 rounded-md px-2 ${
+            location.pathname === '/services' ? 'font-medium' : ''
+          }`} style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 300, fontSize: isIsland ? '0.875rem' : '1rem' }}>
             Services
           </Link>
-          <Link to="/pricing" className="font-normal transition-[font-size] duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] hover:scale-105 hover:shadow-md hover:bg-[#f3e8ff]/60 rounded-md px-2" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 300, fontSize: isIsland ? '0.875rem' : '1rem' }}>
+          <Link to="/pricing" className={`font-normal transition-[font-size] duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] hover:scale-105 hover:shadow-md hover:bg-[#f3e8ff]/60 rounded-md px-2 ${
+            location.pathname === '/pricing' ? 'font-medium' : ''
+          }`} style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 300, fontSize: isIsland ? '0.875rem' : '1rem' }}>
             Pricing
           </Link>
           <Link to="/audit" className="font-normal transition-[font-size] duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] hover:scale-105 hover:shadow-md hover:bg-[#f3e8ff]/60 rounded-md px-2" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 300, fontSize: isIsland ? '0.875rem' : '1rem' }}>

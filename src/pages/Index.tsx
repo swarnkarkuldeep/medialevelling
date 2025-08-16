@@ -111,26 +111,6 @@ const Index = () => {
     }
   ];
 
-  const testimonials = [
-    {
-      name: 'Sarah Johnson',
-      role: 'CEO, TechStart',
-      content: 'The team transformed our digital presence completely. Our website traffic increased by 300% in just 3 months.',
-      rating: 5
-    },
-    {
-      name: 'Michael Chen',
-      role: 'Founder, GrowthCo',
-      content: 'Their Meta Ads strategy helped us scale from $10k to $100k monthly revenue. Absolutely incredible results.',
-      rating: 5
-    },
-    {
-      name: 'Emily Rodriguez',
-      role: 'Marketing Director, RetailPlus',
-      content: 'Professional, creative, and results-driven. They understand our business and deliver exceptional value.',
-      rating: 5
-    }
-  ];
 
   return (
     <>
@@ -150,7 +130,7 @@ const Index = () => {
         >
           <div
             ref={ref}
-            className="relative w-full max-w-[90rem] mx-auto rounded-[48px] md:rounded-[48px] bg-white flex flex-col items-center justify-center px-6 md:px-16 py-16 md:py-24 overflow-hidden"
+            className="relative w-full max-w-[100rem] mx-auto rounded-[48px] md:rounded-[48px] bg-white flex flex-col items-center justify-center px-6 md:px-16 py-16 md:py-24 overflow-hidden"
             style={{
               minHeight: 520,
               background: `
@@ -395,7 +375,11 @@ const Index = () => {
             </div>
             
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {caseStudiesData.slice(0, 3).map((caseStudy, index) => (
+              {[
+                caseStudiesData.find(study => study.id === 'pet-nutrition'),
+                caseStudiesData.find(study => study.id === 'apparel'),
+                caseStudiesData.find(study => study.id === 'health-wellness')
+              ].map((caseStudy, index) => (
                 <div
                   key={caseStudy.id}
                   className="group"
