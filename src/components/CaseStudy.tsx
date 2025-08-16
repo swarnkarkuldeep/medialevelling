@@ -53,7 +53,7 @@ export const caseStudiesData: CaseStudyData[] = [
   {
     id: 'beauty-skincare',
     image: '/images/beauty-skincare.jpg',
-    client: 'D2C Beauty Brand',
+    client: 'BELLEZA',
     industry: 'Beauty & Skincare',
     challenge: 'Still building brand awareness, CTR at 0.58% at start, limited retargeting, basic CRM in place.',
     solution: 'Ongoing creative refreshes, enhanced CRM workflows, modest increase in retargeting spend.',
