@@ -321,10 +321,10 @@ const CaseStudies = () => {
                     <CardTitle className="text-2xl font-semibold mb-3" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
                       {study.client}
                     </CardTitle>
-                    <CardDescription className="text-[#23272f] leading-relaxed mb-4 space-y-2" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
-                      <p><span className="font-semibold">Challenge:</span> {study.challenge}</p>
-                      <p><span className="font-semibold">Solution:</span> {study.solution}</p>
-                    </CardDescription>
+                    <div className="text-[#23272f] leading-relaxed mb-4 space-y-2" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                      <div><span className="font-semibold">Challenge:</span> {study.challenge}</div>
+                      <div><span className="font-semibold">Solution:</span> {study.solution}</div>
+                    </div>
                     <div className="mt-4">
                       <h4 className="font-semibold text-lg mb-2" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>Key Results:</h4>
                       <ul className="list-disc list-inside text-[#23272f] space-y-1" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>

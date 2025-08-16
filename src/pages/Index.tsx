@@ -13,6 +13,8 @@ import {
   Target, 
   Search, 
   Video, 
+  BarChart3,
+  Layout,
   Globe, 
   Users, 
   CheckCircle, 
@@ -63,30 +65,35 @@ const Index = () => {
   const services = [
     {
       icon: Target,
+      image: '/meta.jpg',
       title: 'Meta Ads',
-      description: 'Strategic Facebook and Instagram advertising campaigns that drive conversions and brand awareness.',
-      color: 'from-purple-50 to-pink-50'
+      description: 'Strategic social media advertising on Facebook and Instagram to reach your ideal audience and drive conversions.',
+      color: 'from-blue-50 to-indigo-50'
     },
     {
       icon: Search,
+      image: '/google.jpg',
       title: 'Google Ads',
       description: 'Search and display advertising that puts your business in front of customers actively looking for your services.',
       color: 'from-blue-50 to-cyan-50'
     },
     {
-      icon: TrendingUp,
+      icon: BarChart3,
+      image: '/seo.jpg',
       title: 'SEO',
-      description: 'Search engine optimization to improve your website\'s visibility and drive organic traffic.',
-      color: 'from-green-50 to-emerald-50'
+      description: 'Improve your website\'s visibility in search results and drive organic traffic with our comprehensive SEO strategies.',
+      color: 'from-purple-50 to-blue-50'
     },
     {
       icon: Video,
+      image: '/short.png',
       title: 'Short-form Content',
       description: 'Engaging video content for TikTok, Instagram Reels, and YouTube Shorts that captivates your audience.',
       color: 'from-orange-50 to-red-50'
     },
     {
-      icon: Globe,
+      icon: Layout,
+      image: '/www.jpg',
       title: 'Website Creation',
       description: 'Professional, conversion-focused websites that represent your brand and drive business growth.',
       color: 'from-indigo-50 to-purple-50'
@@ -97,22 +104,26 @@ const Index = () => {
     {
       icon: Award,
       title: 'Proven Results',
-      description: 'Track record of delivering measurable growth and ROI for businesses across industries.'
+      description: 'Track record of delivering measurable growth and ROI for businesses across industries.',
+      image: '/pr.jpg'
     },
     {
       icon: Users,
       title: 'Expert Team',
-      description: 'Experienced professionals with deep knowledge of digital marketing trends and strategies.'
+      description: 'Experienced professionals with deep knowledge of digital marketing trends and strategies.',
+      image: '/et.jpg'
     },
     {
       icon: Clock,
       title: 'Fast Execution',
-      description: 'Quick turnaround times without compromising on quality or strategic depth.'
+      description: 'Quick turnaround times without compromising on quality or strategic depth.',
+      image: '/fe.jpg'
     },
     {
       icon: Shield,
       title: 'Transparent Process',
-      description: 'Clear communication and regular updates throughout every project phase.'
+      description: 'Clear communication and regular updates throughout every project phase.',
+      image: '/tp.jpg'
     }
   ];
 
@@ -433,8 +444,12 @@ const Index = () => {
                 >
                   <div className="text-center h-full flex flex-col justify-between">
                     <div>
-                      <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-[#18181b] flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                        <service.icon className="w-8 h-8 text-white" />
+                      <div className="w-28 h-28 mx-auto mb-6 rounded-full bg-white border-4 border-white overflow-hidden">
+                        <img 
+                          src={service.image} 
+                          alt={service.title}
+                          className="w-full h-full object-cover"
+                        />
                       </div>
                       <h3 className="text-xl font-semibold mb-4" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
                         {service.title}
@@ -468,8 +483,12 @@ const Index = () => {
                   >
                     <div className="text-center h-full flex flex-col justify-between">
                       <div>
-                        <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-[#18181b] flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                          <service.icon className="w-8 h-8 text-white" />
+                        <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-white border-4 border-white overflow-hidden">
+                          <img 
+                            src={service.image} 
+                            alt={service.title}
+                            className="w-full h-full object-cover"
+                          />
                         </div>
                         <h3 className="text-xl font-semibold mb-4" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
                           {service.title}
@@ -523,7 +542,14 @@ const Index = () => {
                 >
                   <Card className="border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden h-full flex flex-col">
                     <div className="aspect-video w-full bg-gray-100 relative overflow-hidden">
-                      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-purple-50/50" />
+                      {caseStudy.image && (
+                        <img 
+                          src={caseStudy.image} 
+                          alt={caseStudy.client}
+                          className="w-full h-full object-cover"
+                        />
+                      )}
+                      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/20 to-purple-50/20" />
                       <div className="absolute top-4 left-4">
                         <Badge variant="secondary" className="bg-white/90 text-gray-800">
                           {caseStudy.industry}
@@ -608,13 +634,23 @@ const Index = () => {
                 >
                   <div className="bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all duration-500 group-hover:scale-105 h-full flex flex-col overflow-hidden border border-gray-100">
                     {/* Image Placeholder */}
-                    <div className="h-64 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center relative overflow-hidden">
-                      <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-gray-100 opacity-60" />
-                      <div className="relative z-10 w-full h-full flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-                        <div className="w-16 h-16 rounded-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
-                          <benefit.icon className="w-8 h-8 text-gray-600" />
+                    <div className="h-64 relative overflow-hidden">
+                      {benefit.image ? (
+                        <>
+                          <img 
+                            src={benefit.image} 
+                            alt={benefit.title}
+                            className="w-full h-full group-hover:scale-105 transition-transform duration-500"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-gray-100/20" />
+                        </>
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center">
+                          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
+                            <benefit.icon className="w-8 h-8 text-gray-600" />
+                          </div>
                         </div>
-                      </div>
+                      )}
                     </div>
                     
                     {/* Content Section */}

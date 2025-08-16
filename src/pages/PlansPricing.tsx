@@ -366,7 +366,7 @@ const PlansPricing = () => {
       <main className="min-h-screen bg-white">
         <section 
           ref={heroRef}
-          className="w-full flex items-center justify-center min-h-[80vh] py-12 px-4 md:px-8 mt-20 md:mt-24 overflow-hidden"
+          className="w-full flex items-center justify-center min-h-[80vh] py-16 px-4 md:px-8 mt-24 md:mt-28 overflow-hidden"
           style={{
             opacity: heroClassName.includes('animate-fade-in-up') ? 1 : 0,
             transform: heroClassName.includes('animate-fade-in-up') ? 'translateY(0)' : 'translateY(10px)',
@@ -533,7 +533,7 @@ const PlansPricing = () => {
                       </div>
                     </div>
                   </div>
-                  <ul className="w-full flex-1 mb-8 space-y-4">
+                  <ul className="w-full flex-1 mb-6 space-y-3">
                     {plan.features.map((feature, i) => (
                       <li key={i} className={`flex items-center gap-3 text-base ${plan.name === 'Growth' ? 'text-white' : 'text-black'}`} style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 400 }}>
                         <Check size={20} className={plan.name === 'Growth' ? 'text-green-400' : 'text-green-500'} />
@@ -547,30 +547,40 @@ const PlansPricing = () => {
                       </li>
                     ))}
                   </ul>
-                  <Button
-                    className={`px-8 py-3 rounded-lg font-semibold text-base md:text-lg transition-transform duration-300 hover:scale-105 hover:shadow-lg ${plan.name === 'Growth' ? 'bg-white text-black hover:bg-gray-100' : 'bg-black text-white hover:bg-gray-800'}`}
-                    style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 400 }}
-                    onClick={() => navigate('/contact')}
-                  >
-                    Choose {plan.name}
-                  </Button>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
+        <div className="text-center mb-12 px-4">
+          <button 
+            onClick={() => navigate('/contact')}
+            className="relative overflow-hidden group bg-[#18181b] hover:bg-black text-white px-12 py-5 rounded-full text-lg font-medium transition-all duration-300 hover:shadow-xl hover:scale-105"
+            style={{ fontFamily: 'Montserrat, sans-serif', letterSpacing: '0.5px' }}
+          >
+            <span className="relative z-10 flex items-center justify-center">
+              Get Started with a Free Consultation
+              <ArrowRight className="ml-3 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+            </span>
+            <span className="absolute inset-0 bg-black opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full"></span>
+          </button>
+          <p className="mt-2 text-gray-600 text-sm" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+            No hidden fees. Cancel anytime.
+          </p>
+        </div>
+
         <section 
           ref={faqRef}
-          className="py-16 px-4 md:px-8 w-full"
+          className="pb-16 px-4 md:px-8 w-full"
           style={{
             opacity: faqClassName.includes('animate-fade-in-up') ? 1 : 0,
             transform: faqClassName.includes('animate-fade-in-up') ? 'translateY(0)' : 'translateY(10px)',
             transition: 'opacity 0.4s ease-out, transform 0.4s ease-out',
             transitionDelay: '0.2s'
           }}>
-          <div className="w-full max-w-7xl mx-auto rounded-3xl bg-white px-6 md:px-12 py-16 overflow-hidden">
-            <div className="text-center mb-12">
+          <div className="w-full max-w-7xl mx-auto rounded-3xl bg-white px-6 md:px-12 pt-6 pb-16 overflow-hidden">
+            <div className="text-center mb-8">
               <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400 }}>
                 Frequently Asked Questions
               </h2>
@@ -621,7 +631,7 @@ const PlansPricing = () => {
 
         <section 
           ref={ctaRef}
-          className="py-16 px-4 md:px-8 w-full"
+          className="pt-0 pb-16 px-4 md:px-8 w-full"
           style={{
             opacity: ctaClassName.includes('animate-fade-in-up') ? 1 : 0,
             transform: ctaClassName.includes('animate-fade-in-up') ? 'translateY(0)' : 'translateY(10px)',

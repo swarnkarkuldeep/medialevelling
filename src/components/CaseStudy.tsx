@@ -52,7 +52,7 @@ export interface CaseStudyData {
 export const caseStudiesData: CaseStudyData[] = [
   {
     id: 'beauty-skincare',
-    image: '/images/beauty-skincare.jpg',
+    image: '/belleza-cs.jpg',
     client: 'BELLEZA',
     industry: 'Beauty & Skincare',
     challenge: 'Still building brand awareness, CTR at 0.58% at start, limited retargeting, basic CRM in place.',
@@ -88,7 +88,7 @@ export const caseStudiesData: CaseStudyData[] = [
   },
   {
     id: 'home-decor',
-    image: 'kasbha-cs.jpg',
+    image: '/kasbha-cs.jpg',
     client: 'Kasbha',
     industry: 'Furniture',
     challenge: 'CPC higher than desired (₹48), Quality Score 4.5/10; ongoing ad relevance improvements.',
@@ -124,7 +124,7 @@ export const caseStudiesData: CaseStudyData[] = [
   },
   {
     id: 'pet-nutrition',
-    image: '/images/pet-nutrition.jpg',
+    image: '/hagrid-cs.jpg',
     client: 'Hagrid Pet food',
     industry: 'Pet Nutrition',
     challenge: 'New site, slow conversions at 0.9%, bounce high, content hub early in development.',
@@ -161,7 +161,7 @@ export const caseStudiesData: CaseStudyData[] = [
   },
   {
     id: 'apparel',
-    image: '/images/apparel.jpg',
+    image: '/tithi-cs.jpg',
     client: 'Tithi',
     industry: 'Apparel',
     challenge: 'Still modest organic reach, limited audience list.',
@@ -197,7 +197,7 @@ export const caseStudiesData: CaseStudyData[] = [
   },
   {
     id: 'furniture',
-    image: '/images/furniture.jpg',
+    image: '/homesty-cs.jpg',
     client: 'Homesty',
     industry: 'Home Decor',
     challenge: 'CAC stubborn, attribution now standardized.',
@@ -233,7 +233,7 @@ export const caseStudiesData: CaseStudyData[] = [
   },
   {
     id: 'health-wellness',
-    image: '/images/health-wellness.jpg',
+    image: '/rkh-cs.jpg',
     client: 'RKH Herbal',
     industry: 'Health & Wellness',
     challenge: 'Still gaining ground in competitive niche, bounce gradually declining.',
@@ -355,7 +355,7 @@ const CaseStudy = () => {
         >
           <div
             ref={ref}
-            className="relative w-full max-w-7xl mx-auto rounded-[48px] md:rounded-[48px] bg-white flex flex-col items-center justify-center px-6 md:px-16 py-12 md:py-20 overflow-hidden"
+            className="relative w-full max-w-[90rem] mx-auto rounded-[48px] md:rounded-[48px] bg-white flex flex-col items-center justify-center px-6 md:px-16 py-12 md:py-20 overflow-hidden"
             style={{
               minHeight: 520,
               background: `
