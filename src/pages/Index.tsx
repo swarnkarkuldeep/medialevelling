@@ -17,11 +17,6 @@ import {
   Users, 
   CheckCircle, 
   ArrowRight, 
-  Star,
-  BarChart3,
-  Zap,
-  Eye,
-  MessageSquare,
   Award,
   Clock,
   Shield
@@ -35,6 +30,9 @@ const Index = () => {
   const isInView = useInView(ref, { once: true, amount: 0.3 });
   const navigate = useNavigate();
   
+  // State for interactive stats
+  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
+
   useEffect(() => {
     const handleScroll = () => {
       if (!ref.current) return;
@@ -51,9 +49,16 @@ const Index = () => {
   const { ref: servicesRef, className: servicesClassName } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
   const { ref: benefitsRef, className: benefitsClassName } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
   const { ref: auditRef, className: auditClassName } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
-  const { ref: testimonialsRef, className: testimonialsClassName } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
   const { ref: caseStudiesRef, className: caseStudiesClassName } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
-  const { ref: ctaRef, className: ctaClassName } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
+  const { ref: strategiesRef, className: strategiesClassName } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
+
+  // Interactive stats data
+  const strategyStats = {
+    performance: { base: 32, hover: 47, label: 'performance' },
+    campaigns: { base: 7, hover: 12, label: 'Campaigns' },
+    clicks: { base: 14, hover: 28, label: 'Clicks' },
+    conversions: { base: 21, hover: 35, label: 'Conversions' }
+  };
 
   const services = [
     {
@@ -130,7 +135,7 @@ const Index = () => {
         >
           <div
             ref={ref}
-            className="relative w-full max-w-[100rem] mx-auto rounded-[48px] md:rounded-[48px] bg-white flex flex-col items-center justify-center px-6 md:px-16 py-16 md:py-24 overflow-hidden"
+            className="relative w-full max-w-[90rem] mx-auto rounded-[48px] md:rounded-[48px] bg-white flex flex-col items-center justify-center px-6 md:px-16 py-16 md:py-24 overflow-hidden"
             style={{
               minHeight: 520,
               background: `
@@ -228,6 +233,181 @@ const Index = () => {
           </div>
         </section>
 
+        {/* Interactive Strategies Section */}
+        <section ref={strategiesRef} className={`py-24 px-2 md:px-4 bg-white w-full ${strategiesClassName}`}>
+          <div className="max-w-[90rem] mx-auto">
+            <div className="text-center mb-20">
+              <h2 className="text-3xl md:text-5xl font-normal mb-8" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400, letterSpacing: '-0.03em' }}>
+                Solving Challenges in Creative Processes
+              </h2>
+              <p className="text-lg md:text-xl text-[#23272f] max-w-3xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                By breaking down complex problems into manageable tasks, leveraging diverse perspectives, and fostering an environment.
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-3 gap-8">
+              {/* Business Leveling Strategies Card */}
+              <div 
+                className="group cursor-pointer h-full"
+                onMouseEnter={() => setHoveredCard('business')}
+                onMouseLeave={() => setHoveredCard(null)}
+              >
+                <div className={`rounded-2xl p-6 transition-all duration-500 group-hover:scale-105 group-hover:shadow-xl h-full flex flex-col border border-gray-200/50 ${
+                  hoveredCard === 'business' 
+                    ? 'bg-gradient-to-br from-gray-50 via-gray-100 to-gray-150' 
+                    : 'bg-gradient-to-br from-gray-50 to-gray-100'
+                }`}>
+                  <div className="bg-gradient-to-br from-gray-800 via-gray-900 to-black rounded-xl p-6 mb-6 shadow-lg h-48 flex flex-col justify-between">
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-400 via-pink-400 to-purple-500 flex items-center justify-center shadow-lg">
+                          <TrendingUp className="w-5 h-5 text-white" />
+                        </div>
+                        <span className="text-white font-bold text-3xl transition-all duration-500">
+                          {hoveredCard === 'business' ? strategyStats.performance.hover : strategyStats.performance.base}%
+                        </span>
+                      </div>
+                      <div className="flex-1 ml-4">
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-white text-sm opacity-80 font-medium">performance</span>
+                        </div>
+                        <div className="w-full bg-gray-700 rounded-full h-3 shadow-inner">
+                          <div 
+                            className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 h-3 rounded-full transition-all duration-700 ease-out shadow-lg"
+                            style={{ 
+                              width: `${hoveredCard === 'business' ? strategyStats.performance.hover : strategyStats.performance.base}%` 
+                            }}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="text-white font-semibold text-lg">Business Growth</div>
+                  </div>
+                  <div className="flex-1 flex flex-col">
+                    <h3 className="text-xl font-semibold mb-3" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
+                      Business Leveling Strategies
+                    </h3>
+                    <p className="text-[#23272f] leading-relaxed flex-1" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                      Strategic planning for business growth and performance optimization through data-driven insights.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Social Media Management Card */}
+              <div 
+                className="group cursor-pointer h-full"
+                onMouseEnter={() => setHoveredCard('social')}
+                onMouseLeave={() => setHoveredCard(null)}
+              >
+                <div className={`rounded-2xl p-6 transition-all duration-500 group-hover:scale-105 group-hover:shadow-xl h-full flex flex-col border border-gray-200/50 ${
+                  hoveredCard === 'social' 
+                    ? 'bg-gradient-to-br from-gray-50 via-gray-100 to-gray-150' 
+                    : 'bg-gradient-to-br from-gray-50 to-gray-100'
+                }`}>
+                  <div className="bg-gradient-to-br from-gray-800 via-gray-900 to-black rounded-xl p-6 mb-6 shadow-lg h-48 flex flex-col justify-between">
+                    <div className="text-white font-bold text-xl mb-4">Media</div>
+                    <div className="space-y-4 flex-1 flex flex-col justify-center">
+                      <div className="flex gap-2 flex-wrap">
+                        <span className={`px-4 py-2 rounded-full text-sm border border-white/30 transition-all duration-300 font-medium ${
+                          hoveredCard === 'social' ? 'bg-gray-200 text-gray-800 shadow-lg' : 'text-white hover:bg-white/10'
+                        }`}>
+                          Research
+                        </span>
+                        <span className={`px-4 py-2 rounded-full text-sm border border-white/30 transition-all duration-300 font-medium ${
+                          hoveredCard === 'social' ? 'bg-gray-200 text-gray-800 shadow-lg' : 'text-white hover:bg-white/10'
+                        }`}>
+                          create
+                        </span>
+                        <span className={`px-4 py-2 rounded-full text-sm border border-white/30 transition-all duration-300 font-medium ${
+                          hoveredCard === 'social' ? 'bg-gray-200 text-gray-800 shadow-lg' : 'text-white hover:bg-white/10'
+                        }`}>
+                          Refine
+                        </span>
+                      </div>
+                      <div className="flex gap-2 flex-wrap">
+                        <span className={`px-4 py-2 rounded-full text-sm border border-white/30 transition-all duration-300 font-medium ${
+                          hoveredCard === 'social' ? 'bg-gray-200 text-gray-800 shadow-lg' : 'text-white hover:bg-white/10'
+                        }`}>
+                          ad campaign
+                        </span>
+                        <span className={`px-4 py-2 rounded-full text-sm border border-white/30 transition-all duration-300 font-medium ${
+                          hoveredCard === 'social' ? 'bg-gray-200 text-gray-800 shadow-lg' : 'text-white hover:bg-white/10'
+                        }`}>
+                          boost
+                        </span>
+                        <span className={`px-4 py-2 rounded-full text-sm border border-white/30 transition-all duration-300 font-medium ${
+                          hoveredCard === 'social' ? 'bg-gray-200 text-gray-800 shadow-lg' : 'text-white hover:bg-white/10'
+                        }`}>
+                          Analysis
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex-1 flex flex-col">
+                    <h3 className="text-xl font-semibold mb-3" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
+                      Social Media Management
+                    </h3>
+                    <p className="text-[#23272f] leading-relaxed flex-1" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                      Efficient management across multiple platforms: Engagement, Content, and Strategy optimization.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Pay-Per-Ad Campaigns Card */}
+              <div 
+                className="group cursor-pointer h-full"
+                onMouseEnter={() => setHoveredCard('ads')}
+                onMouseLeave={() => setHoveredCard(null)}
+              >
+                <div className={`rounded-2xl p-6 transition-all duration-500 group-hover:scale-105 group-hover:shadow-xl h-full flex flex-col border border-gray-200/50 ${
+                  hoveredCard === 'ads' 
+                    ? 'bg-gradient-to-br from-gray-50 via-gray-100 to-gray-150' 
+                    : 'bg-gradient-to-br from-gray-50 to-gray-100'
+                }`}>
+                  <div className="bg-gradient-to-br from-gray-800 via-gray-900 to-black rounded-xl p-6 mb-6 shadow-lg h-48 flex flex-col justify-between">
+                    <div className="text-white font-bold text-xl mb-4">Results</div>
+                    <div className="space-y-4 flex-1 flex flex-col justify-center">
+                      <div className="flex items-center justify-between">
+                        <span className="text-white text-sm font-medium">Campaigns</span>
+                        <span className="px-3 py-1 bg-gray-700 rounded-lg text-white text-sm font-bold transition-all duration-500 shadow-md">
+                          {hoveredCard === 'ads' ? strategyStats.campaigns.hover : strategyStats.campaigns.base}
+                        </span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-white text-sm font-medium">Clicks</span>
+                        <span className={`px-3 py-1 rounded-lg text-sm font-bold transition-all duration-500 shadow-md ${
+                          hoveredCard === 'ads' 
+                            ? 'bg-gray-300 text-gray-800' 
+                            : 'bg-gray-700 text-white'
+                        }`}>
+                          {hoveredCard === 'ads' ? strategyStats.clicks.hover : strategyStats.clicks.base}
+                        </span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-white text-sm font-medium">Conversions</span>
+                        <span className="px-3 py-1 bg-gray-700 rounded-lg text-white text-sm font-bold transition-all duration-500 shadow-md">
+                          {hoveredCard === 'ads' ? strategyStats.conversions.hover : strategyStats.conversions.base}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex-1 flex flex-col">
+                    <h3 className="text-xl font-semibold mb-3" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
+                      Pay-Per-Ad Campaigns
+                    </h3>
+                    <p className="text-[#23272f] leading-relaxed flex-1" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                      Targeted campaigns to maximize your advertising results and drive measurable ROI.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
         {/* Services Overview Section */}
         <section ref={servicesRef} className={`py-24 px-2 md:px-4 bg-white w-full ${servicesClassName}`}>
           <div className="max-w-[90rem] mx-auto">
@@ -253,8 +433,8 @@ const Index = () => {
                 >
                   <div className="text-center h-full flex flex-col justify-between">
                     <div>
-                      <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                        <service.icon className="w-8 h-8 text-gray-700" />
+                      <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-[#18181b] flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                        <service.icon className="w-8 h-8 text-white" />
                       </div>
                       <h3 className="text-xl font-semibold mb-4" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
                         {service.title}
@@ -288,8 +468,8 @@ const Index = () => {
                   >
                     <div className="text-center h-full flex flex-col justify-between">
                       <div>
-                        <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                          <service.icon className="w-8 h-8 text-gray-700" />
+                        <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-[#18181b] flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                          <service.icon className="w-8 h-8 text-white" />
                         </div>
                         <h3 className="text-xl font-semibold mb-4" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
                           {service.title}
@@ -314,54 +494,6 @@ const Index = () => {
             </div>
           </div>
         </section>
-
-        {/* Why Choose Us Section */}
-        <section ref={benefitsRef} className={`py-24 px-2 md:px-4 bg-gray-50 w-full ${benefitsClassName}`}>
-          <div className="max-w-[90rem] mx-auto">
-            <div className="text-center mb-20">
-              <h2 className="text-3xl md:text-5xl font-normal mb-8" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400, letterSpacing: '-0.03em' }}>
-                Why Choose Us
-              </h2>
-              <p className="text-lg md:text-xl text-[#23272f] max-w-3xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
-                We combine strategic thinking with creative execution to deliver results that matter for your business.
-              </p>
-            </div>
-            
-            <div className="grid md:grid-cols-2 gap-8">
-              {benefits.map((benefit, index) => (
-                <div
-                  key={benefit.title}
-                  className="group"
-                  style={{
-                    transform: isInView ? 'translateY(0)' : 'translateY(20px)',
-                    opacity: isInView ? 1 : 0,
-                    transition: `all 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${0.1 + index * 0.1}s`
-                  }}
-                >
-                  <Card className="border-0 shadow-none bg-white transition-all duration-500 group-hover:scale-[1.02] h-full">
-                    <CardContent className="p-8">
-                      <div className="flex items-start gap-6">
-                        <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-gradient-to-br from-blue-50 to-purple-50 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                          <benefit.icon className="w-7 h-7 text-gray-700" />
-                        </div>
-                        <div>
-                          <h3 className="text-xl font-semibold mb-3" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
-                            {benefit.title}
-                          </h3>
-                          <p className="text-[#23272f] leading-relaxed" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
-                            {benefit.description}
-                          </p>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        
         {/* Featured Case Studies Section */}
         <section ref={caseStudiesRef} className={`py-24 px-2 md:px-4 bg-white w-full ${caseStudiesClassName}`}>
           <div className="max-w-[90rem] mx-auto">
@@ -450,6 +582,61 @@ const Index = () => {
           </div>
         </section>
 
+
+        {/* Why Choose Us Section */}
+        <section ref={benefitsRef} className={`py-24 px-2 md:px-4 bg-white w-full ${benefitsClassName}`}>
+          <div className="max-w-[90rem] mx-auto">
+            <div className="text-center mb-20">
+              <h2 className="text-3xl md:text-5xl font-normal mb-8" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400, letterSpacing: '-0.03em' }}>
+                Why Choose Us
+              </h2>
+              <p className="text-lg md:text-xl text-[#23272f] max-w-3xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                We combine strategic thinking with creative execution to deliver results that matter for your business.
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {benefits.map((benefit, index) => (
+                <div
+                  key={benefit.title}
+                  className="group"
+                  style={{
+                    transform: isInView ? 'translateY(0)' : 'translateY(20px)',
+                    opacity: isInView ? 1 : 0,
+                    transition: `all 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${0.1 + index * 0.1}s`
+                  }}
+                >
+                  <div className="bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all duration-500 group-hover:scale-105 h-full flex flex-col overflow-hidden border border-gray-100">
+                    {/* Image Placeholder */}
+                    <div className="h-64 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center relative overflow-hidden">
+                      <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-gray-100 opacity-60" />
+                      <div className="relative z-10 w-full h-full flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+                        <div className="w-16 h-16 rounded-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
+                          <benefit.icon className="w-8 h-8 text-gray-600" />
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Content Section */}
+                    <div className="p-6 flex-1 flex flex-col">
+                      <div className="flex-1">
+                        <h3 className="text-lg font-semibold mb-3" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
+                          {benefit.title}
+                        </h3>
+                        <p className="text-sm text-[#23272f] leading-relaxed" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                          {benefit.description}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        
+        
         {/* CTA Banner Section */}
         <section ref={auditRef} className={`py-24 px-2 md:px-4 bg-white w-full ${auditClassName}`}>
           <div className="max-w-[90rem] mx-auto">

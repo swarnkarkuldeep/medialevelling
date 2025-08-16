@@ -339,22 +339,18 @@ const PlansPricing = () => {
   const location = useLocation();
   const [selectedService, setSelectedService] = useState('media-levelling-package');
   
-  // Animation refs
   const { ref: heroRef, className: heroClassName } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
   const { ref: pricingRef, className: pricingClassName } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
   const { ref: faqRef, className: faqClassName } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
   const { ref: ctaRef, className: ctaClassName } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
 
   useEffect(() => {
-    // Get the service parameter from the URL
     const params = new URLSearchParams(location.search);
     const serviceParam = params.get('service');
     
-    // If a valid service ID is provided in the URL, select it
     if (serviceParam && Object.keys(servicePlans).includes(serviceParam)) {
       setSelectedService(serviceParam);
       
-      // Scroll to the pricing section
       const pricingSection = document.getElementById('pricing-section');
       if (pricingSection) {
         pricingSection.scrollIntoView({ behavior: 'smooth' });
@@ -368,7 +364,6 @@ const PlansPricing = () => {
         <Navigation />
       </header>
       <main className="min-h-screen bg-white">
-        {/* Hero Section */}
         <section 
           ref={heroRef}
           className="w-full flex items-center justify-center min-h-[80vh] py-12 px-4 md:px-8 mt-20 md:mt-24 overflow-hidden"
@@ -377,7 +372,7 @@ const PlansPricing = () => {
             transform: heroClassName.includes('animate-fade-in-up') ? 'translateY(0)' : 'translateY(10px)',
             transition: 'opacity 0.4s ease-out, transform 0.4s ease-out'
           }}>
-          <div className="relative w-full max-w-[100rem] mx-auto rounded-[48px] md:rounded-[48px] bg-white flex flex-col items-center justify-center px-8 md:px-20 py-20 md:py-28 overflow-hidden"
+          <div className="relative w-full max-w-[90rem] mx-auto rounded-[48px] md:rounded-[48px] bg-white flex flex-col items-center justify-center px-8 md:px-20 py-20 md:py-28 overflow-hidden"
             style={{
               minHeight: 520,
               background: `
@@ -389,7 +384,6 @@ const PlansPricing = () => {
               `
             }}
           >
-            {/* Gradient overlay */}
             <div className="absolute inset-0 rounded-[48px] z-0 overflow-hidden pointer-events-none">
               <div
                 className="animate-gradient-move"
@@ -409,7 +403,6 @@ const PlansPricing = () => {
                 }}
               />
             </div>
-            {/* Centered content */}
             <div className="relative z-10 flex flex-col items-center justify-center h-full text-center w-full">
               <h1
                 className="text-4xl md:text-6xl font-extrabold mb-8 leading-tight"
@@ -458,7 +451,6 @@ const PlansPricing = () => {
           `}</style>
         </section>
         
-        {/* Service Selection & Pricing */}
         <section 
           id="pricing-section" 
           ref={pricingRef}
@@ -568,7 +560,6 @@ const PlansPricing = () => {
           </div>
         </section>
 
-        {/* FAQ Section */}
         <section 
           ref={faqRef}
           className="py-16 px-4 md:px-8 w-full"
@@ -628,7 +619,6 @@ const PlansPricing = () => {
           </div>
         </section>
 
-        {/* CTA Section */}
         <section 
           ref={ctaRef}
           className="py-16 px-4 md:px-8 w-full"

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { useInView } from 'framer-motion'; // Keep this for existing animations if needed, though useInViewAnimation might supersede some.
+import { useInView } from 'framer-motion';
 import { useInViewAnimation } from '@/hooks/use-in-view-animation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -11,10 +11,10 @@ import {
   Clock,
   Shield,
   TrendingUp,
-  Target, // For 'Our Approach'
-  Search, // For 'Our Approach'
-  Video, // For 'Our Approach'
-  Globe // For 'Our Approach'
+  Target,
+  Search,
+  Video,
+  Globe
 } from 'lucide-react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
@@ -28,10 +28,9 @@ const stats = [
   { number: 5, label: "Years Experience", suffix: "+", icon: Clock }
 ];
 
-// Counter component for animated numbers - moved outside to be reusable
 const CountUpNumber = ({ end, suffix, animate }: { end: number; suffix: string; animate: boolean }) => {
   const [count, setCount] = useState(0);
-  const ref = useRef(0); // Use ref to store the current count
+  const ref = useRef(0);
 
   useEffect(() => {
     if (!animate) return;
@@ -49,15 +48,13 @@ const CountUpNumber = ({ end, suffix, animate }: { end: number; suffix: string; 
       if (progress < 1) {
         requestAnimationFrame(animateCount);
       } else {
-        setCount(end); // Ensure it lands exactly on the end number
+        setCount(end);
       }
     };
 
     requestAnimationFrame(animateCount);
 
-    return () => {
-      // Cleanup is handled by requestAnimationFrame's natural completion
-    };
+    return () => {};
   }, [end, animate]);
 
   return <span>{count}{suffix}</span>;
@@ -66,9 +63,8 @@ const CountUpNumber = ({ end, suffix, animate }: { end: number; suffix: string; 
 const About = () => {
   const [hasAnimatedStats, setHasAnimatedStats] = useState(false);
   const statsRef = useRef<HTMLDivElement>(null);
-  const isStatsInView = useInView(statsRef, { once: true, amount: 0.5 }); // Detect when stats section is in view
+  const isStatsInView = useInView(statsRef, { once: true, amount: 0.5 });
 
-  // Animation refs
   const { ref: heroRef, className: heroClassName } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
   const { ref: headingRef, className: headingClassName } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
   const { ref: textRef, className: textClassName } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
@@ -92,7 +88,7 @@ const About = () => {
         <Navigation />
       </header>
       <main className="min-h-screen bg-white">
-                 {/* Hero Section */}
+
          <section 
            ref={heroRef}
            className={`w-full flex items-center justify-center min-h-[80vh] py-8 px-2 md:px-4 mt-24 md:mt-32 overflow-hidden ${heroClassName}`}
@@ -101,7 +97,7 @@ const About = () => {
              transform: heroClassName.includes('animate-fade-in-up') ? 'translateY(0)' : 'translateY(10px)',
              transition: 'opacity 0.4s ease-out, transform 0.4s ease-out'
            }}>
-           <div className="relative w-full max-w-[100rem] mx-auto rounded-[48px] md:rounded-[48px] bg-white flex flex-col items-center justify-center px-6 md:px-16 py-12 md:py-20 overflow-hidden"
+           <div className="relative w-full max-w-[90rem] mx-auto rounded-[48px] md:rounded-[48px] bg-white flex flex-col items-center justify-center px-6 md:px-16 py-12 md:py-20 overflow-hidden"
              style={{
                minHeight: 520,
                background: `
@@ -166,7 +162,7 @@ const About = () => {
                  >
                  At Media Levelling, we fuse creativity and data to elevate brands and drive growth.
                </p>
-               </div> {/* Close textRef div */}
+               </div>
                <div 
                  ref={buttonRef}
                  className="flex flex-col md:flex-row gap-4 justify-center"
@@ -204,7 +200,7 @@ const About = () => {
            </div>
          </section>
 
-                 {/* Stats Section */}
+         
          <section ref={statsRef} className="py-16 px-4 md:px-8 bg-white">
            <div className="max-w-6xl mx-auto">
              <div className="text-center mb-12">
@@ -218,8 +214,8 @@ const About = () => {
              <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
                {stats.map((stat, index) => (
                  <div key={index} className="text-center group">
-                   <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                     <stat.icon className="w-8 h-8 text-gray-700" />
+                   <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-[#18181b] flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                    <stat.icon className="w-8 h-8 text-white" />
                    </div>
                    <h3 className="text-3xl md:text-4xl font-semibold text-black mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>
                      <CountUpNumber end={stat.number} suffix={stat.suffix} animate={hasAnimatedStats} />
@@ -233,10 +229,10 @@ const About = () => {
            </div>
          </section>
         
-        {/* About Section - Who We Are */}
+
         <section id="about" className="py-24 px-4 md:px-8 bg-white">
           <div ref={mainAnim.ref} className={`max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 items-stretch ${mainAnim.className}`}>
-            {/* Left: Heading and mission */}
+
             <div className="flex-1 flex flex-col justify-center lg:pr-12 mb-10 lg:mb-0">
               <h2 className="text-5xl md:text-6xl font-normal mb-8 text-left animate-fade-in-up" style={{ fontFamily: 'Montserrat, sans-serif', color: 'black', lineHeight: 1.1, animationDelay: '200ms' }}>
                 Who.<br />We.<br />Are.
@@ -251,9 +247,9 @@ const About = () => {
                 Our mission: **Empowering businesses to grow, connect, and inspire** through innovative media solutions that deliver measurable impact.
               </p>
             </div>
-            {/* Right: Cards */}
+
             <div className="flex-[1.5] flex flex-col sm:flex-row gap-8 min-w-[320px] justify-center">
-              {/* Values Card with abstract SVG */}
+              
               <Card className="flex-1 max-w-md rounded-2xl flex flex-col items-center justify-center p-8 min-h-[380px] animate-fade-in-up relative overflow-hidden transition-all duration-300" style={{ 
                 animationDelay: '800ms',
                 background: `
@@ -273,14 +269,14 @@ const About = () => {
                 <div className="text-2xl font-semibold mb-2" style={{ fontFamily: 'Montserrat, sans-serif', color: 'black' }}>
                   Our Values
                 </div>
-                <div className="text-lg text-black mb-3 font-medium" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-                  Integrity, Creativity, Collaboration
+                <div className="text-lg text-black mb-3 font-medium text-center" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                  Integrity, Creativity and Collaboration
                 </div>
                 <div className="text-base text-black text-center px-4" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 400 }}>
                   We believe in honest work, bold ideas, and the power of teamwork to drive real, sustainable results for our clients.
                 </div>
               </Card>
-              {/* Vision Card with abstract SVG */}
+              
               <Card className="flex-1 max-w-md rounded-2xl flex flex-col items-center justify-center p-8 min-h-[380px] animate-fade-in-up relative overflow-hidden transition-all duration-300" style={{ 
                 animationDelay: '950ms',
                 background: `
@@ -314,7 +310,7 @@ const About = () => {
           </div>
         </section>
 
-        {/* Company Background Section */}
+
         <section ref={backgroundRef.ref} className={`py-24 px-4 md:px-8 bg-gradient-to-br from-gray-50/50 to-white ${backgroundRef.className}`}>
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-20">
@@ -344,8 +340,8 @@ const About = () => {
               <div className="relative flex justify-center items-center">
                 <div className="w-full max-w-md h-80 md:h-96 rounded-[32px] bg-gradient-to-br from-blue-50 to-purple-50 flex items-center justify-center p-8">
                   <div className="text-center">
-                    <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-white flex items-center justify-center">
-                      <TrendingUp className="w-12 h-12 text-gray-700" />
+                    <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-[#18181b] flex items-center justify-center shadow-lg">
+                    <TrendingUp className="w-12 h-12 text-white" />
                     </div>
                     <h4 className="text-2xl font-semibold mb-2" style={{ fontFamily: 'Montserrat, sans-serif', color: 'black' }}>
                       A Journey of Continuous Growth
@@ -360,7 +356,7 @@ const About = () => {
           </div>
         </section>
 
-        {/* Why Choose Us / Our Approach Section */}
+
         <section ref={approachRef.ref} className={`py-24 px-4 md:px-8 bg-white ${approachRef.className}`}>
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-20">
@@ -373,10 +369,10 @@ const About = () => {
             </div>
             
             <div className="grid md:grid-cols-3 gap-8">
-              {/* Data-Driven Strategy */}
+              
               <div className="group bg-gray-50 rounded-2xl p-8 transition-all duration-300 hover:bg-white">
-                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-50 to-purple-50 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <Search className="w-8 h-8 text-gray-700" />
+                <div className="w-16 h-16 rounded-full bg-[#18181b] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                  <Search className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-semibold mb-3" style={{ fontFamily: 'Montserrat, sans-serif', color: 'black' }}>
                   Data-Driven Strategy
@@ -386,10 +382,10 @@ const About = () => {
                 </p>
               </div>
 
-              {/* Creative Innovation */}
+              
               <div className="group bg-gray-50 rounded-2xl p-8 transition-all duration-300 hover:bg-white">
-                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-50 to-purple-50 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <Video className="w-8 h-8 text-gray-700" />
+                <div className="w-16 h-16 rounded-full bg-[#18181b] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                  <Video className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-semibold mb-3" style={{ fontFamily: 'Montserrat, sans-serif', color: 'black' }}>
                   Creative Innovation
@@ -399,10 +395,10 @@ const About = () => {
                 </p>
               </div>
 
-              {/* Client-Centric Partnership */}
+              
               <div className="group bg-gray-50 rounded-2xl p-8 transition-all duration-300 hover:bg-white">
-                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-50 to-purple-50 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <Target className="w-8 h-8 text-gray-700" />
+                <div className="w-16 h-16 rounded-full bg-[#18181b] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                  <Target className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-semibold mb-3" style={{ fontFamily: 'Montserrat, sans-serif', color: 'black' }}>
                   Client-Centric Partnership
@@ -416,7 +412,7 @@ const About = () => {
         </section>
 
 
-        {/* What Sets Us Apart Section */}
+
         <section ref={differenceRef.ref} className={`pt-12 pb-24 px-4 md:px-8 bg-white ${differenceRef.className}`}>
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-20">
@@ -429,12 +425,12 @@ const About = () => {
             </div>
             
             <div className="grid md:grid-cols-2 gap-8">
-              {/* Proven Results */}
+              
               <Card className="border-0 bg-white transition-all duration-500 hover:scale-[1.02] h-full">
                 <CardContent className="p-8">
                   <div className="flex items-start gap-6">
-                    <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-gradient-to-br from-blue-50 to-purple-50 flex items-center justify-center transition-transform duration-300">
-                      <Award className="w-8 h-8 text-gray-700" />
+                    <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-[#18181b] flex items-center justify-center transition-transform duration-300 shadow-md">
+                      <Award className="w-8 h-8 text-white" />
                     </div>
                     <div>
                       <h3 className="text-xl font-semibold mb-3" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
@@ -448,12 +444,12 @@ const About = () => {
                 </CardContent>
               </Card>
               
-              {/* Expert Team */}
+              
               <Card className="border-0 bg-white transition-all duration-500 hover:scale-[1.02] h-full">
                 <CardContent className="p-8">
                   <div className="flex items-start gap-6">
-                    <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-gradient-to-br from-blue-50 to-purple-50 flex items-center justify-center transition-transform duration-300">
-                      <Users className="w-8 h-8 text-gray-700" />
+                    <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-[#18181b] flex items-center justify-center transition-transform duration-300 shadow-md">
+                      <Users className="w-8 h-8 text-white" />
                     </div>
                     <div>
                       <h3 className="text-xl font-semibold mb-3" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
@@ -467,12 +463,12 @@ const About = () => {
                 </CardContent>
               </Card>
               
-              {/* Fast Execution */}
+              
               <Card className="border-0 bg-white transition-all duration-500 hover:scale-[1.02] h-full">
                 <CardContent className="p-8">
                   <div className="flex items-start gap-6">
-                    <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-gradient-to-br from-blue-50 to-purple-50 flex items-center justify-center transition-transform duration-300">
-                      <Clock className="w-8 h-8 text-gray-700" />
+                    <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-[#18181b] flex items-center justify-center transition-transform duration-300 shadow-md">
+                      <Clock className="w-8 h-8 text-white" />
                     </div>
                     <div>
                       <h3 className="text-xl font-semibold mb-3" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
@@ -486,12 +482,12 @@ const About = () => {
                 </CardContent>
               </Card>
               
-              {/* Transparent Process */}
+              
               <Card className="border-0 bg-white transition-all duration-500 hover:scale-[1.02] h-full">
                 <CardContent className="p-8">
                   <div className="flex items-start gap-6">
-                    <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-gradient-to-br from-blue-50 to-purple-50 flex items-center justify-center transition-transform duration-300">
-                      <Shield className="w-8 h-8 text-gray-700" />
+                    <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-[#18181b] flex items-center justify-center transition-transform duration-300 shadow-md">
+                      <Shield className="w-8 h-8 text-white" />
                     </div>
                     <div>
                       <h3 className="text-xl font-semibold mb-3" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
@@ -508,7 +504,7 @@ const About = () => {
           </div>
         </section>
 
-        {/* Combined CTA Section */}
+
         <section ref={servicesRef.ref} className={`pt-12 pb-24 px-4 md:px-8 bg-white ${servicesRef.className}`}>
           <div className="max-w-7xl mx-auto">
             <div className="relative rounded-[32px] overflow-hidden p-12 md:p-16"

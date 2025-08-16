@@ -30,7 +30,6 @@ import {
   Lightbulb, // New icon for 'Our Process'
   Handshake, // New icon for 'Our Process'
   Rocket, // New icon for 'Our Process'
-  Quote, // New icon for Testimonials
   HelpCircle // New icon for FAQ
 } from 'lucide-react';
 import Navigation from '@/components/Navigation'; // Assuming this component exists
@@ -111,23 +110,7 @@ const services = [
   }
 ];
 
-const testimonials = [
-  {
-    quote: "Media Levelling transformed our online presence. Their Meta Ads strategy brought in record conversions!",
-    author: "Sarah J.",
-    company: "E-commerce Startup"
-  },
-  {
-    quote: "The team's SEO expertise significantly boosted our organic traffic. We're seeing real, measurable growth.",
-    author: "David L.",
-    company: "Local Business Owner"
-  },
-  {
-    quote: "Our new website is stunning and incredibly effective. It perfectly captures our brand. Highly recommend!",
-    author: "Emily R.",
-    company: "Creative Agency"
-  }
-];
+
 
 const faqs = [
   {
@@ -158,9 +141,6 @@ const Services = () => {
 
   const processRef = useRef(null);
   const isInViewProcess = useInView(processRef, { once: true, amount: 0.2 });
-
-  const testimonialsRef = useRef(null);
-  const isInViewTestimonials = useInView(testimonialsRef, { once: true, amount: 0.2 });
 
   const faqRef = useRef(null);
   const isInViewFaq = useInView(faqRef, { once: true, amount: 0.2 });
@@ -234,7 +214,7 @@ const Services = () => {
           }}
         >
           <div
-            className="relative w-full max-w-[100rem] mx-auto rounded-[48px] md:rounded-[48px] bg-white flex flex-col items-center justify-center px-6 md:px-16 py-16 md:py-24 overflow-hidden"
+            className="relative w-full max-w-[90rem] mx-auto rounded-[48px] md:rounded-[48px] bg-white flex flex-col items-center justify-center px-6 md:px-16 py-16 md:py-24 overflow-hidden"
             style={{
               minHeight: 520,
               background: `

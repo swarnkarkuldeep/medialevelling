@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -33,7 +33,7 @@ import {
   Filter,
   Layers,
   Settings,
-  LightbulbOff, // Using this for a simple 'Strategy' icon placeholder
+  LightbulbOff,
   ShoppingCart,
   Cloud,
   MapPin,
@@ -62,19 +62,17 @@ const CaseStudies = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Re-using the animation hook
   const { ref: featuredRef, className: featuredClassName } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
   const { ref: categoriesRef, className: categoriesClassName } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
   const { ref: processRef, className: processClassName } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
   const { ref: resultsRef, className: resultsClassName } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
   const { ref: ctaRef, className: ctaClassName } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
 
-  // Case studies data
   const caseStudies = [
     {
       id: 'beauty-skincare',
-      image: '/images/beauty-skincare.jpg',
-      client: 'D2C Beauty Brand',
+      image: '/belleza.jpg',aspectRatio: '1/1',
+      client: 'BELLEZA',
       industry: 'Beauty & Skincare',
       challenge: 'Still building brand awareness, CTR at 0.58% at start, limited retargeting, basic CRM in place.',
       solution: 'Ongoing creative refreshes, enhanced CRM workflows, modest increase in retargeting spend.',
@@ -89,8 +87,8 @@ const CaseStudies = () => {
     },
     {
       id: 'home-decor',
-      image: '/images/home-decor.jpg',
-      client: 'Home Décor Brand',
+      image: 'kasbha.jpg',aspectRatio: '1/1',
+      client: 'Kasbha',
       industry: 'E-commerce Furniture',
       challenge: 'CPC higher than desired (₹48), Quality Score 4.5/10; ongoing ad relevance improvements.',
       solution: 'Expanded landing pages, added more negatives, improved ad text variation.',
@@ -105,8 +103,8 @@ const CaseStudies = () => {
     },
     {
       id: 'pet-nutrition',
-      image: '/images/pet-nutrition.jpg',
-      client: 'Vegan Pet Food Startup',
+      image: 'hagrid.jpg',aspectRatio: '1/1',
+      client: 'Hagrid Pet Food',
       industry: 'Pet Nutrition',
       challenge: 'New site, slow conversions at 0.9%, bounce high, content hub early in development.',
       solution: 'More SEO articles (now 8), continued CRO, further site speed improvements.',
@@ -121,8 +119,8 @@ const CaseStudies = () => {
     },
     {
       id: 'apparel',
-      image: '/images/apparel.jpg',
-      client: 'Gen-Z Fashion Label',
+      image: 'tithi.jpg',aspectRatio: '16/9',
+      client: 'Tithi',
       industry: 'Apparel',
       challenge: 'Still modest organic reach, limited audience list.',
       solution: '2x content frequency on Instagram, first collab with a micro-influencer, more remarketing.',
@@ -137,8 +135,8 @@ const CaseStudies = () => {
     },
     {
       id: 'furniture',
-      image: '/images/furniture.jpg',
-      client: 'Furniture Brand',
+      image: 'homesty.jpg',aspectRatio: '16/9',
+      client: 'Homesty',
       industry: 'E-commerce Furniture',
       challenge: 'CAC stubborn, attribution now standardized.',
       solution: 'More CRO experiments, attribution reviews each month.',
@@ -153,8 +151,8 @@ const CaseStudies = () => {
     },
     {
       id: 'health-wellness',
-      image: '/images/health-wellness.jpg',
-      client: 'Moringa Supplements Brand',
+      image: 'rkh.jpg', aspectRatio: '16/9',
+      client: 'RKH Herbal Organic',
       industry: 'Health & Wellness',
       challenge: 'Still gaining ground in competitive niche, bounce gradually declining.',
       solution: '2 more blogs (6 total), held first webinar, further on-page SEO.',
@@ -192,7 +190,7 @@ const CaseStudies = () => {
         <Navigation />
       </header>
       <main className="min-h-screen bg-white">
-        {/* Hero Section - Replicated from Index Page */}
+
         <section
           aria-label="Hero section"
           className="w-full flex items-center justify-center min-h-[80vh] py-6 px-4 md:px-8 mt-24 md:mt-32 overflow-hidden"
@@ -204,7 +202,7 @@ const CaseStudies = () => {
         >
           <div
             ref={ref}
-            className="relative w-full max-w-[100rem] mx-auto rounded-[48px] md:rounded-[48px] bg-white flex flex-col items-center justify-center px-6 md:px-16 py-12 md:py-20 overflow-hidden"
+            className="relative w-full max-w-[90rem] mx-auto rounded-[48px] md:rounded-[48px] bg-white flex flex-col items-center justify-center px-6 md:px-16 py-12 md:py-20 overflow-hidden"
             style={{
               minHeight: 520,
               background: `
@@ -290,7 +288,7 @@ const CaseStudies = () => {
           </div>
         </section>
 
-        {/* Featured Case Studies Grid */}
+
         <section ref={featuredRef} className={`pt-24 pb-16 px-4 md:px-8 bg-gradient-to-br from-white to-gray-50/50 ${featuredClassName}`}>
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-20">
@@ -354,7 +352,7 @@ const CaseStudies = () => {
           </div>
         </section>
 
-        {/* Case Study Categories/Industries
+
         <section ref={categoriesRef} className={`py-24 px-4 md:px-8 bg-white ${categoriesClassName}`}>
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-20">
@@ -377,8 +375,8 @@ const CaseStudies = () => {
                     transition: `all 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${0.1 + index * 0.08}s`
                   }}
                 >
-                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center mr-5 transition-transform duration-300 group-hover:scale-110">
-                    <category.icon className="w-6 h-6 text-gray-700" />
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-[#18181b] flex items-center justify-center mr-5 transition-transform duration-300 group-hover:scale-110 shadow-md">
+                    <category.icon className="w-6 h-6 text-white" />
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold mb-2" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
@@ -392,10 +390,8 @@ const CaseStudies = () => {
               ))}
             </div>
           </div>
-        </section>
-        */}
+                </section>
 
-        {/* Our Process/Approach */}
         <section ref={processRef} className={`pt-8 pb-24 px-4 md:px-8 bg-gradient-to-br from-gray-50/50 to-white ${processClassName}`}>
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-20">
@@ -419,8 +415,8 @@ const CaseStudies = () => {
                   }}
                 >
                   <CardContent className="p-6 text-center">
-                    <div className="w-14 h-14 mx-auto mb-5 rounded-xl bg-gradient-to-br from-blue-50 to-purple-50 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      <step.icon className="w-7 h-7 text-gray-700" />
+                    <div className="w-14 h-14 mx-auto mb-5 rounded-xl bg-[#18181b] flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-md">
+                      <step.icon className="w-7 h-7 text-white" />
                     </div>
                     <CardTitle className="text-xl font-semibold mb-3" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
                       {step.title}
@@ -435,7 +431,7 @@ const CaseStudies = () => {
           </div>
         </section>
 
-        {/* Results Showcase Section */}
+
         <section ref={resultsRef} className={`pt-12 pb-24 px-4 md:px-8 bg-white ${resultsClassName}`}>
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-20">
@@ -508,7 +504,7 @@ const CaseStudies = () => {
           </div>
         </section>
 
-        {/* Industry Impact Section */}
+
         <section className="pt-12 px-4 md:px-8 bg-gradient-to-br from-white to-gray-50/50">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
@@ -568,8 +564,8 @@ const CaseStudies = () => {
                     transition: `all 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${0.1 + index * 0.1}s`
                   }}
                 >
-                  <div className="w-14 h-14 rounded-xl bg-opacity-20 flex items-center justify-center mb-6" style={{ backgroundColor: 'rgba(99, 102, 241, 0.1)' }}>
-                    {item.icon}
+                  <div className="w-14 h-14 rounded-xl bg-[#18181b] flex items-center justify-center mb-6 shadow-md">
+                    {React.cloneElement(item.icon, { className: 'w-7 h-7 text-white' })}
                   </div>
                   <h3 className="text-xl font-semibold mb-2" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
                     {item.title}
@@ -586,7 +582,7 @@ const CaseStudies = () => {
           </div>
         </section>
 
-        {/* Client Showcase Section */}
+
         <section className="py-24 px-4 md:px-8 bg-white">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
@@ -621,7 +617,7 @@ const CaseStudies = () => {
                     alt={client.name} 
                     className="max-h-12 max-w-full object-contain"
                     onError={(e) => {
-                      // Fallback to client name if logo fails to load
+                  
                       const target = e.target as HTMLImageElement;
                       target.src = '';
                       target.outerHTML = `
@@ -649,7 +645,7 @@ const CaseStudies = () => {
           </div>
         </section>
 
-        {/* Final CTA Section - Replicated from Index Page */}
+
         <section ref={ctaRef} className={`pt-12 pb-24 px-4 md:px-8 bg-white ${ctaClassName}`}>
           <div className="max-w-7xl mx-auto">
             <div className="relative rounded-[32px] overflow-hidden">

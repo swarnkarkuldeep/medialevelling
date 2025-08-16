@@ -1,10 +1,10 @@
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog'; // Import Dialog components
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import { useInView } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import Navigation from '@/components/Navigation';
@@ -36,7 +36,6 @@ const Audit = () => {
   const formRef = useRef<HTMLFormElement>(null);
   const { toast } = useToast();
   
-  // Form submission handler for Formspree
   const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
@@ -54,14 +53,12 @@ const Audit = () => {
       });
       
       if (response.ok) {
-        // Show success toast notification
         toast({
           title: "Audit Request Submitted",
           description: "Thank you for your request. Our team will review your information and get back to you within 1-2 business days.",
           variant: "default",
         });
         
-        // Reset form
         formRef.current.reset();
       } else {
         const data = await response.json();
@@ -88,12 +85,11 @@ const Audit = () => {
   const { ref: faqRef, className: faqClassName } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
   const { ref: finalCtaRef, className: finalCtaClassName } = useInViewAnimation<HTMLDivElement>('animate-fade-in-up');
 
-  // Interactive Audit Widget States
-  const [auditScore, setAuditScore] = useState(0); // Initial score
+  const [auditScore, setAuditScore] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState({});
-  const [showQuiz, setShowQuiz] = useState(false); // Controls if quiz is visible
-  const [showResultsModal, setShowResultsModal] = useState(false); // Controls results modal visibility
+  const [showQuiz, setShowQuiz] = useState(false);
+  const [showResultsModal, setShowResultsModal] = useState(false);
 
   const auditQuestions = [
     { id: 'q1', text: 'How well do you understand your target audience?', type: 'radio', options: ['Not at all', 'Partially', 'Well', 'Very well'] },
@@ -103,7 +99,7 @@ const Audit = () => {
     { id: 'q5', text: 'How effectively are you using social media for business growth?', type: 'radio', options: ['Not at all', 'Limited', 'Moderately', 'Very effectively'] },
   ];
 
-  // Score impact for each option
+  
   const scoreImpact = {
     'Not at all': 0,
     'Partially': 5,
@@ -125,7 +121,7 @@ const Audit = () => {
     'Very effectively': 20
   };
 
-  // Calculate score based on current answers
+  
   const calculateScore = (currentAnswers) => {
     let totalScore = 0;
     auditQuestions.forEach(q => {
@@ -134,42 +130,37 @@ const Audit = () => {
         totalScore += scoreImpact[answer] || 0;
       }
     });
-    // Normalize to a 0-100 scale based on max possible score
-    const maxPossibleScore = auditQuestions.length * 20; // 5 questions * 20 points max each
+    const maxPossibleScore = auditQuestions.length * 20;
     return Math.round((totalScore / maxPossibleScore) * 100);
   };
 
-  // Handle answer selection
+  
   const handleAuditAnswer = (questionId, value) => {
     const newAnswers = { ...answers, [questionId]: value };
     setAnswers(newAnswers);
     setAuditScore(calculateScore(newAnswers));
   };
 
-  // Navigate to the next question or finish
   const nextQuestion = () => {
     if (currentQuestion < auditQuestions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
-    } else {
-      // Quiz finished
-      setShowResultsModal(true);
+          } else {
+        setShowResultsModal(true);
     }
   };
 
-  // Navigate to the previous question
   const prevQuestion = () => {
     if (currentQuestion > 0) {
       setCurrentQuestion(currentQuestion - 1);
     }
   };
 
-  // Start/Retake the audit
   const startAudit = () => {
     setAuditScore(0);
     setCurrentQuestion(0);
     setAnswers({});
     setShowQuiz(true);
-    setShowResultsModal(false); // Close modal if open
+    setShowResultsModal(false);
   };
 
   const whyGoForAuditItems = [
@@ -245,7 +236,7 @@ const Audit = () => {
         <Navigation />
       </header>
       <main className="min-h-screen bg-white">
-        {/* Heading with CTA to form & Form (above the fold) */}
+
         <section
           ref={headingRef}
           aria-label="Audit Page Hero"
@@ -256,7 +247,7 @@ const Audit = () => {
             transition: 'opacity 0.8s ease-out, transform 0.8s ease-out'
           }}
         >
-          <div className="relative w-full max-w-[100rem] mx-auto rounded-[48px] md:rounded-[48px] bg-white flex flex-col items-center justify-center px-8 md:px-20 py-12 md:py-16 overflow-hidden"
+          <div className="relative w-full max-w-[90rem] mx-auto rounded-[48px] md:rounded-[48px] bg-white flex flex-col items-center justify-center px-8 md:px-20 py-12 md:py-16 overflow-hidden"
             style={{
               minHeight: 380,
               background: `
@@ -365,8 +356,7 @@ const Audit = () => {
           </div>
         </section> */}
 
-        {/* Why Go For Audit */}
-        <section ref={whyAuditRef} className={`py-12 px-4 md:px-8 bg-white ${whyAuditClassName}`}>
+                <section ref={whyAuditRef} className={`py-12 px-4 md:px-8 bg-white ${whyAuditClassName}`}>
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-5xl font-normal mb-8" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400, letterSpacing: '-0.03em' }}>
@@ -390,8 +380,8 @@ const Audit = () => {
                 >
                   <Card className="border-0 shadow-none bg-gradient-to-br from-gray-50 to-gray-100 transition-all duration-500 group-hover:scale-[1.02] h-full">
                     <CardContent className="p-8 flex flex-col items-center text-center">
-                      <div className="w-16 h-16 mb-6 rounded-2xl bg-gradient-to-br from-blue-50 to-purple-50 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                        <item.icon className="w-8 h-8 text-gray-700" />
+                      <div className="w-16 h-16 mb-6 rounded-2xl bg-[#18181b] flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                        <item.icon className="w-8 h-8 text-white" />
                       </div>
                       <h3 className="text-xl font-semibold mb-3" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
                         {item.title}
@@ -407,7 +397,7 @@ const Audit = () => {
           </div>
         </section>
 
-        {/* Key Benefits Section */}
+
         <section ref={scoreWidgetRef} className={`py-12 px-4 md:px-8 bg-gradient-to-br from-white to-gray-50/50 ${scoreWidgetClassName}`}>
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-12">
@@ -454,8 +444,8 @@ const Audit = () => {
               ].map((benefit, index) => (
                 <Card key={index} className="border-0 shadow-sm hover:shadow-md transition-all duration-300 h-full">
                   <CardContent className="p-8">
-                    <div className="w-16 h-16 mb-6 rounded-2xl bg-gradient-to-br from-blue-50 to-purple-50 flex items-center justify-center">
-                      {benefit.icon}
+                    <div className="w-16 h-16 mb-6 rounded-2xl bg-[#18181b] flex items-center justify-center shadow-lg">
+                      {React.cloneElement(benefit.icon, { className: 'w-8 h-8 text-white' })}
                     </div>
                     <h3 className="text-xl font-semibold mb-3" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
                       {benefit.title}
@@ -481,14 +471,14 @@ const Audit = () => {
           </div>
         </section>
 
-        {/* Competitor Benchmark Section */}
+
         <section ref={competitorRef} className={`pt-0 mt-12 px-4 md:px-8 bg-white ${competitorClassName}`}>
           <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
             <div className="lg:w-1/2">
               <img
-                src="https://via.placeholder.com/600x400/f0f4f8/888888?text=Competitor+Analysis+Graphic" // Replace with a relevant image
+                src="1.jpg"
                 alt="Competitor Analysis"
-                className="rounded-3xl shadow-xl w-full h-auto transition-transform duration-500 hover:scale-[1.02]"
+                className="rounded-xl w-full h-auto transition-transform duration-500 hover:scale-[1.02]"
                 style={{
                   transform: competitorClassName.includes('animate-fade-in-up') ? 'translateY(0)' : 'translateY(20px)',
                   opacity: competitorClassName.includes('animate-fade-in-up') ? 1 : 0,
@@ -532,7 +522,7 @@ const Audit = () => {
               </div>
           </div>
         </section>
-        {/* Our Proven Path to Agency Success */}
+
         <section ref={provenPathRef} className={`pt-0 px-2 md:px-4 w-full ${provenPathClassName}`}>
           <div className="w-full max-w-[90rem] mx-auto rounded-[48px] md:rounded-[48px] bg-white px-6 md:px-16 py-16 md:py-24 overflow-hidden text-center">
             <h2 className="text-3xl md:text-5xl font-normal mb-8" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400, letterSpacing: '-0.03em' }}>
@@ -546,8 +536,8 @@ const Audit = () => {
               <div className="group" style={{ transform: provenPathClassName.includes('animate-fade-in-up') ? 'translateY(0)' : 'translateY(20px)', opacity: provenPathClassName.includes('animate-fade-in-up') ? 1 : 0, transition: `all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s` }}>
                 <Card className="border-0 shadow-none bg-white transition-all duration-500 group-hover:scale-[1.02] h-full">
                   <CardContent className="p-8 flex flex-col items-center text-center">
-                    <div className="w-16 h-16 mb-6 rounded-2xl bg-gradient-to-br from-blue-50 to-purple-50 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      <Dna className="w-8 h-8 text-gray-700" />
+                    <div className="w-16 h-16 mb-6 rounded-2xl bg-[#18181b] flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                      <Dna className="w-8 h-8 text-white" />
                     </div>
                     <h3 className="text-xl font-semibold mb-3" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
                       Discovery & Audit
@@ -562,8 +552,8 @@ const Audit = () => {
               <div className="group" style={{ transform: provenPathClassName.includes('animate-fade-in-up') ? 'translateY(0)' : 'translateY(20px)', opacity: provenPathClassName.includes('animate-fade-in-up') ? 1 : 0, transition: `all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s` }}>
                 <Card className="border-0 shadow-none bg-white transition-all duration-500 group-hover:scale-[1.02] h-full">
                   <CardContent className="p-8 flex flex-col items-center text-center">
-                    <div className="w-16 h-16 mb-6 rounded-2xl bg-gradient-to-br from-green-50 to-emerald-50 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      <Lightbulb className="w-8 h-8 text-gray-700" />
+                    <div className="w-16 h-16 mb-6 rounded-2xl bg-[#18181b] flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                      <Lightbulb className="w-8 h-8 text-white" />
                     </div>
                     <h3 className="text-xl font-semibold mb-3" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
                       Strategy & Planning
@@ -578,8 +568,8 @@ const Audit = () => {
               <div className="group" style={{ transform: provenPathClassName.includes('animate-fade-in-up') ? 'translateY(0)' : 'translateY(20px)', opacity: provenPathClassName.includes('animate-fade-in-up') ? 1 : 0, transition: `all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s` }}>
                 <Card className="border-0 shadow-none bg-white transition-all duration-500 group-hover:scale-[1.02] h-full">
                   <CardContent className="p-8 flex flex-col items-center text-center">
-                    <div className="w-16 h-16 mb-6 rounded-2xl bg-gradient-to-br from-orange-50 to-red-50 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      <Rocket className="w-8 h-8 text-gray-700" />
+                    <div className="w-16 h-16 mb-6 rounded-2xl bg-[#18181b] flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                      <Rocket className="w-8 h-8 text-white" />
                     </div>
                     <h3 className="text-xl font-semibold mb-3" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
                       Execution & Optimization
@@ -593,7 +583,7 @@ const Audit = () => {
             </div>
           </div>
         </section>
-        {/* Our Methodology */}
+
         <section ref={methodologyRef} className="pt-0 px-2 md:px-4 w-full -mt-12">
           <div className="w-full max-w-[90rem] mx-auto rounded-t-none md:rounded-t-none rounded-[48px] md:rounded-[48px] bg-white px-6 md:px-16 pt-0 pb-6 md:pb-8 overflow-hidden flex flex-col lg:flex-row items-center gap-4">
             <div className="lg:w-1/2 text-center lg:text-left">
@@ -637,7 +627,7 @@ const Audit = () => {
             </div>
             <div className="lg:w-1/2">
               <img
-                src="/4.jpg" // Replace with a relevant infographic
+                src="/4.jpg"
                 alt="Our Methodology"
                 className="rounded-xl w-full h-auto transition-transform duration-500 hover:scale-[1.02]"
                 style={{
@@ -650,7 +640,7 @@ const Audit = () => {
           </div>
         </section>
 
-        {/* We Get Results Fast */}
+
         <section ref={resultsFastRef} className={`pt-0 px-2 md:px-4 w-full ${resultsFastClassName}`}>
           <div className="w-full max-w-[90rem] mx-auto rounded-[48px] md:rounded-[48px] bg-white px-6 md:px-16 py-16 md:py-24 overflow-hidden text-center">
             <h2 className="text-3xl md:text-5xl font-normal mb-8" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400, letterSpacing: '-0.03em' }}>
@@ -671,8 +661,8 @@ const Audit = () => {
               >
                 <Card className="border-0 shadow-lg p-8 rounded-3xl h-full bg-white transition-all duration-500 group-hover:scale-[1.02]">
                   <CardHeader className="p-0 mb-6">
-                    <div className="w-16 h-16 mb-4 rounded-2xl bg-gradient-to-br from-purple-50 to-pink-50 flex items-center justify-center">
-                      <Clock className="w-8 h-8 text-gray-700" />
+                    <div className="w-16 h-16 mb-4 rounded-2xl bg-[#18181b] flex items-center justify-center shadow-lg">
+                      <Clock className="w-8 h-8 text-white" />
                     </div>
                     <CardTitle className="text-2xl font-bold" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
                       Rapid Implementation
@@ -701,8 +691,8 @@ const Audit = () => {
               >
                 <Card className="border-0 shadow-lg p-8 rounded-3xl h-full bg-white transition-all duration-500 group-hover:scale-[1.02]">
                   <CardHeader className="p-0 mb-6">
-                    <div className="w-16 h-16 mb-4 rounded-2xl bg-gradient-to-br from-indigo-50 to-cyan-50 flex items-center justify-center">
-                      <TrendingUp className="w-8 h-8 text-gray-700" />
+                    <div className="w-16 h-16 mb-4 rounded-2xl bg-[#18181b] flex items-center justify-center shadow-lg">
+                      <TrendingUp className="w-8 h-8 text-white" />
                     </div>
                     <CardTitle className="text-2xl font-bold" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
                       Measurable ROI
@@ -724,7 +714,7 @@ const Audit = () => {
           </div>
         </section>
 
-        {/* Testimonials / Clients */}
+
         <section ref={testimonialsRef} className={`pt-0 px-2 md:px-4 w-full ${testimonialsClassName}`}>
           <div className="w-full max-w-[90rem] mx-auto rounded-[48px] md:rounded-[48px] bg-white px-6 md:px-16 py-12 md:py-16 overflow-hidden">
             <div className="text-center mb-12">
@@ -751,8 +741,8 @@ const Audit = () => {
                     <CardContent className="p-8">
                       <div className="flex flex-col items-center text-center gap-6">
                         <div className="flex-shrink-0">
-                          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-50 to-purple-50 flex items-center justify-center">
-                            <Users className="w-8 h-8 text-gray-700" />
+                          <div className="w-16 h-16 rounded-full bg-[#18181b] flex items-center justify-center shadow-lg">
+                            <Users className="w-8 h-8 text-white" />
                           </div>
                         </div>
                         <div className="flex-1">
@@ -782,7 +772,7 @@ const Audit = () => {
           </div>
         </section>
 
-        {/* FAQ */}
+
         <section ref={faqRef} className={`pt-0 px-2 md:px-4 w-full ${faqClassName}`}>
           <div className="w-full max-w-[90rem] mx-auto rounded-[48px] md:rounded-[48px] bg-white px-6 md:px-16 py-12 md:py-16 overflow-hidden">
             <div className="text-center mb-12">
@@ -807,7 +797,9 @@ const Audit = () => {
                 >
                   <CardHeader className="p-0 mb-4">
                     <CardTitle className="text-xl font-semibold flex items-center text-[#18181b]" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-                      <HelpCircle className="w-6 h-6 text-gray-700 mr-3 flex-shrink-0" /> {item.question}
+                      <div className="w-10 h-10 rounded-xl bg-[#18181b] flex items-center justify-center shadow-md mr-3 flex-shrink-0">
+                        <HelpCircle className="w-5 h-5 text-white" />
+                      </div> {item.question}
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="p-0">
@@ -821,7 +813,7 @@ const Audit = () => {
           </div>
         </section>
 
-        {/* Final CTA (Repeating) */}
+
         <section ref={finalCtaRef} className={`pt-0 pb-16 px-2 md:px-4 w-full ${finalCtaClassName}`}>
           <div className="w-full max-w-[90rem] mx-auto">
             <div className="relative rounded-[32px] overflow-hidden">
@@ -847,7 +839,7 @@ const Audit = () => {
                   <Button
                     size="lg"
                     className="bg-[#18181b] hover:bg-[#23272f] text-white px-10 py-4 rounded-xl font-semibold text-lg transform transition-all duration-300 hover:scale-105"
-                    onClick={() => formRef.current?.scrollIntoView({ behavior: 'smooth' })} // Scrolls back up to the form
+                    onClick={() => formRef.current?.scrollIntoView({ behavior: 'smooth' })}
                     style={{ fontFamily: 'Montserrat, sans-serif' }}
                   >
                     Get Your Free Audit Now <ArrowRight className="ml-2 h-5 w-5" />
