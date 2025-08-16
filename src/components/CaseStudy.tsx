@@ -88,9 +88,9 @@ export const caseStudiesData: CaseStudyData[] = [
   },
   {
     id: 'home-decor',
-    image: '/images/case-study-decor.jpg',
-    client: 'Home Décor Brand',
-    industry: 'E-commerce Furniture',
+    image: 'kasbha-cs.jpg',
+    client: 'Kasbha',
+    industry: 'Furniture',
     challenge: 'CPC higher than desired (₹48), Quality Score 4.5/10; ongoing ad relevance improvements.',
     solution: 'Expanded landing pages, added more negatives, improved ad text variation.',
     results: [
@@ -125,7 +125,7 @@ export const caseStudiesData: CaseStudyData[] = [
   {
     id: 'pet-nutrition',
     image: '/images/pet-nutrition.jpg',
-    client: 'Vegan Pet Food Startup',
+    client: 'Hagrid Pet food',
     industry: 'Pet Nutrition',
     challenge: 'New site, slow conversions at 0.9%, bounce high, content hub early in development.',
     solution: 'More SEO articles (now 8), continued CRO, further site speed improvements.',
@@ -162,7 +162,7 @@ export const caseStudiesData: CaseStudyData[] = [
   {
     id: 'apparel',
     image: '/images/apparel.jpg',
-    client: 'Gen-Z Fashion Label',
+    client: 'Tithi',
     industry: 'Apparel',
     challenge: 'Still modest organic reach, limited audience list.',
     solution: '2x content frequency on Instagram, first collab with a micro-influencer, more remarketing.',
@@ -198,8 +198,8 @@ export const caseStudiesData: CaseStudyData[] = [
   {
     id: 'furniture',
     image: '/images/furniture.jpg',
-    client: 'Furniture Brand',
-    industry: 'E-commerce Furniture',
+    client: 'Homesty',
+    industry: 'Home Decor',
     challenge: 'CAC stubborn, attribution now standardized.',
     solution: 'More CRO experiments, attribution reviews each month.',
     results: [
@@ -234,7 +234,7 @@ export const caseStudiesData: CaseStudyData[] = [
   {
     id: 'health-wellness',
     image: '/images/health-wellness.jpg',
-    client: 'Moringa Supplements Brand',
+    client: 'RKH Herbal',
     industry: 'Health & Wellness',
     challenge: 'Still gaining ground in competitive niche, bounce gradually declining.',
     solution: '2 more blogs (6 total), held first webinar, further on-page SEO.',

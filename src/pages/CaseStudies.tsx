@@ -70,26 +70,10 @@ const CaseStudies = () => {
 
   const caseStudies = [
     {
-      id: 'beauty-skincare',
-      image: '/belleza.jpg',aspectRatio: '1/1',
-      client: 'BELLEZA',
-      industry: 'Beauty & Skincare',
-      challenge: 'Still building brand awareness, CTR at 0.58% at start, limited retargeting, basic CRM in place.',
-      solution: 'Ongoing creative refreshes, enhanced CRM workflows, modest increase in retargeting spend.',
-      results: [
-        'ROAS +38% (1.12× → 1.55×)',
-        'CPA -24% (₹410 → ₹312)',
-        'CTR +49% (0.58% → 0.86%)',
-        '25% of purchases from retargeting',
-        'Revenue: ₹5.3L → ₹8.1L/month'
-      ],
-      link: '/case-studies/beauty-skincare',
-    },
-    {
       id: 'home-decor',
       image: 'kasbha.jpg',aspectRatio: '1/1',
       client: 'Kasbha',
-      industry: 'E-commerce Furniture',
+      industry: 'Furniture',
       challenge: 'CPC higher than desired (₹48), Quality Score 4.5/10; ongoing ad relevance improvements.',
       solution: 'Expanded landing pages, added more negatives, improved ad text variation.',
       results: [
@@ -100,7 +84,7 @@ const CaseStudies = () => {
         'Monthly Leads: 125 → 202'
       ],
       link: '/case-studies/home-decor',
-    },
+    },    
     {
       id: 'pet-nutrition',
       image: 'hagrid.jpg',aspectRatio: '1/1',
@@ -137,7 +121,7 @@ const CaseStudies = () => {
       id: 'furniture',
       image: 'homesty.jpg',aspectRatio: '16/9',
       client: 'Homesty',
-      industry: 'E-commerce Furniture',
+      industry: 'Home Decor',
       challenge: 'CAC stubborn, attribution now standardized.',
       solution: 'More CRO experiments, attribution reviews each month.',
       results: [
@@ -165,6 +149,22 @@ const CaseStudies = () => {
       ],
       link: '/case-studies/health-wellness',
     },
+    {
+      id: 'beauty-skincare',
+      image: '/belleza.jpg',aspectRatio: '1/1',
+      client: 'BELLEZA',
+      industry: 'Beauty & Skincare',
+      challenge: 'Still building brand awareness, CTR at 0.58% at start, limited retargeting, basic CRM in place.',
+      solution: 'Ongoing creative refreshes, enhanced CRM workflows, modest increase in retargeting spend.',
+      results: [
+        'ROAS +38% (1.12× → 1.55×)',
+        'CPA -24% (₹410 → ₹312)',
+        'CTR +49% (0.58% → 0.86%)',
+        '25% of purchases from retargeting',
+        'Revenue: ₹5.3L → ₹8.1L/month'
+      ],
+      link: '/case-studies/beauty-skincare',
+    }
   ];
 
   const categories = [
@@ -353,7 +353,7 @@ const CaseStudies = () => {
         </section>
 
 
-        <section ref={categoriesRef} className={`py-24 px-4 md:px-8 bg-white ${categoriesClassName}`}>
+        {/* <section ref={categoriesRef} className={`py-24 px-4 md:px-8 bg-white ${categoriesClassName}`}>
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-20">
               <h2 className="text-3xl md:text-5xl font-normal mb-8" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400, letterSpacing: '-0.03em' }}>
@@ -390,7 +390,7 @@ const CaseStudies = () => {
               ))}
             </div>
           </div>
-                </section>
+        </section> */}
 
         <section ref={processRef} className={`pt-8 pb-24 px-4 md:px-8 bg-gradient-to-br from-gray-50/50 to-white ${processClassName}`}>
           <div className="max-w-7xl mx-auto">
@@ -582,15 +582,15 @@ const CaseStudies = () => {
           </div>
         </section>
 
-
+{/* }
         <section className="py-24 px-4 md:px-8 bg-white">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-5xl font-normal mb-6" style={{ fontFamily: 'Montserrat, sans-serif', color: 'black', fontWeight: 400, letterSpacing: '-0.03em' }}>
-                Trusted by Industry Leaders
+                Trusted by New Startups
               </h2>
               <p className="text-lg md:text-xl text-black max-w-3xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
-                We've partnered with innovative companies to drive their digital transformation.
+                We've partnered with innovative startups to drive their digital transformation.
               </p>
             </div>
             
@@ -643,7 +643,7 @@ const CaseStudies = () => {
               </Button>
             </div>
           </div>
-        </section>
+        </section> */}
 
 
         <section ref={ctaRef} className={`pt-12 pb-24 px-4 md:px-8 bg-white ${ctaClassName}`}>

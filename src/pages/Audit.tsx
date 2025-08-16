@@ -189,19 +189,19 @@ const Audit = () => {
   const testimonials = [
     {
       name: 'Ashish',
-      role: 'HagridPet Food',
+      role: 'Hagrid PetFood',
       content: 'MediaLeveling boosted our reach, improved engagement, and helped us connect with more pet owners.',
       rating: 5
     },
     {
-      name: 'Rajesh',
-      role: 'Moriga Superfood',
+      name: 'Ravi',
+      role: 'RKH Herbal',
       content: 'Their creative strategy built trust, positioned us as a lifestyle brand, and supported steady sales growth.',
       rating: 5
     },
     {
       name: 'Meenakshi',
-      role: 'Tithi Clothing',
+      role: 'Tithi',
       content: 'MediaLeveling increased our visibility, grew our followers, and strengthened our overall brand presence.',
       rating: 5
     }

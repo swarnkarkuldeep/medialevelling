@@ -105,17 +105,17 @@ const Contact = () => {
               }}
             >
               <div>
-                <h2 className="text-4xl md:text-5xl font-bold mb-8 text-black" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 400}}>
+                <h2 className="text-2xl md:text-4xl font-bold mb-8 text-black" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 400}}>
                   Have a digital marketing project?<br />We would love to help your business grow.
                 </h2>
               </div>
               <div className="mt-auto text-base md:text-lg text-black opacity-80" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 400 }}>
                 <a
-                  href="mailto:business@medialevelling.com"
+                  href="mailto:info@medialevelling.com"
                   className="flex items-center gap-2 mt-0 text-[#000] hover:text-[#6366f1] transition-colors group bg-transparent border-none p-0 shadow-none hover:bg-transparent hover:shadow-none hover:border-none"
                   style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 400 }}
                 >
-                  <span className="not-italic">business@medialevelling.com</span>
+                  <span className="not-italic">info@medialevelling.com</span>
                 </a>
                 <a
                   href="https://instagram.com/medialevelling"

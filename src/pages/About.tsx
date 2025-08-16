@@ -24,8 +24,8 @@ import { useNavigate } from 'react-router-dom';
 const stats = [
   { number: 25, label: "Projects Completed", suffix: "+", icon: Award },
   { number: 98, label: "Client Satisfaction", suffix: "%", icon: Users },
-  { number: 50, label: "Team Members", suffix: "+", icon: Users },
-  { number: 5, label: "Years Experience", suffix: "+", icon: Clock }
+  { number: 20, label: "Team Members", suffix: "+", icon: Users },
+  { number: 45, label: " Engagement Growth in 3 months", suffix: "%", icon: Clock }
 ];
 
 const CountUpNumber = ({ end, suffix, animate }: { end: number; suffix: string; animate: boolean }) => {

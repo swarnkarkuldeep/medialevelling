@@ -111,7 +111,7 @@ const Navigation = () => {
             }`}
             style={{
               fontFamily: 'Montserrat, sans-serif',
-              color: '#18181b',
+              color: '#000000',
               fontWeight: 300,
               fontSize: isIsland ? '0.875rem' : '1rem',
             }}
@@ -120,12 +120,12 @@ const Navigation = () => {
           </Link>
           <Link to="/services" className={`font-normal transition-[font-size] duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] hover:scale-105 hover:shadow-md hover:bg-[#f3e8ff]/60 rounded-md px-2 ${
             location.pathname === '/services' ? 'font-medium' : ''
-          }`} style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 300, fontSize: isIsland ? '0.875rem' : '1rem' }}>
+          }`} style={{ fontFamily: 'Montserrat, sans-serif', color: '#000000', fontWeight: 300, fontSize: isIsland ? '0.875rem' : '1rem' }}>
             Services
           </Link>
           <Link to="/pricing" className={`font-normal transition-[font-size] duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] hover:scale-105 hover:shadow-md hover:bg-[#f3e8ff]/60 rounded-md px-2 ${
             location.pathname === '/pricing' ? 'font-medium' : ''
-          }`} style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 300, fontSize: isIsland ? '0.875rem' : '1rem' }}>
+          }`} style={{ fontFamily: 'Montserrat, sans-serif', color: '#000000', fontWeight: 300, fontSize: isIsland ? '0.875rem' : '1rem' }}>
             Pricing
           </Link>
           <Link to="/audit" className="font-normal transition-[font-size] duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] hover:scale-105 hover:shadow-md hover:bg-[#f3e8ff]/60 rounded-md px-2" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 300, fontSize: isIsland ? '0.875rem' : '1rem' }}>
