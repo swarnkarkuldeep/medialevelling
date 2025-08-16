@@ -264,7 +264,7 @@ const CaseStudies = () => {
                   transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s'
                 }}
               >
-                Explore how our tailored digital marketing strategies have empowered businesses like yours to achieve exceptional growth and dominate their markets.
+                Empowering businesses with tailored strategies for exceptional growth.
               </p>
               <div
                 className="flex flex-col md:flex-row gap-4 justify-center"
@@ -291,13 +291,13 @@ const CaseStudies = () => {
         </section>
 
         {/* Featured Case Studies Grid */}
-        <section ref={featuredRef} className={`pb-16 px-4 md:px-8 bg-gradient-to-br from-white to-gray-50/50 ${featuredClassName}`}>
+        <section ref={featuredRef} className={`pt-24 pb-16 px-4 md:px-8 bg-gradient-to-br from-white to-gray-50/50 ${featuredClassName}`}>
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-20">
               <h2 className="text-3xl md:text-5xl font-normal mb-8" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400, letterSpacing: '-0.03em' }}>
                 Our Success Stories
               </h2>
-              <p className="text-lg md:text-xl text-[#23272f] max-w-3xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+              <p className="text-lg md:text-xl text-black max-w-3xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
                 Dive into detailed examples of how we've helped our clients overcome challenges and achieve significant results.
               </p>
             </div>
@@ -361,7 +361,7 @@ const CaseStudies = () => {
               <h2 className="text-3xl md:text-5xl font-normal mb-8" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400, letterSpacing: '-0.03em' }}>
                 Case Studies by Industry
               </h2>
-              <p className="text-lg md:text-xl text-[#23272f] max-w-3xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+              <p className="text-lg md:text-xl text-black max-w-3xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
                 Find case studies relevant to your sector and discover how our strategies apply to diverse business needs.
               </p>
             </div>
@@ -384,7 +384,7 @@ const CaseStudies = () => {
                     <h3 className="text-xl font-semibold mb-2" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
                       {category.name}
                     </h3>
-                    <p className="text-[#23272f] leading-relaxed" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                    <p className="text-black leading-relaxed" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
                       {category.description}
                     </p>
                   </div>
@@ -402,7 +402,7 @@ const CaseStudies = () => {
               <h2 className="text-3xl md:text-5xl font-normal mb-8" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400, letterSpacing: '-0.03em' }}>
                 Our Strategic Approach
               </h2>
-              <p className="text-lg md:text-xl text-[#23272f] max-w-3xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+              <p className="text-lg md:text-xl text-black max-w-3xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
                 We follow a proven methodology to ensure every client's success, from initial strategy to continuous optimization.
               </p>
             </div>
@@ -442,7 +442,7 @@ const CaseStudies = () => {
               <h2 className="text-3xl md:text-5xl font-normal mb-8" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400, letterSpacing: '-0.03em' }}>
                 Impactful Metrics, Tangible Growth
               </h2>
-              <p className="text-lg md:text-xl text-[#23272f] max-w-3xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+              <p className="text-lg md:text-xl text-black max-w-3xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
                 A snapshot of the impressive results we've achieved across various campaigns and industries.
               </p>
             </div>
@@ -460,9 +460,9 @@ const CaseStudies = () => {
                   <LineChart className="w-8 h-8 text-blue-700" />
                 </div>
                 <h3 className="text-4xl md:text-5xl font-extrabold text-center mb-4 text-[#18181b]" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-                  +150%
+                  +40%
                 </h3>
-                <p className="text-xl text-[#23272f] text-center" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                <p className="text-xl text-black text-center" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
                   Average Revenue Growth for E-commerce Clients
                 </p>
               </div>
@@ -479,9 +479,9 @@ const CaseStudies = () => {
                   <Users className="w-8 h-8 text-green-700" />
                 </div>
                 <h3 className="text-4xl md:text-5xl font-extrabold text-center mb-4 text-[#18181b]" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-                  +300%
+                  +65%
                 </h3>
-                <p className="text-xl text-[#23272f] text-center" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                <p className="text-xl text-black text-center" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
                   Increase in Qualified Leads for SaaS Businesses
                 </p>
               </div>
@@ -498,9 +498,9 @@ const CaseStudies = () => {
                   <Eye className="w-8 h-8 text-orange-700" />
                 </div>
                 <h3 className="text-4xl md:text-5xl font-extrabold text-center mb-4 text-[#18181b]" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-                  <span className="text-5xl md:text-6xl">2.5M+</span>
+                  <span className="text-5xl md:text-6xl">250,000+</span>
                 </h3>
-                <p className="text-xl text-[#23272f] text-center" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                <p className="text-xl text-black text-center" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
                   Total Impressions Generated Across All Campaigns
                 </p>
               </div>
@@ -515,7 +515,7 @@ const CaseStudies = () => {
               <h2 className="text-3xl md:text-5xl font-normal mb-6" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400, letterSpacing: '-0.03em' }}>
                 Industry Impact
               </h2>
-              <p className="text-lg md:text-xl text-[#23272f] max-w-3xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+              <p className="text-lg md:text-xl text-black max-w-3xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
                 Discover how we've transformed businesses across various sectors with our data-driven strategies.
               </p>
             </div>
@@ -525,38 +525,38 @@ const CaseStudies = () => {
                 {
                   icon: <ShoppingCart className="w-8 h-8 text-blue-600" />,
                   title: 'E-commerce Growth',
-                  stats: '150% avg. revenue increase',
+                  stats: '40% avg. revenue increase',
                   description: 'Scaled online stores with targeted campaigns and conversion optimization.'
                 },
                 {
                   icon: <Cloud className="w-8 h-8 text-purple-600" />,
                   title: 'SaaS Expansion',
-                  stats: '300% lead generation boost',
+                  stats: '65% lead generation boost',
                   description: 'Accelerated user acquisition and reduced customer acquisition costs.'
                 },
                 {
                   icon: <MapPin className="w-8 h-8 text-green-600" />,
                   title: 'Local Business',
-                  stats: '40% more foot traffic',
+                  stats: '18% more foot traffic',
                   description: 'Enhanced local visibility and customer engagement.'
                 },
                 {
                   icon: <HeartPulse className="w-8 h-8 text-red-600" />,
                   title: 'Healthcare',
-                  stats: '60% more appointments',
+                  stats: '20% more appointments',
                   description: 'Connected providers with patients through digital channels.'
-                },
-                {
-                  icon: <Home className="w-8 h-8 text-amber-600" />,
-                  title: 'Real Estate',
-                  stats: '3x more property views',
-                  description: 'Showcased properties with immersive digital experiences.'
                 },
                 {
                   icon: <BookOpen className="w-8 h-8 text-indigo-600" />,
                   title: 'Education',
-                  stats: '2.5x enrollment growth',
+                  stats: '1.3x enrollment growth',
                   description: 'Reached and engaged prospective students effectively.'
+                },
+                {
+                  icon: <Briefcase className="w-8 h-8 text-amber-600" />,
+                  title: 'Professional Services',
+                  stats: '35% more qualified leads',
+                  description: 'Established thought leadership and attracted high-value clients through targeted content.'
                 }
               ].map((item, index) => (
                 <div 
@@ -574,10 +574,10 @@ const CaseStudies = () => {
                   <h3 className="text-xl font-semibold mb-2" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
                     {item.title}
                   </h3>
-                  <p className="text-2xl font-bold mb-3" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
+                  <p className="text-2xl font-bold mb-3" style={{ fontFamily: 'Montserrat, sans-serif', color: 'black' }}>
                     {item.stats}
                   </p>
-                  <p className="text-[#23272f]" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                  <p className="text-black" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
                     {item.description}
                   </p>
                 </div>
@@ -590,10 +590,10 @@ const CaseStudies = () => {
         <section className="py-24 px-4 md:px-8 bg-white">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-5xl font-normal mb-6" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400, letterSpacing: '-0.03em' }}>
+              <h2 className="text-3xl md:text-5xl font-normal mb-6" style={{ fontFamily: 'Montserrat, sans-serif', color: 'black', fontWeight: 400, letterSpacing: '-0.03em' }}>
                 Trusted by Industry Leaders
               </h2>
-              <p className="text-lg md:text-xl text-[#23272f] max-w-3xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+              <p className="text-lg md:text-xl text-black max-w-3xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
                 We've partnered with innovative companies to drive their digital transformation.
               </p>
             </div>
@@ -626,7 +626,7 @@ const CaseStudies = () => {
                       target.src = '';
                       target.outerHTML = `
                         <div class="w-full h-full flex items-center justify-center">
-                          <span class="text-lg font-medium text-gray-600">${client.name}</span>
+                          <span class="text-lg font-medium text-black">${client.name}</span>
                         </div>
                       `;
                     }}
@@ -638,7 +638,7 @@ const CaseStudies = () => {
             <div className="mt-16 text-center">
               <Button
                 variant="outline"
-                className="border-[#18181b] text-[#18181b] hover:bg-[#f3f4f6] px-8 py-3 rounded-xl font-medium text-base transform transition-all duration-300 hover:scale-105"
+                className="border-black text-black hover:bg-[#f3f4f6] px-8 py-3 rounded-xl font-medium text-base transform transition-all duration-300 hover:scale-105"
                 onClick={() => navigate('/contact')}
                 style={{ fontFamily: 'Montserrat, sans-serif' }}
               >
@@ -666,16 +666,16 @@ const CaseStudies = () => {
               />
               <div className="relative z-10 p-12 md:p-16">
                 <div className="max-w-4xl mx-auto text-center">
-                  <h2 className="text-3xl md:text-5xl font-normal mb-8" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400, letterSpacing: '-0.03em' }}>
+                  <h2 className="text-3xl md:text-5xl font-normal mb-8" style={{ fontFamily: 'Montserrat, sans-serif', color: 'black', fontWeight: 400, letterSpacing: '-0.03em' }}>
                     Ready to See Similar Results<br />for Your Business?
                   </h2>
-                  <p className="text-lg md:text-xl text-[#23272f] mb-12 max-w-2xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                  <p className="text-lg md:text-xl text-black max-w-3xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
                     Let's discuss how we can help you achieve your digital marketing goals and drive sustainable business growth.
                   </p>
                   <div className="flex flex-col md:flex-row gap-4 justify-center">
                     <Button
                       size="lg"
-                      className="bg-[#18181b] hover:bg-[#23272f] text-white px-10 py-4 rounded-xl font-semibold text-lg transform transition-all duration-300 hover:scale-105"
+                      className="bg-black hover:bg-[#23272f] text-white px-10 py-4 rounded-xl font-semibold text-lg transform transition-all duration-300 hover:scale-105"
                       onClick={() => navigate('/audit')}
                       style={{
                         fontFamily: 'Montserrat, sans-serif'

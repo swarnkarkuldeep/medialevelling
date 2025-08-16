@@ -187,10 +187,10 @@ const Index = () => {
             </div>
             <div className="relative z-10 flex flex-col items-center justify-center h-full text-center w-full">
               <h1
-                className="text-4xl md:text-6xl font-extrabold mb-8 leading-tight"
+                className="text-4xl md:text-6xl font-extrabold mb-8 leading-tight text-black"
                 style={{
                   fontFamily: 'Montserrat, sans-serif',
-                  color: '#18181b',
+                  color: '#000000',
                   letterSpacing: '-0.03em',
                   fontWeight: 400,
                   transform: isInView ? 'translateY(0)' : 'translateY(20px)',
@@ -201,16 +201,16 @@ const Index = () => {
                 Transform Your Business<br />with Strategic Digital Marketing
               </h1>
               <p
-                className="text-xl md:text-2xl font-normal mb-12 max-w-3xl mx-auto leading-relaxed"
+                className="text-xl md:text-2xl font-normal mb-12 max-w-3xl mx-auto leading-relaxed text-black"
                 style={{
                   fontFamily: 'Montserrat, sans-serif',
-                  color: '#23272f',
+                  color: '#000000',
                   transform: isInView ? 'translateY(0)' : 'translateY(20px)',
                   opacity: isInView ? 1 : 0,
                   transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s'
                 }}
               >
-                We specialize in data-driven digital marketing strategies that deliver measurable results. From SEO to social media, we help businesses level up their online presence and drive sustainable growth.
+                Data-driven digital marketing that boosts your presence and drives growth.
               </p>
               <div 
                 className="flex flex-col md:flex-row gap-4 justify-center"

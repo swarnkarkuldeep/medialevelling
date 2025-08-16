@@ -272,10 +272,10 @@ const Services = () => {
             {/* Centered content */}
             <div className="relative z-10 flex flex-col items-center justify-center h-full text-center w-full">
               <h1
-                className="text-4xl md:text-6xl font-extrabold mb-8 leading-tight"
+                className="text-4xl md:text-6xl font-extrabold mb-8 leading-tight text-black"
                 style={{
                   fontFamily: 'Montserrat, sans-serif',
-                  color: '#18181b',
+                  color: '#000000',
                   letterSpacing: '-0.03em',
                   fontWeight: 400,
                   transform: isInViewHero ? 'translateY(0)' : 'translateY(20px)',
@@ -286,17 +286,16 @@ const Services = () => {
                 Our Services
               </h1>
               <p
-                className="text-lg md:text-2xl font-normal mb-10 max-w-2xl mx-auto"
+                className="text-xl md:text-2xl font-normal mb-12 max-w-3xl mx-auto leading-relaxed text-black"
                 style={{
                   fontFamily: 'Montserrat, sans-serif',
-                  color: '#23272f',
-                  fontWeight: 300,
+                  color: '#000000',
                   transform: isInViewHero ? 'translateY(0)' : 'translateY(20px)',
                   opacity: isInViewHero ? 1 : 0,
                   transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s'
                 }}
               >
-                Comprehensive digital marketing solutions designed to level up your business growth through expert strategies and creative execution.
+                Digital marketing solutions to accelerate your growth.
               </p>
             </div>
           </div>
@@ -309,7 +308,7 @@ const Services = () => {
               <h2 className="text-3xl md:text-5xl font-normal mb-8" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400, letterSpacing: '-0.03em' }}>
                 Digital Marketing Services<br />That Drive Results
               </h2>
-              <p className="text-lg md:text-xl text-[#23272f] max-w-3xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+              <p className="text-lg md:text-xl text-black max-w-3xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
                 From social media management to website creation, we provide end-to-end digital marketing solutions that help your business grow and succeed online.
               </p>
             </div>
@@ -342,10 +341,10 @@ const Services = () => {
                       <div className="space-y-3 mb-6">
                         {service.features.map((feature, featureIdx) => (
                           <div key={featureIdx} className="flex items-center gap-3">
-                            <CheckCircle className="w-5 h-5 text-[#18181b] flex-shrink-0" />
-                            <span className="text-sm text-[#23272f]" style={{ fontFamily: 'Montserrat', fontWeight: 300 }}>
+                            <CheckCircle className="w-5 h-5 text-black flex-shrink-0" />
+                            <p className="text-black" style={{ fontFamily: 'Montserrat', fontWeight: 300 }}>
                               {feature}
-                            </span>
+                            </p>
                           </div>
                         ))}
                       </div>
@@ -365,7 +364,7 @@ const Services = () => {
               <h2 className="text-3xl md:text-5xl font-normal mb-8" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400, letterSpacing: '-0.03em' }}>
                 Our Simple Process
               </h2>
-              <p className="text-lg md:text-xl text-[#23272f] max-w-3xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+              <p className="text-lg md:text-xl text-black max-w-3xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
                 We follow a clear, collaborative approach to ensure your digital marketing success.
               </p>
             </div>
@@ -385,7 +384,7 @@ const Services = () => {
                 <h3 className="text-xl font-normal mb-4" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400 }}>
                   1. Discover & Strategize
                 </h3>
-                <p className="text-[#23272f]" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                <p className="text-black" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
                   We start by understanding your unique business, goals, and target audience to craft a tailored strategy.
                 </p>
               </div>
@@ -404,7 +403,7 @@ const Services = () => {
                 <h3 className="text-xl font-normal mb-4" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400 }}>
                   2. Execute & Optimize
                 </h3>
-                <p className="text-[#23272f]" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                <p className="text-black" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
                   Our team implements the strategy, continuously monitoring performance and optimizing for best results.
                 </p>
               </div>
@@ -423,7 +422,7 @@ const Services = () => {
                 <h3 className="text-xl font-normal mb-4" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400 }}>
                   3. Analyze & Grow
                 </h3>
-                <p className="text-[#23272f]" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                <p className="text-black" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
                   We provide transparent reports, analyze data, and adapt strategies to ensure sustained growth.
                 </p>
               </div>
@@ -455,7 +454,7 @@ const Services = () => {
                   <h3 className="text-xl font-normal mb-2" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400 }}>
                     Fast Results
                   </h3>
-                  <p className="text-[#23272f]" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                  <p className="text-black" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
                     Quick implementation and optimization to see results faster than traditional marketing methods.
                   </p>
                 </div>
@@ -472,7 +471,7 @@ const Services = () => {
                   <h3 className="text-xl font-normal mb-2" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400 }}>
                     Transparent Reporting
                   </h3>
-                  <p className="text-[#23272f]" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                  <p className="text-black" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
                     Detailed analytics and regular reports so you always know how your campaigns are performing.
                   </p>
                 </div>
@@ -489,7 +488,7 @@ const Services = () => {
                   <h3 className="text-xl font-normal mb-2" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400 }}>
                     Dedicated Support
                   </h3>
-                  <p className="text-[#23272f]" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                  <p className="text-black" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
                     Direct access to your marketing team with personalized support and strategic guidance.
                   </p>
                 </div>
@@ -505,7 +504,7 @@ const Services = () => {
               <h2 className="text-3xl md:text-5xl font-normal mb-8" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400, letterSpacing: '-0.03em' }}>
                 Frequently Asked Questions
               </h2>
-              <p className="text-lg md:text-xl text-[#23272f] max-w-3xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+              <p className="text-lg md:text-xl text-black max-w-3xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
                 Find answers to common questions about our services and approach.
               </p>
             </div>
@@ -525,7 +524,7 @@ const Services = () => {
                     {faq.question}
                   </h3>
                   {/* For a real accordion, this would be conditionally rendered/toggled */}
-                  <p className="text-[#23272f] pl-8" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                  <p className="text-black pl-8" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
                     {faq.answer}
                   </p>
                 </div>
@@ -571,7 +570,7 @@ const Services = () => {
                 <h2 className="text-3xl md:text-5xl font-normal mb-6 text-center" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400 }}>
                   Ready to Level Up Your Business?
                 </h2>
-                <p className="text-lg text-[#23272f] mb-8 max-w-2xl mx-auto text-center" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                <p className="text-lg text-black mb-8 max-w-2xl mx-auto text-center" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
                   Let's discuss your goals and create a custom digital marketing strategy that drives real results for your business.
                 </p>
                 <div className="flex flex-col md:flex-row gap-4 justify-center">

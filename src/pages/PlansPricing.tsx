@@ -412,21 +412,27 @@ const PlansPricing = () => {
             {/* Centered content */}
             <div className="relative z-10 flex flex-col items-center justify-center h-full text-center w-full">
               <h1
-                className="text-3xl md:text-5xl font-extrabold mb-8"
+                className="text-4xl md:text-6xl font-extrabold mb-8 leading-tight"
                 style={{
                   fontFamily: 'Montserrat, sans-serif',
-                  color: '#18181b',
+                  color: '#000000',
                   letterSpacing: '-0.03em',
-                  fontWeight: 400
+                  fontWeight: 400,
+                  transform: heroClassName.includes('animate-fade-in-up') ? 'translateY(0)' : 'translateY(20px)',
+                  opacity: heroClassName.includes('animate-fade-in-up') ? 1 : 0,
+                  transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s'
                 }}
               >
                 Plans & Pricing
               </h1>
               <p
-                className="text-lg md:text-xl font-normal mb-6 max-w-2xl mx-auto"
+                className="text-xl md:text-2xl font-normal mb-12 max-w-3xl mx-auto leading-relaxed"
                 style={{
                   fontFamily: 'Montserrat, sans-serif',
-                  color: '#23272f',
+                  color: '#000000',
+                  transform: heroClassName.includes('animate-fade-in-up') ? 'translateY(0)' : 'translateY(20px)',
+                  opacity: heroClassName.includes('animate-fade-in-up') ? 1 : 0,
+                  transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s',
                   fontWeight: 300
                 }}
               >
@@ -465,10 +471,10 @@ const PlansPricing = () => {
           }}>
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400 }}>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ fontFamily: 'Montserrat, sans-serif', color: '#000000', fontWeight: 400 }}>
                 Select Your Service
               </h2>
-              <p className="text-lg text-[#23263a] max-w-2xl mx-auto mb-8" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+              <p className="text-lg text-black max-w-2xl mx-auto mb-8" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
                 Choose a service to view detailed pricing plans and features
               </p>
               
@@ -490,10 +496,10 @@ const PlansPricing = () => {
               </div>
               
               <div className="text-center mb-12">
-                <h3 className="text-2xl md:text-3xl font-bold mb-4" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400 }}>
+                <h3 className="text-2xl md:text-3xl font-bold mb-4" style={{ fontFamily: 'Montserrat, sans-serif', color: '#000000', fontWeight: 400 }}>
                   {servicePlans[selectedService as keyof typeof servicePlans].title} Pricing
                 </h3>
-                <p className="text-lg text-[#23263a] max-w-2xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                <p className="text-lg text-black max-w-2xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
                   {servicePlans[selectedService as keyof typeof servicePlans].description}
                 </p>
               </div>
@@ -531,13 +537,13 @@ const PlansPricing = () => {
                         }}
                       >
                         <span>Rs.{plan.price}<span className="text-lg font-medium ml-1" style={{ fontWeight: 400 }}></span></span>
-                        <span className="text-base font-normal mt-1" style={{ color: '#23263a', fontFamily: 'Montserrat, sans-serif', fontWeight: 400 }}>{plan.description}</span>
+                        <span className="text-base font-normal mt-1" style={{ color: '#000000', fontFamily: 'Montserrat, sans-serif', fontWeight: 400 }}>{plan.description}</span>
                       </div>
                     </div>
                   </div>
                   <ul className="w-full flex-1 mb-8 space-y-4">
                     {plan.features.map((feature, i) => (
-                      <li key={i} className={`flex items-center gap-3 text-base ${plan.name === 'Growth' ? 'text-white' : 'text-[#18181b]'}`} style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 400 }}>
+                      <li key={i} className={`flex items-center gap-3 text-base ${plan.name === 'Growth' ? 'text-white' : 'text-black'}`} style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 400 }}>
                         <Check size={20} className={plan.name === 'Growth' ? 'text-green-400' : 'text-green-500'} />
                         {feature}
                       </li>
@@ -550,7 +556,7 @@ const PlansPricing = () => {
                     ))}
                   </ul>
                   <Button
-                    className={`px-8 py-3 rounded-lg font-semibold text-base md:text-lg transition-transform duration-300 hover:scale-105 hover:shadow-lg ${plan.name === 'Growth' ? 'bg-white text-[#18181b] hover:bg-gray-100' : 'bg-[#18181b] text-white hover:bg-[#23272f]'}`}
+                    className={`px-8 py-3 rounded-lg font-semibold text-base md:text-lg transition-transform duration-300 hover:scale-105 hover:shadow-lg ${plan.name === 'Growth' ? 'bg-white text-black hover:bg-gray-100' : 'bg-black text-white hover:bg-gray-800'}`}
                     style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 400 }}
                     onClick={() => navigate('/contact')}
                   >
@@ -610,10 +616,10 @@ const PlansPricing = () => {
                     transform: faqClassName.includes('animate-fade-in-up') ? 'translateY(0)' : 'translateY(10px)',
                     transition: `opacity 0.4s ease-out ${0.1 * (i + 1)}s, transform 0.4s ease-out ${0.1 * (i + 1)}s`
                   }}>
-                  <h3 className="text-xl font-semibold mb-4" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400 }}>
+                  <h3 className="text-xl font-semibold mb-4" style={{ fontFamily: 'Montserrat, sans-serif', color: '#000000', fontWeight: 400 }}>
                     {faq.question}
                   </h3>
-                  <p className="text-[#23263a] leading-relaxed" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                  <p className="text-black leading-relaxed" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
                     {faq.answer}
                   </p>
                 </div>

@@ -164,7 +164,7 @@ const About = () => {
                      transitionDelay: '0.1s'
                    }}
                  >
-                 At Media Levelling, we blend creative strategy with data-driven insights to elevate brands and drive remarkable business growth in the digital landscape.
+                 At Media Levelling, we fuse creativity and data to elevate brands and drive growth.
                </p>
                </div> {/* Close textRef div */}
                <div 
@@ -208,12 +208,12 @@ const About = () => {
          <section ref={statsRef} className="py-16 px-4 md:px-8 bg-white">
            <div className="max-w-6xl mx-auto">
              <div className="text-center mb-12">
-               <h2 className="text-2xl md:text-3xl font-normal mb-4" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400 }}>
+               <h2 className="text-2xl md:text-3xl font-normal mb-4" style={{ fontFamily: 'Montserrat, sans-serif', color: 'black', fontWeight: 400 }}>
                  Our Impact in Numbers
                </h2>
-               <p className="text-lg text-[#23272f]" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
-                 Real results from real partnerships
-               </p>
+               <p className="text-lg text-black" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                Real results from real partnerships
+              </p>
              </div>
              <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
                {stats.map((stat, index) => (
@@ -221,12 +221,12 @@ const About = () => {
                    <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                      <stat.icon className="w-8 h-8 text-gray-700" />
                    </div>
-                   <h3 className="text-3xl md:text-4xl font-semibold text-[#18181b] mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                   <h3 className="text-3xl md:text-4xl font-semibold text-black mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>
                      <CountUpNumber end={stat.number} suffix={stat.suffix} animate={hasAnimatedStats} />
                    </h3>
-                   <p className="text-sm md:text-base text-[#23272f]" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
-                     {stat.label}
-                   </p>
+                   <p className="text-sm md:text-base text-black" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                    {stat.label}
+                  </p>
                  </div>
                ))}
              </div>
@@ -238,16 +238,16 @@ const About = () => {
           <div ref={mainAnim.ref} className={`max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 items-stretch ${mainAnim.className}`}>
             {/* Left: Heading and mission */}
             <div className="flex-1 flex flex-col justify-center lg:pr-12 mb-10 lg:mb-0">
-              <h2 className="text-5xl md:text-6xl font-normal mb-8 text-left animate-fade-in-up" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', lineHeight: 1.1, animationDelay: '200ms' }}>
+              <h2 className="text-5xl md:text-6xl font-normal mb-8 text-left animate-fade-in-up" style={{ fontFamily: 'Montserrat, sans-serif', color: 'black', lineHeight: 1.1, animationDelay: '200ms' }}>
                 Who.<br />We.<br />Are.
               </h2>
-              <h3 className="text-3xl md:text-4xl font-semibold mb-8 text-left text-gray-800 animate-fade-in-up" style={{ fontFamily: 'Montserrat, sans-serif', animationDelay: '350ms' }}>
+              <h3 className="text-3xl md:text-4xl font-semibold mb-8 text-left text-black animate-fade-in-up" style={{ fontFamily: 'Montserrat, sans-serif', animationDelay: '350ms' }}>
                 Your Dedicated Digital Marketing Experts
               </h3>
-              <p className="text-lg md:text-xl text-[#23263a] mb-6 max-w-lg animate-fade-in-up" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 400, animationDelay: '500ms' }}>
+              <p className="text-lg md:text-xl text-black mb-6 max-w-lg animate-fade-in-up" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 400, animationDelay: '500ms' }}>
                 We're a passionate digital marketing team dedicated to elevating brands through **creative strategy**, **data-driven insights**, and a relentless pursuit of excellence in digital media and business growth.
               </p>
-              <p className="text-base md:text-lg text-[#18181b] max-w-lg animate-fade-in-up" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 450, animationDelay: '650ms' }}>
+              <p className="text-base md:text-lg text-black max-w-lg animate-fade-in-up" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 450, animationDelay: '650ms' }}>
                 Our mission: **Empowering businesses to grow, connect, and inspire** through innovative media solutions that deliver measurable impact.
               </p>
             </div>
@@ -270,13 +270,13 @@ const About = () => {
                   <rect x="36" y="26" width="18" height="10" rx="5" fill="#a5b4fc" />
                   <rect x="27" y="18" width="18" height="10" rx="5" fill="#ffe4fa" />
                 </svg>
-                <div className="text-2xl font-semibold mb-2" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
+                <div className="text-2xl font-semibold mb-2" style={{ fontFamily: 'Montserrat, sans-serif', color: 'black' }}>
                   Our Values
                 </div>
-                <div className="text-lg text-[#000] mb-3 font-medium" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                <div className="text-lg text-black mb-3 font-medium" style={{ fontFamily: 'Montserrat, sans-serif' }}>
                   Integrity, Creativity, Collaboration
                 </div>
-                <div className="text-base text-gray-600 text-center px-4" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 400 }}>
+                <div className="text-base text-black text-center px-4" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 400 }}>
                   We believe in honest work, bold ideas, and the power of teamwork to drive real, sustainable results for our clients.
                 </div>
               </Card>
@@ -300,13 +300,13 @@ const About = () => {
                   <polyline points="36,36 36,20" stroke="#6366f1" strokeWidth="4" fill="none" strokeLinecap="round" />
                   <polygon points="36,12 32,20 40,20" fill="#6366f1" />
                 </svg>
-                <div className="text-2xl font-semibold mb-2" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
+                <div className="text-2xl font-semibold mb-2" style={{ fontFamily: 'Montserrat, sans-serif', color: 'black' }}>
                   Our Vision
                 </div>
-                <div className="text-lg text-[#000] mb-3 font-medium" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                <div className="text-lg text-black mb-3 font-medium" style={{ fontFamily: 'Montserrat, sans-serif' }}>
                   Inspire Growth & Connection
                 </div>
-                <div className="text-base text-gray-600 text-center px-4" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 400 }}>
+                <div className="text-base text-black text-center px-4" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 400 }}>
                   To inspire transformative growth and deep connection for every brand we touch, making a lasting impact in the dynamic digital world.
                 </div>
               </Card>
@@ -318,26 +318,26 @@ const About = () => {
         <section ref={backgroundRef.ref} className={`py-24 px-4 md:px-8 bg-gradient-to-br from-gray-50/50 to-white ${backgroundRef.className}`}>
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-20">
-              <h2 className="text-3xl md:text-5xl font-normal mb-8" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400, letterSpacing: '-0.03em' }}>
+              <h2 className="text-3xl md:text-5xl font-normal mb-8" style={{ fontFamily: 'Montserrat, sans-serif', color: 'black', fontWeight: 400, letterSpacing: '-0.03em' }}>
                 Our Story: From Vision to Impact
               </h2>
-              <p className="text-lg md:text-xl text-[#23272f] max-w-3xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+              <p className="text-lg md:text-xl text-black max-w-3xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
                 Discover the journey that shaped Media Levelling into the digital marketing powerhouse it is today, driven by innovation and client success.
               </p>
             </div>
             
             <div className="grid md:grid-cols-2 gap-16 items-center">
               <div>
-                <h3 className="text-2xl md:text-3xl font-semibold mb-6" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
+                <h3 className="text-2xl md:text-3xl font-semibold mb-6" style={{ fontFamily: 'Montserrat, sans-serif', color: 'black' }}>
                   Founded with a Clear Vision
                 </h3>
-                <p className="text-lg text-[#23272f] leading-relaxed mb-6" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                <p className="text-lg text-black leading-relaxed mb-6" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
                   Media Levelling was born from a simple yet powerful idea: every business, regardless of size, deserves access to **world-class digital marketing expertise**. What started as a small, agile team of passionate marketers has organically grown into a comprehensive digital marketing agency.
                 </p>
-                <p className="text-lg text-[#23272f] leading-relaxed mb-6" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                <p className="text-lg text-black leading-relaxed mb-6" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
                   We began by helping local businesses establish and amplify their online presence, quickly realizing that our **data-driven approach** and **creative strategies** consistently delivered exceptional, measurable results. This early success fueled our expansion and refined our commitment to client-centric solutions.
                 </p>
-                <p className="text-lg text-[#23272f] leading-relaxed" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                <p className="text-lg text-black leading-relaxed" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
                   Today, we proudly serve a diverse portfolio of businesses across various industries, from innovative startups seeking their initial breakthrough to established enterprises aiming for sustained digital dominance. We empower them to navigate the ever-evolving digital landscape with confidence, achieving remarkable and **sustainable growth**.
                 </p>
               </div>
@@ -347,10 +347,10 @@ const About = () => {
                     <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-white flex items-center justify-center">
                       <TrendingUp className="w-12 h-12 text-gray-700" />
                     </div>
-                    <h4 className="text-2xl font-semibold mb-2" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
+                    <h4 className="text-2xl font-semibold mb-2" style={{ fontFamily: 'Montserrat, sans-serif', color: 'black' }}>
                       A Journey of Continuous Growth
                     </h4>
-                    <p className="text-lg text-[#23272f]" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                    <p className="text-lg text-black" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
                       Evolving from local roots to global digital impact.
                     </p>
                   </div>
@@ -364,10 +364,10 @@ const About = () => {
         <section ref={approachRef.ref} className={`py-24 px-4 md:px-8 bg-white ${approachRef.className}`}>
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-20">
-              <h2 className="text-3xl md:text-5xl font-normal mb-8" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400, letterSpacing: '-0.03em' }}>
+              <h2 className="text-3xl md:text-5xl font-normal mb-8" style={{ fontFamily: 'Montserrat, sans-serif', color: 'black', fontWeight: 400, letterSpacing: '-0.03em' }}>
                 Our Winning Approach
               </h2>
-              <p className="text-lg md:text-xl text-[#23272f] max-w-3xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+              <p className="text-lg md:text-xl text-black max-w-3xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
                 We believe in a strategic and holistic approach to digital marketing. Here's how we ensure your brand not only stands out but thrives.
               </p>
             </div>
@@ -378,10 +378,10 @@ const About = () => {
                 <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-50 to-purple-50 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                   <Search className="w-8 h-8 text-gray-700" />
                 </div>
-                <h3 className="text-xl font-semibold mb-3" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
+                <h3 className="text-xl font-semibold mb-3" style={{ fontFamily: 'Montserrat, sans-serif', color: 'black' }}>
                   Data-Driven Strategy
                 </h3>
-                <p className="text-[#23272f] leading-relaxed" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                <p className="text-black leading-relaxed" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
                   Every campaign we launch is backed by in-depth market research and analytical insights, ensuring optimal performance and ROI.
                 </p>
               </div>
@@ -391,10 +391,10 @@ const About = () => {
                 <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-50 to-purple-50 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                   <Video className="w-8 h-8 text-gray-700" />
                 </div>
-                <h3 className="text-xl font-semibold mb-3" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
+                <h3 className="text-xl font-semibold mb-3" style={{ fontFamily: 'Montserrat, sans-serif', color: 'black' }}>
                   Creative Innovation
                 </h3>
-                <p className="text-[#23272f] leading-relaxed" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                <p className="text-black leading-relaxed" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
                   We constantly explore new creative avenues and cutting-edge technologies to keep your brand ahead of the curve.
                 </p>
               </div>
@@ -404,10 +404,10 @@ const About = () => {
                 <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-50 to-purple-50 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                   <Target className="w-8 h-8 text-gray-700" />
                 </div>
-                <h3 className="text-xl font-semibold mb-3" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
+                <h3 className="text-xl font-semibold mb-3" style={{ fontFamily: 'Montserrat, sans-serif', color: 'black' }}>
                   Client-Centric Partnership
                 </h3>
-                <p className="text-[#23272f] leading-relaxed" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                <p className="text-black leading-relaxed" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
                   Your success is our priority. We work as an extension of your team, providing personalized strategies and dedicated support.
                 </p>
               </div>
@@ -423,7 +423,7 @@ const About = () => {
               <h2 className="text-3xl md:text-5xl font-normal mb-8" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400, letterSpacing: '-0.03em' }}>
                 Why Choose Media Levelling?
               </h2>
-              <p className="text-lg md:text-xl text-[#23272f] max-w-3xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+              <p className="text-lg md:text-xl text-black max-w-3xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
                 We don't just follow industry trends—we set them. Here's what makes Media Levelling the partner of choice for forward-thinking businesses.
               </p>
             </div>
@@ -440,7 +440,7 @@ const About = () => {
                       <h3 className="text-xl font-semibold mb-3" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
                         Proven, Measurable Results
                       </h3>
-                      <p className="text-[#23272f] leading-relaxed" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                      <p className="text-black leading-relaxed" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
                         Our track record speaks for itself. We've helped hundreds of businesses achieve measurable growth through strategic, results-driven digital marketing campaigns.
                       </p>
                     </div>
@@ -459,7 +459,7 @@ const About = () => {
                       <h3 className="text-xl font-semibold mb-3" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
                         Dedicated Expert Team
                       </h3>
-                      <p className="text-[#23272f] leading-relaxed" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                      <p className="text-black leading-relaxed" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
                         Our team consists of industry veterans and creative professionals who are constantly learning and applying the latest digital marketing trends and technologies.
                       </p>
                     </div>
@@ -478,7 +478,7 @@ const About = () => {
                       <h3 className="text-xl font-semibold mb-3" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
                         Agile & Fast Execution
                       </h3>
-                      <p className="text-[#23272f] leading-relaxed" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                      <p className="text-black leading-relaxed" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
                         We understand that time is money in the fast-paced digital world. Our streamlined processes ensure quick turnaround times without compromising on quality or impact.
                       </p>
                     </div>
@@ -497,7 +497,7 @@ const About = () => {
                       <h3 className="text-xl font-semibold mb-3" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b' }}>
                         Complete Transparency
                       </h3>
-                      <p className="text-[#23272f] leading-relaxed" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                      <p className="text-black leading-relaxed" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
                         We believe in complete transparency throughout our partnership. You'll always be informed about our progress and how it directly contributes to your business goals.
                       </p>
                     </div>
@@ -524,7 +524,7 @@ const About = () => {
                 <h2 className="text-3xl md:text-5xl font-normal mb-8 leading-tight" style={{ fontFamily: 'Montserrat, sans-serif', color: '#18181b', fontWeight: 400, letterSpacing: '-0.03em' }}>
                   Ready to Transform Your Business <br className="hidden md:inline"/>with Digital Excellence?
                 </h2>
-                <p className="text-lg md:text-xl text-[#23272f] mb-12 max-w-2xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
+                <p className="text-lg md:text-xl text-black mb-12 max-w-2xl mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
                   Discover our comprehensive digital marketing services designed to drive real, measurable results and accelerate your business growth.
                 </p>
                 <div className="flex flex-col md:flex-row gap-4 justify-center">

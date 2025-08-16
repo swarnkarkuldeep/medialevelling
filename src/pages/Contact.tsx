@@ -80,7 +80,7 @@ const Contact = () => {
             <h1 className="text-4xl md:text-5xl font-normal text-gray-900 mb-6">
               Contact Us
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-black max-w-3xl mx-auto">
               Get in touch with us to discuss your digital media needs and how we can help grow your business
             </p>
           </div>
