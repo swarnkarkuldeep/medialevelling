@@ -22,7 +22,7 @@ import BackToTop from '@/components/BackToTop';
 import { useNavigate } from 'react-router-dom';
 
 const stats = [
-  { number: 500, label: "Projects Completed", suffix: "+", icon: Award },
+  { number: 25, label: "Projects Completed", suffix: "+", icon: Award },
   { number: 98, label: "Client Satisfaction", suffix: "%", icon: Users },
   { number: 50, label: "Team Members", suffix: "+", icon: Users },
   { number: 5, label: "Years Experience", suffix: "+", icon: Clock }
