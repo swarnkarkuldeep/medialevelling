@@ -549,7 +549,7 @@ const Index = () => {
                           className="w-full h-full object-cover"
                         />
                       )}
-                      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/20 to-purple-50/20" />
+                      {/* Gradient overlay removed to show original image colors */}
                       <div className="absolute top-4 left-4">
                         <Badge variant="secondary" className="bg-white/90 text-gray-800">
                           {caseStudy.industry}

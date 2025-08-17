@@ -240,11 +240,11 @@ const About = () => {
               <h3 className="text-3xl md:text-4xl font-semibold mb-8 text-left text-black animate-fade-in-up" style={{ fontFamily: 'Montserrat, sans-serif', animationDelay: '350ms' }}>
                 Your Dedicated Digital Marketing Experts
               </h3>
-              <p className="text-lg md:text-xl text-black mb-6 max-w-lg animate-fade-in-up" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 400, animationDelay: '500ms' }}>
-                We're a passionate digital marketing team dedicated to elevating brands through **creative strategy**, **data-driven insights**, and a relentless pursuit of excellence in digital media and business growth.
+              <p className="text-lg md:text-xl text-gray-600 mb-6 max-w-lg animate-fade-in-up" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 400, animationDelay: '500ms' }}>
+                We're a passionate digital marketing team dedicated to elevating brands through creative strategy, data-driven insights, and a relentless pursuit of excellence in digital media and business growth.
               </p>
-              <p className="text-base md:text-lg text-black max-w-lg animate-fade-in-up" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 450, animationDelay: '650ms' }}>
-                Our mission: **Empowering businesses to grow, connect, and inspire** through innovative media solutions that deliver measurable impact.
+              <p className="text-base md:text-lg text-gray-600 max-w-lg animate-fade-in-up" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 450, animationDelay: '650ms' }}>
+                Our mission: Empowering businesses to grow, connect, and inspire through innovative media solutions that deliver measurable impact.
               </p>
             </div>
 
@@ -328,13 +328,13 @@ const About = () => {
                   Founded with a Clear Vision
                 </h3>
                 <p className="text-lg text-black leading-relaxed mb-6" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
-                  Media Levelling was born from a simple yet powerful idea: every business, regardless of size, deserves access to **world-class digital marketing expertise**. What started as a small, agile team of passionate marketers has organically grown into a comprehensive digital marketing agency.
+                  Media Levelling was born from a simple yet powerful idea: every business, regardless of size, deserves access to world-class digital marketing expertise. What started as a small, agile team of passionate marketers has organically grown into a comprehensive digital marketing agency.
                 </p>
                 <p className="text-lg text-black leading-relaxed mb-6" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
-                  We began by helping local businesses establish and amplify their online presence, quickly realizing that our **data-driven approach** and **creative strategies** consistently delivered exceptional, measurable results. This early success fueled our expansion and refined our commitment to client-centric solutions.
+                  We began by helping local businesses establish and amplify their online presence, quickly realizing that our data-driven approach and creative strategies consistently delivered exceptional, measurable results. This early success fueled our expansion and refined our commitment to client-centric solutions.
                 </p>
                 <p className="text-lg text-black leading-relaxed" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
-                  Today, we proudly serve a diverse portfolio of businesses across various industries, from innovative startups seeking their initial breakthrough to established enterprises aiming for sustained digital dominance. We empower them to navigate the ever-evolving digital landscape with confidence, achieving remarkable and **sustainable growth**.
+                  Today, we proudly serve a diverse portfolio of businesses across various industries, from innovative startups seeking their initial breakthrough to established enterprises aiming for sustained digital dominance. We empower them to navigate the ever-evolving digital landscape with confidence, achieving remarkable and sustainable growth.
                 </p>
               </div>
               <div className="relative flex justify-center items-center">

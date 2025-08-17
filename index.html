@@ -15,6 +15,15 @@
     <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
     <title>Media Levelling - Digital Marketing Company for Business Growth</title>
     <meta name="description" content="Media Levelling is a leading digital marketing company offering SEO, PPC, social media management, content marketing, and creative solutions to help your business grow online. Boost your brand with expert digital strategies and measurable results." />
+    <!-- Base URL for production -->
+    <base href="/" />
+    <!-- Security headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https:;" />
+    <!-- Preload critical assets with absolute paths -->
+    <link rel="preload" href="/assets/main.css" as="style" />
+    <link rel="preload" href="/assets/main.js" as="script" />
+    <!-- Add cache control headers -->
+    <meta http-equiv="Cache-Control" content="public, max-age=31536000" />
     <meta property="og:title" content="Media Levelling - Digital Marketing Company for Business Growth" />
     <meta property="og:description" content="Media Levelling is a leading digital marketing company offering SEO, PPC, social media management, content marketing, and creative solutions to help your business grow online. Boost your brand with expert digital strategies and measurable results." />
     <meta property="og:type" content="website" />

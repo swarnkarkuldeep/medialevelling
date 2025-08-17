@@ -13,13 +13,13 @@ import { useNavigate, useLocation } from 'react-router-dom';
 const servicePlans = {
   'media-levelling-package': {
     title: 'Media Levelling Package',
-    description: 'Transform your brand\'s presence with engaging short-form videos for Instagram Reels, YouTube Shorts, and TikTok. Capture attention, drive engagement, and grow your audience with creative, high-quality content.',
+    description: 'Boost your brand with engaging short-form videos for Instagram, YouTube, and TikTok. Drive engagement and growth with creative content.',
     icon: '📦',
     plans: [
       {
         name: 'Starter',
         price: 25999,
-        description: 'Perfect for small businesses or influencers for starting a good start',
+description: 'Ideal for small businesses or influencers getting started',
         features: [
           'Starter (search engine optimisation)',
           'Meta ads',
@@ -75,13 +75,13 @@ const servicePlans = {
   },
   'meta-ads': {
     title: 'Meta Ads',
-        description: 'Our Meta Ads service is designed to grow your brand by targeting the right audience on Facebook and Instagram. With strategic campaigns, tailored creatives, and data-driven optimization, we ensure your business gets the visibility and conversions it deserves',
+description: 'Reach your ideal audience on Facebook and Instagram with targeted, high-converting ad campaigns',
     icon: '🎯',
     plans: [
       {
         name: 'Starter',
         price: 9999,
-        description: 'Perfect for small businesses or those just starting with Meta Ads',
+description: 'Great for businesses new to Meta advertising',
         features: [
           '3 campaign with basic audience targeting and static ad creatives',
           'Weekly performance tracking and budget monitoring',
@@ -96,7 +96,7 @@ const servicePlans = {
       {
         name: 'Growth',
         price: 24999,
-        description: 'Ideal for scaling businesses looking to boost engagement',
+description: 'Perfect for growing businesses increasing engagement',
         features: [
           'Up to 5 campaigns with advanced targeting and A/B testing',
           'Carousel, video, and static ad creation with conversion tracking',
@@ -110,7 +110,7 @@ const servicePlans = {
       {
         name: 'Premium',
         price: 49999,
-        description: 'Best for established businesses seeking maximum ROI',
+description: 'Ideal for established businesses maximizing ROI',
         features: [
           'Unlimited campaigns with advanced ad formats (Reels, Stories)',
           'Comprehensive analytics, competitor analysis, and weekly strategy calls',
@@ -122,13 +122,13 @@ const servicePlans = {
   },
   'google-ads': {
     title: 'Google Ads',
-    description: ' Drive targeted traffic to your business with expertly crafted Google Ads campaigns. From search to display and shopping ads, we ensure your brand stays at the forefront with optimized strategies and measurable results.',
+description: 'Drive targeted traffic with optimized Google Search, Display, and Shopping ads',
     icon: '🔍',
     plans: [
       {
         name: 'Starter',
         price: 9999,
-        description: 'Perfect for small businesses exploring Google Ads',
+description: 'Ideal for businesses new to Google Ads',
         features: [
           '1 campaign setup (Search or Display)',
           'Keyword research and basic targeting',
@@ -144,7 +144,7 @@ const servicePlans = {
       {
         name: 'Growth',
         price: 24999,
-        description: 'Designed for businesses ready to expand their online reach',
+description: 'Perfect for businesses expanding their reach',
         features: [
           'Up to 3 campaigns (Search, Display, or Shopping)',
           'A/B testing and advanced keyword strategies',
@@ -159,7 +159,7 @@ const servicePlans = {
       {
         name: 'Premium',
         price: 49999,
-        description: 'Best for established businesses driving higher ROI',
+description: 'Ideal for established businesses maximizing ROI',
         features: [
           'Unlimited campaigns across all Google ad formats',
           'Retargeting, competitor analysis, and advanced optimization',
@@ -172,13 +172,13 @@ const servicePlans = {
   },
   'seo': {
     title: 'SEO',
-    description: 'Enhance your online visibility and drive organic traffic with our expert SEO solutions. From on-page optimization to advanced strategies, we help your business rank higher and grow faster.',
+description: 'Improve search rankings and drive organic traffic with expert SEO strategies',
     icon: '📈',
     plans: [
       {
         name: 'Starter',
         price: 7999,
-        description: 'Best for small businesses starting with SEO',
+description: 'Great for businesses new to SEO',
         features: [
           'Keyword research and basic on-page optimization',
           'Meta tags, titles, and descriptions setup',
@@ -194,7 +194,7 @@ const servicePlans = {
       {
         name: 'Growth',
         price: 19999,
-        description: 'Designed for businesses aiming to improve search engine rankings',
+description: 'Perfect for businesses improving search rankings',
         features: [
           'Keyword strategy with competitive analysis',
           'On-page and technical SEO (site speed, schema, etc.)',
@@ -209,7 +209,7 @@ const servicePlans = {
       {
         name: 'Premium',
         price: 39999,
-        description: 'Perfect for established brands seeking top rankings',
+description: 'Ideal for established brands targeting top rankings',
         features: [
           'Advanced keyword strategy with competitor insights',
           'Comprehensive on-page, off-page, and technical SEO',
@@ -222,13 +222,12 @@ const servicePlans = {
   },
   'short-form-content': {
     title: 'Short-form Content',
-    description: ' Transform your brand’s presence with engaging short-form videos for Instagram Reels, YouTube Shorts, and TikTok. Capture attention, drive engagement, and grow your audience with creative, high-quality content',
+description: 'Engage your audience with high-quality short videos for Instagram, YouTube, and TikTok',
     icon: '📱',
     plans: [
       {
         name: 'Starter',
         price: 9999,
-        description: 'Perfect for small businesses or influencers just starting with short-form content',
         features: [
           '8 videos/month (15-30 seconds each)',
           'Basic editing with captions and transitions',
@@ -272,13 +271,13 @@ const servicePlans = {
   },
   'website-creation': {
     title: 'Website Creation',
-    description: 'Build a powerful online presence with our professional website development services. From stunning designs to seamless functionality, we create websites that convert visitors into customers and drive your business growth.',
+description: 'Create a stunning, functional website that converts visitors into customers',
     icon: '🌐',
     plans: [
       {
         name: 'Starter',
         price: 14999,
-        description: 'Perfect for small businesses and solo entrepreneurs getting online',
+description: 'Ideal for small businesses going online',
         features: [
           '1-Page or 3-Page Static Website',
           'Mobile-Responsive Design',
@@ -297,7 +296,7 @@ const servicePlans = {
       {
         name: 'Growth',
         price: 29999,
-        description: 'Ideal for brands ready to scale their digital presence and drive results',
+description: 'Perfect for growing brands scaling their online presence',
         features: [
           'Upto 7 Dynamic Pages (Home, Services, Blog, etc.)',
           'CMS Integration (WordPress / Custom)',

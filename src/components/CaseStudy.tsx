@@ -73,9 +73,9 @@ export const caseStudiesData: CaseStudyData[] = [
       'Improved ad targeting and segmentation'
     ],
     testimonial: {
-      quote: 'The strategic improvements in our digital marketing efforts have significantly boosted our ROAS and reduced customer acquisition costs.',
-      author: 'Marketing Director',
-      position: 'D2C Beauty Brand'
+      quote: 'Working with Media Levelling transformed our digital presence. We saw a 38% increase in ROAS within just 8 months, and our customer acquisition costs dropped by 24%. The team\'s data-driven approach and creative strategies delivered results that exceeded our expectations.',
+      author: 'Priya Sharma',
+      position: 'Marketing Director, BELLEZA'
     },
     timeline: '8 months',
     detailedResults: [
@@ -109,9 +109,9 @@ export const caseStudiesData: CaseStudyData[] = [
       'Responsive Search Ads with pinning for control'
     ],
     testimonial: {
-      quote: 'Our leads skyrocketed with better targeting and faster pages.',
-      author: 'E-commerce Manager',
-      position: 'Home Décor Brand'
+      quote: 'The team at Media Levelling completely revamped our digital strategy. Our lead generation increased by 58% while reducing our cost per click by 22%. Their attention to detail in keyword targeting and landing page optimization made all the difference for our home decor business.',
+      author: 'Rahul Mehta',
+      position: 'E-commerce Director, KASBHA'
     },
     timeline: '6 weeks',
     detailedResults: [
@@ -145,9 +145,9 @@ export const caseStudiesData: CaseStudyData[] = [
       'Developed content marketing strategy'
     ],
     testimonial: {
-      quote: 'The improvements in our content and site performance have significantly boosted our organic traffic and conversion rates.',
-      author: 'Marketing Manager',
-      position: 'Vegan Pet Food Startup'
+      quote: 'As a new player in the pet nutrition space, we needed to establish credibility fast. Media Levelling helped us achieve a 13% increase in conversion rates and reduced our bounce rate by 21%. Their content strategy and technical optimizations were game-changers for our business.',
+      author: 'Ananya Patel',
+      position: 'Co-Founder, HAGRID Pet Food'
     },
     timeline: '6 months',
     detailedResults: [
@@ -182,9 +182,9 @@ export const caseStudiesData: CaseStudyData[] = [
       'Improved email marketing strategy'
     ],
     testimonial: {
-      quote: 'The increased content frequency and influencer collaboration have significantly improved our organic reach and engagement.',
-      author: 'Brand Manager',
-      position: 'Gen-Z Fashion Label'
+      quote: 'Media Levelling helped us crack the code to reaching Gen-Z. Our organic sessions grew by 28% and we now rank for 18 keywords, up from just 3. Their understanding of social media algorithms and content strategy helped us build a loyal community around our brand.',
+      author: 'Neha Kapoor',
+      position: 'Brand Director, TITHI'
     },
     timeline: '6 weeks',
     detailedResults: [
@@ -218,9 +218,9 @@ export const caseStudiesData: CaseStudyData[] = [
       'Customer journey analysis'
     ],
     testimonial: {
-      quote: 'The consistent CRO focus and attribution reviews have helped us optimize our marketing spend effectively.',
-      author: 'E-commerce Manager',
-      position: 'Furniture Brand'
+      quote: 'The team at Media Levelling transformed our approach to digital marketing. Their data-driven CRO strategies helped us reduce our customer acquisition costs by 16% while increasing monthly revenue by 15%. Their attention to detail in attribution modeling ensured every marketing dollar was well-spent.',
+      author: 'Vikram Singh',
+      position: 'Head of E-commerce, HOMESTY'
     },
     timeline: '2 months',
     detailedResults: [
@@ -254,9 +254,9 @@ export const caseStudiesData: CaseStudyData[] = [
       'Optimized lead capture forms'
     ],
     testimonial: {
-      quote: 'The combination of content marketing and webinars has significantly improved our organic reach and lead quality.',
-      author: 'Marketing Director',
-      position: 'Moringa Supplements Brand'
+      quote: 'Media Levelling\'s content strategy and webinar series helped us establish authority in the health supplements space. We saw a 29% increase in organic traffic and our lead conversion rate improved by 13%. Their ability to create educational yet engaging content has been instrumental in building trust with our audience.',
+      author: 'Dr. Arjun Reddy',
+      position: 'Founder, RKH Herbal'
     },
     timeline: '2 months',
     detailedResults: [
