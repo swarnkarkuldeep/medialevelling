@@ -94,6 +94,20 @@ export default {
 					'100%': { opacity: '1', transform: 'translateY(0)' },
 				},
 			},
+			fontFamily: {
+				sans: [
+					'Montserrat',
+					'ui-sans-serif', 
+					'system-ui', 
+					'-apple-system', 
+					'BlinkMacSystemFont', 
+					'Segoe UI', 
+					'Roboto', 
+					'Helvetica Neue', 
+					'Arial', 
+					'sans-serif'
+				],
+			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',

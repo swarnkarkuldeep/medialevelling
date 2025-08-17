@@ -5,10 +5,21 @@ import path from "path";
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   server: {
-    host: "::",
     port: 8080,
-    cors: true,
-    proxy: {}
+    host: '0.0.0.0',
+    strictPort: true,
+    open: true,
+    proxy: {
+      // Configure your API proxy here if needed
+      // '/api': 'http://localhost:3000',
+    },
+    headers: {
+      'Cross-Origin-Embedder-Policy': 'require-corp',
+      'Cross-Origin-Opener-Policy': 'same-origin',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+      'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization',
+    },
   },
   plugins: [
     react(),
